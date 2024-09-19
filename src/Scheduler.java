@@ -17,7 +17,7 @@ public class Scheduler {
                 case "Q": // changes exited to true
                     exited = true;
                     break;
-                case "S":
+                case "S": // used to schedule an appoint
                     System.out.println("Schedule appointment");  // placeholder, replace with function
                     break;
                 case "PP": //
@@ -38,7 +38,7 @@ public class Scheduler {
                 case "PS":
                     System.out.println("Billing statements"); // placeholder
                 default:
-                    System.out.println("Invalid appointment"); // placeholder
+                    continue; // placeholder
             }
         }
         System.out.println("Scheduler is terminated.");

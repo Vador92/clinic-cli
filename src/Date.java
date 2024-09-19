@@ -1,4 +1,4 @@
-import java.util.Calender;
+import java.util.Calendar;
 
 public class Date implements Comparable<Date> {
     private int year;
@@ -25,7 +25,7 @@ public class Date implements Comparable<Date> {
     }
 
     //constructor to make the Date obj
-    public Date (int month, int day, int year) {
+    public Date(int month, int day, int year) {
         this.month = month;
         this.day = day;
         this.year = year;
