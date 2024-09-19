@@ -1,4 +1,4 @@
-import java.util.Calender;
+import java.util.Calendar;
 
 public class Date implements Comparable<Date> {
     private int year;
@@ -10,8 +10,20 @@ public class Date implements Comparable<Date> {
         if (year % 4 == 0) {
             if (year % 100 == 0) {
                 if (year % 400 == 0) {
-
+                    System.out.println("");
                 }
             }
         }
+        return true;
     }
+
+    @Override
+    public int compareTo(Date o) {
+        return 0;
+    }
+
+    @Override
+    public String toString(){
+        return "";
+    }
+}
