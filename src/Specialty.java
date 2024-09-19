@@ -11,6 +11,6 @@ public enum Specialty {
 
     @Override
     public String toString() {
-        return this.speciality;
+        return speciality;
     }
 }

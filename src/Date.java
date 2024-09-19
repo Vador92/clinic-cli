@@ -34,8 +34,18 @@ public class Date implements Comparable<Date> {
         }
     }
 
+    @Override
+    public String toString() {
+        return "";
+    }
+
     //check if the date is a valid calendar date
     public boolean isValid() {
+        return true;
+    }
 
+    @Override
+    public int compareTo(Date o) {
+        return 0;
     }
 }
