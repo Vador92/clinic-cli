@@ -3,14 +3,14 @@ public enum Specialty {
     PEDIATRICIAN("Pediatrician"),
     ALLERGIST("Allergist");
 
-    private final String speciality;
+    private final String Specialty;
 
-    Specialty(String speciality) {
-        this.speciality = speciality;
+    Specialty(String Specialty) {
+        this.Specialty = Specialty;
     }
 
     @Override
     public String toString() {
-        return this.speciality;
+        return Specialty;
     }
 }
