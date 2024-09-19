@@ -1,11 +1,16 @@
 public enum Specialty {
-    private final int charge;
+    FAMILY("Family"),
+    PEDIATRICIAN("Pediatrician"),
+    ALLERGIST("Allergist");
 
-    Specialty(int charge){
-        this.charge = charge;
+    private final String speciality;
+
+    Specialty(String speciality) {
+        this.speciality = speciality;
     }
 
-    public int getChange(){
-        return this.charge;
+    @Override
+    public String toString() {
+        return this.speciality;
     }
 }
