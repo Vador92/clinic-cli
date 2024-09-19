@@ -9,6 +9,20 @@ public class Date implements Comparable<Date> {
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
 
+    public static final int minYear = 1900;
+    public static final int minMonth = 1;
+    public static final int maxMonth = 12;
+
+
+    @Override
+    public String toString() {
+        return month + "/" + day + "/" + year;
+    }
+
+    @Override
+    public int compareTo() {
+
+    }
 
     //constructor to make the Date obj
     public Date (int month, int day, int year) {
@@ -36,6 +50,11 @@ public class Date implements Comparable<Date> {
 
     //check if the date is a valid calendar date
     public boolean isValid() {
-
+        if (year >= minYear) {
+            return false;
+        }
+        if (month < minMonth | maxMonth > month) {
+            return false;
+        }
     }
 }
