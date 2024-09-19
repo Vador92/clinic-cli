@@ -1,21 +1,26 @@
 import java.util.Scanner;
 
+/**
+ * This class is the main class that controls the terminal loop.
+ * During this loop, user can enter commands to do the following
+ * - Schedule appoint, Cancel appoint,
+ */
 public class Scheduler {
     public Scheduler(){} // constructor
-
+    // 36 lines in run, 4 left
     public void run(){
         Scanner scanner = new Scanner(System.in);
         boolean exited = false;
         while(!exited) // to satisfy the entry condition
         {
             switch(scanner.nextLine()){
-                case "Q":
+                case "Q": // changes exited to true
                     exited = true;
                     break;
                 case "S":
-                    System.out.println("Schedule appointment");  // placeholder
+                    System.out.println("Schedule appointment");  // placeholder, replace with function
                     break;
-                case "PP":
+                case "PP": //
                     System.out.println("No appointments yet"); // placeholder
                     break;
                 case "C":
