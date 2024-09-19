@@ -30,8 +30,8 @@ public class Date implements Comparable<Date> {
             DECEMBER = 12;
 
     public static final int
-        isLeapYearFEBRUARYDay = 28,
-        notLeapYearFEBRUARYDay = 29;
+            isLeapYearFEBRUARYDay = 28,
+            notLeapYearFEBRUARYDay = 29;
 
 
     //constructor to make the Date obj
