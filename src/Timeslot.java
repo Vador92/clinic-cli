@@ -6,8 +6,8 @@ public enum Timeslot {
     SLOT5 (15, 0),
     SLOT6 (16, 15);
 
-    private int hour;
-    private int minute;
+    private final int hour;
+    private final int minute;
 
     private Timeslot(int hour, int minute) {
         this.hour = hour;
@@ -16,6 +16,30 @@ public enum Timeslot {
 
     @Override
     public String toString() {
-        return hour + ":" + minute;
+        return hour + ":" + getMinute() + " " + getAMPM();
+    }
+
+    // this function gets if its first half of day or second half
+    /*
+    If time is greater than 12, and less than 0, then PM
+    else AM
+     */
+    public String getAMPM(){
+        if (hour >= 0 && hour < 12){
+            return "AM";
+        }
+        else{
+            return "PM";
+        }
+    }
+
+    public String getMinute(){
+        if (minute == 0){
+            return "00";
+        }
+        else{
+            return "" + minute;
+        }
     }
 }
+
