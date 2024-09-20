@@ -58,13 +58,21 @@ public class Date implements Comparable<Date> {
 
     //check if the date is a valid calendar date
     public boolean isValid() {
-
-
         if (year < minYear) {
             return false;
         }
+
         if (month < minMonth || month > maxMonth) {
             return false;
+        }
+
+        if (day < minDay || day > maxDay) {
+            return false;
+        }
+
+        if (isLeapYear()) {
+            if (day == notLeapYearFEBRUARYDay)
+                return false;
         }
 
         return true;
@@ -74,7 +82,6 @@ public class Date implements Comparable<Date> {
     public String toString() {
         return month + "/" + day + "/" + year;
     }
-
 
     @Override
     public int compareTo(Date o) {
