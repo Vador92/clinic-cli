@@ -29,7 +29,7 @@ public enum Provider {
 
     @Override
     public String toString() {
-        return this.location + ", " + this.specialty;
+        return this.location + "," + this.specialty;
     }
 
     public Location getLocation() {

@@ -16,6 +16,6 @@ public enum Timeslot {
 
     @Override
     public String toString() {
-        return this.hour + ":" + this.minute;
+        return hour + ":" + minute;
     }
 }

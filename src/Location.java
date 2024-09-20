@@ -16,18 +16,12 @@ public enum Location {
 
     @Override
     public String toString() {
-        return this.getCounty() + ", " + this.getZip();
+        return this.getCounty() + "," + this.getZip();
     }
-
     public String getCounty() {
-        return this.county;
+        return county;
     }
     public String getZip() {
-        return this.zip;
+        return zip;
     }
-
-    public static void main(String[] args){
-
-    }
-
 }
