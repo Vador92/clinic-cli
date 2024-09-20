@@ -40,7 +40,7 @@ public class Profile implements Comparable<Profile> {
             return fnameCompare;
         }
 
-        return dob.compareTo(other.getDob);
+        return dob.compareTo(other.dob);
 
     }
 }
