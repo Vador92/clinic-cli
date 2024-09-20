@@ -68,6 +68,8 @@ public class Date implements Comparable<Date> {
         if (month < minMonth || month > maxMonth) {
             return false;
         }
+
+        return true;
     }
 
     @Override
@@ -75,10 +77,9 @@ public class Date implements Comparable<Date> {
         return month + "/" + day + "/" + year;
     }
 
+
     @Override
-    public int compareTo(Data other) {
-        if (this.year != )
+    public int compareTo(Date o) {
+        return 0;
     }
-
-
 }
