@@ -8,6 +8,19 @@ public class Profile implements Comparable<Profile> {
         this.lname = lname;
         this.dob = dob;
     }
+    public boolean equals(Object object) {
+        if(this == object) {
+            return true;
+        }
+
+        if(object == null || getClass() != object.getClass()) {
+            return false;
+        }
+
+        Profile other = (Profile) object;
+        // change later this most likely is wrong
+        return fname.equalsIgnoreCase(other.fname) && lname.equalsIgnoreCase(other.lname) && dob.equals(other.dob);
+    }
 
     @Override
     public String toString() {
