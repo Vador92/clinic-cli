@@ -3,6 +3,8 @@ public class Profile implements Comparable<Profile> {
     private String lname;
     private Date dob;
 
+    //might need getter functions here to make the fname, lname, and dob public variables if the patient class needs it
+
     public Profile (String fname, String lname, Date dob) {
         this.fname = fname;
         this.lname = lname;
@@ -40,7 +42,6 @@ public class Profile implements Comparable<Profile> {
             return fnameCompare;
         }
 
-        return dob.compareTo(other.getDob);
-
+        return dob.compareTo(other.dob);
     }
 }
