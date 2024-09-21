@@ -80,11 +80,30 @@ public class Date implements Comparable<Date> {
 
     @Override
     public String toString() {
-        return month + "/" + day + "/" + year;
+        return getMonth() + "/" + getDay() + "/" + year;
     }
 
     @Override
     public int compareTo(Date o) {
         return 0;
     }
+
+    public String getMonth(){
+        if (month < 10){
+            return "0" + month;
+        }
+        else{
+            return ""+month;
+        }
+    }
+    public String getDay(){
+        if (day < 10){
+            return "0" + day;
+        }
+        else{
+            return "" + day;
+        }
+    }
+
+
 }
