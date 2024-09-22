@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -7,9 +8,10 @@ import java.util.Scanner;
  */
 public class Scheduler {
     public Scheduler(){} // constructor
-    // 36 lines in run, 4 left
+    // 37 lines in run, 3 left
     public void run(){
         Scanner scanner = new Scanner(System.in);
+        List clinic = new List();
         boolean exited = false;
         while(!exited) // to satisfy the entry condition
         {
@@ -18,7 +20,7 @@ public class Scheduler {
                     exited = true;
                     break;
                 case "S": // used to schedule an appoint
-                    System.out.println("Schedule appointment");  // placeholder, replace with function
+                     // placeholder, replace with function
                     break;
                 case "PP": //
                     System.out.println("No appointments yet"); // placeholder
