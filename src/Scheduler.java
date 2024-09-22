@@ -7,42 +7,51 @@ import java.util.Scanner;
  * - Schedule appoint, Cancel appoint,
  */
 public class Scheduler {
+    private List clinic = new List();
+    private boolean exited = false;
+
     public Scheduler(){} // constructor
-    // 37 lines in run, 3 left
     public void run(){
         Scanner scanner = new Scanner(System.in);
-        List clinic = new List();
-        boolean exited = false;
+        // enter the scheduler
+        System.out.println("Scheduler is running.");
         while(!exited) // to satisfy the entry condition
         {
-            switch(scanner.nextLine()){
-                case "Q": // changes exited to true
-                    exited = true;
-                    break;
-                case "S": // used to schedule an appoint
-                     // placeholder, replace with function
-                    break;
-                case "PP": //
-                    System.out.println("No appointments yet"); // placeholder
-                    break;
-                case "C":
-                    System.out.println("Appointment canceled"); // placeholder
-                    break;
-                case "R":
-                    System.out.println("Rescheduled appointment"); // placeholder
-                    break;
-                case "PA":
-                    System.out.println("Displaying appointments, sorted"); // placeholder
-                    break;
-                case "PL":
-                    System.out.println("Displaying appointments, sorted 1");  // placeholder
-                    break;
-                case "PS":
-                    System.out.println("Billing statements"); // placeholder
-                default:
-                    System.out.println("Invalid command!"); // placeholder
-            }
+            // get the line, send it over, make sure the first
+            // letter is an actual command and then
+            //  call the necessary function
+            processCommand(scanner.nextLine(), clinic);
         }
-        System.out.println("Scheduler is terminated.");
+        System.out.println("Scheduler is terminated."); // exit the scheduler
+    }
+
+    private void processCommand(String command, List clinic){
+        switch(command){
+            case "Q": // changes exited to true
+                exited = true;
+                break;
+            case "S": // used to schedule an appoint
+                // placeholder, replace with function
+                break;
+            case "PP": //
+                System.out.println("No appointments yet"); // placeholder
+                break;
+            case "C":
+                System.out.println("Appointment canceled"); // placeholder
+                break;
+            case "R":
+                System.out.println("Rescheduled appointment"); // placeholder
+                break;
+            case "PA":
+                System.out.println("Displaying appointments, sorted"); // placeholder
+                break;
+            case "PL":
+                System.out.println("Displaying appointments, sorted 1");  // placeholder
+                break;
+            case "PS":
+                System.out.println("Billing statements"); // placeholder
+            default:
+                System.out.println("Invalid command!"); // placeholder
+        }
     }
 }
