@@ -58,24 +58,32 @@ public class Date implements Comparable<Date> {
 
     //check if the date is a valid calendar date
     public boolean isValid() {
-        if (year < minYear) {
-            return false;
-        }
 
-        if (month < minMonth || month > maxMonth) {
-            return false;
-        }
+        // year validation
+        if (year < minYear) return false;
 
-        if (day < minDay || day > maxDay) {
-            return false;
-        }
+        // moth validation
+        if (month < minMonth || month > maxMonth) return false;
 
-        if (isLeapYear()) {
-            if (day == notLeapYearFEBRUARYDay)
+        // day validation
+        if (day < minDay || day > maxDay) return false;
+
+        //month and day range validation
+        switch (month) {
+            case JANUARY: case MARCH: case MAY: case JULY: case AUGUST: case OCTOBER: case DECEMBER:
+                return day <= 31;
+            case APRIL: case JUNE: case SEPTEMBER: case NOVEMBER:
+                return day <= 30;
+            case FEBRUARY:
+                if (isLeapYear()) {
+                    return day <= isLeapYearFEBRUARYDay;
+                } else {
+                    return day <= notLeapYearFEBRUARYDay;
+                }
+            default:
                 return false;
-        }
 
-        return true;
+        }
     }
 
     @Override
