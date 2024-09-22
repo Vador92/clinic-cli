@@ -38,7 +38,7 @@ public class Scheduler {
                 case "PS":
                     System.out.println("Billing statements"); // placeholder
                 default:
-                    continue; // placeholder
+                    System.out.println("Invalid command!"); // placeholder
             }
         }
         System.out.println("Scheduler is terminated.");
