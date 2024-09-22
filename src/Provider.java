@@ -1,24 +1,26 @@
 public enum Provider {
-    PATEL(Location.BRIDGEWATER, Specialty.FAMILY),
-    LIM(Location.BRIDGEWATER, Specialty.PEDIATRICIAN),
-    ZIMNES(Location.CLARK, Specialty.FAMILY),
-    HARPER(Location.CLARK, Specialty.FAMILY),
-    KAUR(Location.PRINCETON, Specialty.ALLERGIST),
-    TAYLOR(Location.PISCATAWAY, Specialty.PEDIATRICIAN),
-    RAMESH(Location.MORRISTOWN, Specialty.ALLERGIST),
-    CERAVOLO(Location.EDISON, Specialty.PEDIATRICIAN);
+    PATEL("Patel", Location.BRIDGEWATER, Specialty.FAMILY),
+    LIM("Lim", Location.BRIDGEWATER, Specialty.PEDIATRICIAN),
+    ZIMNES("Zimnes", Location.CLARK, Specialty.FAMILY),
+    HARPER("Harper", Location.CLARK, Specialty.FAMILY),
+    KAUR("Kaur",Location.PRINCETON, Specialty.ALLERGIST),
+    TAYLOR("Taylor",Location.PISCATAWAY, Specialty.PEDIATRICIAN),
+    RAMESH("Ramesh", Location.MORRISTOWN, Specialty.ALLERGIST),
+    CERAVOLO("Ceravold", Location.EDISON, Specialty.PEDIATRICIAN);
 
+    private final String lname;
     private final Location location;
     private final Specialty specialty;
 
-    Provider(Location location, Specialty specialty) {
+    Provider(String lname, Location location, Specialty specialty) {
+        this.lname = lname;
         this.location = location;
         this.specialty = specialty;
     }
 
     @Override
     public String toString() {
-        return location.toString() + "," + specialty.toString();
+        return lname + location.toString() + "," + specialty.toString();
     }
 
 //    public Location getLocation() {
