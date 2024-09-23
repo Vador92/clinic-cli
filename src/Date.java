@@ -54,14 +54,6 @@ public class Date implements Comparable<Date> {
         } else {
             return false;
         }
-
-        /*if (year % QUADRENNIAL == 0) {
-            if ((year % CENTENNIAL) ==0) {
-                return (year % QUATERCENTENNIAL) == 0;
-            }
-            return true;
-        }
-        return false;*/
     }
 
     //check if the date is a valid calendar date
@@ -94,24 +86,28 @@ public class Date implements Comparable<Date> {
         }
     }
 
-    //converts month values with proper format
+    // getter method for month
     public int getMonth() {
         return month;
     }
 
+    // getter method for day
     public int getDay() {
         return day;
     }
 
+    // getter method for year
     public int getYear() {
         return year;
     }
 
+    // converts the full date to a string with 0s in front of the string literals if necessary
     @Override
     public String toString() {
         return String.format("%02d/%02d/%d", month, day, year);
     }
 
+    // need to adjust
     @Override
     public int compareTo(Date o) {
         return 0;
