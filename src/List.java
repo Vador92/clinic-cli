@@ -14,8 +14,13 @@ public class List {
         return false;
     }
 
+    // increase appointments if too big
+    // and add new appointment
     public void add(Appointment appointment) {
-
+        if (size == appointments.length) {
+            grow();
+        }
+        appointments[size++] = appointment;
     }
 
     public void remove(Appointment appointment) {
