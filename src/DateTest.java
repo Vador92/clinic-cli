@@ -59,7 +59,7 @@ class DateTest {
         Date invalidFebDate = new Date(2, 30, 2003);
         assertFalse(invalidFebDate.isValid(), "Date should be invalid: 02/30/2003");
 
-        // Testing leap year with invalid date (there is no 29th day in a leap year in feb)
+        // Testing leap year with invalid date (there is no 29th day in a non-leap year in feb)
         Date invalidLeapDate = new Date(2, 29, 2001);
         assertFalse(invalidLeapDate.isValid(), "Date should be invalid: 02/29/2001 (not a leap year)");
 

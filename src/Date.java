@@ -70,7 +70,8 @@ public class Date implements Comparable<Date> {
 
         //month and day range validation
         switch (month) {
-            case JANUARY: case MARCH: case MAY: case JULY: case AUGUST: case OCTOBER: case DECEMBER:
+            case JANUARY: case MARCH: case MAY: case JULY:
+                case AUGUST: case OCTOBER: case DECEMBER:
                 return day <= 31;
             case APRIL: case JUNE: case SEPTEMBER: case NOVEMBER:
                 return day <= 30;
