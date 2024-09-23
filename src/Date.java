@@ -28,8 +28,8 @@ public class Date implements Comparable<Date> {
             DECEMBER = 12;
 
     public static final int
-            isLeapYearFEBRUARYDay = 28,
-            notLeapYearFEBRUARYDay = 29;
+            isLeapYearFEBRUARYDay = 29,
+            notLeapYearFEBRUARYDay = 28;
 
 
     //constructor to make the Date obj
@@ -54,6 +54,14 @@ public class Date implements Comparable<Date> {
         } else {
             return false;
         }
+
+        /*if (year % QUADRENNIAL == 0) {
+            if ((year % CENTENNIAL) ==0) {
+                return (year % QUATERCENTENNIAL) == 0;
+            }
+            return true;
+        }
+        return false;*/
     }
 
     //check if the date is a valid calendar date
@@ -86,31 +94,27 @@ public class Date implements Comparable<Date> {
         }
     }
 
+    //converts month values with proper format
+    public int getMonth() {
+        return month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
     @Override
     public String toString() {
-        return getMonth() + "/" + getDay() + "/" + year;
+        return String.format("%02d/%02d/%d", month, day, year);
     }
 
     @Override
     public int compareTo(Date o) {
         return 0;
-    }
-
-    public String getMonth(){
-        if (month < 10){
-            return "0" + month;
-        }
-        else{
-            return ""+month;
-        }
-    }
-    public String getDay(){
-        if (day < 10){
-            return "0" + day;
-        }
-        else{
-            return "" + day;
-        }
     }
 
 
