@@ -26,7 +26,7 @@ public class Appointment implements Comparable<Appointment> {
     }
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(Appointment appointment) {
         return true;
     }
 }
