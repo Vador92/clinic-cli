@@ -28,7 +28,7 @@ public enum Timeslot {
 
     @Override
     public String toString() {
-        return String.format("%d:%02d %S",
+        return String.format("%d:%02d %s",
                 getHour(), minute, getAMPM());
     }
 
