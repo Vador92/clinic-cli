@@ -14,32 +14,35 @@ public enum Timeslot {
         this.minute = minute;
     }
 
+    public static Timeslot fromSchedule(String slot){
+        return switch (slot) {
+            case "1" -> SLOT1;
+            case "2" -> SLOT2;
+            case "3" -> SLOT3;
+            case "4" -> SLOT4;
+            case "5" -> SLOT5;
+            case "6" -> SLOT6;
+            default -> null; // print error message w/ slot
+        };
+    }
+
     @Override
     public String toString() {
-        return hour + ":" + getMinute() + " " + getAMPM();
+        return String.format("%d:%02d %S",
+                getHour(), minute, getAMPM());
     }
 
-    // this function gets if its first half of day or second half
-    /*
-    If time is greater than 12, and less than 0, then PM
-    else AM
-     */
     public String getAMPM(){
-        if (hour >= 0 && hour < 12){
+        if (hour >= 0 && hour < 12)
             return "AM";
-        }
-        else{
-            return "PM";
-        }
+        return "PM";
     }
 
-    public String getMinute(){
-        if (minute == 0){
-            return "00";
+    public int getHour() {
+        if (hour > 12) {
+            return hour - 12;
         }
-        else{
-            return "" + minute;
-        }
+        return hour;
     }
 }
 
