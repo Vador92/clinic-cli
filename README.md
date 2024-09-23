@@ -1,5 +1,5 @@
 # softwaremethproject1
-scheduler software to help the clinic manage the appointments.
+scheduler software to help a clinic manage appointments.
 
 ## Requirements:
 
