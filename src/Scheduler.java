@@ -25,13 +25,24 @@ public class Scheduler {
         System.out.println("Scheduler is terminated."); // exit the scheduler
     }
 
-    private void processCommand(String command, List clinic){
+    // check if there is no comma, if not then no substring needed
+    /*
+    1. make sure no comma
+    2. if no comma, split arguments
+    3. check command
+    4. pass arguments
+     */
+    private void processCommand(String input, List clinic){
+        // command is always the first section before the comma
+        String command = input.substring(0, input.indexOf(','));
+        // arguments are anything past the first argument
+        String arguments = input.substring(1).trim();
         switch(command){
             case "Q": // changes exited to true
                 exited = true;
                 break;
             case "S": // used to schedule an appoint
-                // placeholder, replace with function
+                clinic.add(new Appointment(command.strip(',')));// placeholder, replace with function
                 break;
             case "PP": //
                 System.out.println("No appointments yet"); // placeholder
