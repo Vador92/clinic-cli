@@ -10,6 +10,9 @@ public class Profile implements Comparable<Profile> {
         this.lname = lname;
         this.dob = dob;
     }
+
+
+
     public boolean equals(Object object) {
         if(this == object) {
             return true;
