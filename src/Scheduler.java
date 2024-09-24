@@ -12,6 +12,7 @@ public class Scheduler {
     private boolean exited = false;
 
     public Scheduler(){} // constructor
+
     public void run(){
         Scanner scanner = new Scanner(System.in);
         // enter the scheduler
@@ -35,6 +36,7 @@ public class Scheduler {
      */
     private String command;
     private String[] arguments = null;
+
     private void processCommand(String input){
         getInput(input);
         switch(command){
