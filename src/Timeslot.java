@@ -14,6 +14,18 @@ public enum Timeslot {
         this.minute = minute;
     }
 
+    public static Timeslot setTimeslot(String timeslot){
+        return switch (timeslot){
+            case "1" -> Timeslot.SLOT1;
+            case "2" -> Timeslot.SLOT2;
+            case "3" -> Timeslot.SLOT3;
+            case "4" -> Timeslot.SLOT4;
+            case "5" -> Timeslot.SLOT5;
+            case "6" -> Timeslot.SLOT6;
+            default -> null;
+        };
+    }
+
     @Override
     public String toString() {
         return String.format("%d:%02d %s",
