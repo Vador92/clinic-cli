@@ -34,4 +34,60 @@ class TimeslotTest {
         Timeslot invalid2 = Timeslot.fromSchedule("0");
         Timeslot invalid3 = Timeslot.fromSchedule("9");
     }
+
+    @Test
+    public void testTimeslotSlot1() {
+        Timeslot slot = Timeslot.SLOT1;
+        assertEquals("9:00 AM", slot.toString());
+    }
+
+    @Test
+    public void testTimeslotSlot2() {
+        Timeslot slot = Timeslot.SLOT2;
+        assertEquals("10:45 AM", slot.toString());
+    }
+
+    @Test
+    public void testTimeslotSlot3() {
+        Timeslot slot = Timeslot.SLOT3;
+        assertEquals("11:15 AM", slot.toString());
+    }
+
+    @Test
+    public void testTimeslotSlot4() {
+        Timeslot slot = Timeslot.SLOT4;
+        assertEquals("1:30 PM", slot.toString());
+    }
+
+    @Test
+    public void testTimeslotSlot5() {
+        Timeslot slot = Timeslot.SLOT5;
+        assertEquals("3:00 PM", slot.toString());
+    }
+
+    @Test
+    public void testTimeslotSlot6() {
+        Timeslot slot = Timeslot.SLOT6;
+        assertEquals("4:15 PM", slot.toString());
+    }
+
+    @Test
+    public void testFromScheduleSlot1() {
+        Timeslot slot = Timeslot.fromSchedule("1");
+        assertEquals(Timeslot.SLOT1, slot);
+    }
+
+    @Test
+    public void testFromScheduleSlot2() {
+        Timeslot slot = Timeslot.fromSchedule("2");
+        assertEquals(Timeslot.SLOT2, slot);
+    }
+
+    @Test
+    public void testFromScheduleSlot3() {
+        Timeslot slot = Timeslot.fromSchedule("3");
+        assertEquals(Timeslot.SLOT3, slot);
+    }
+
+
 }

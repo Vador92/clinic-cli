@@ -51,7 +51,7 @@ public class Scheduler {
                 break;
             case "S": // used to schedule an appoint
                 clinic.add(new Appointment(new Date(arguments[1]),
-                        Timeslot.fromSchedule(arguments[2]),
+                        Timeslot.SlOT,
                         new Profile(arguments[3], arguments[4], new Date(arguments[5])),
                         Provider.setProvider(arguments[6])
                         )
@@ -78,4 +78,14 @@ public class Scheduler {
                 System.out.println("Invalid command!"); // placeholder
         }
     }
+
+    private Timeslot getTimeslot(){
+
+    }
+
+    private Date getDate(){
+
+    }
+
+    private
 }
