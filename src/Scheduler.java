@@ -77,7 +77,7 @@ public class Scheduler {
     private Date getDate(String date){
         try{
             Date newDate = new Date(date);
-            if (newDate.isValid(false, date)){
+            if (newDate.isValid()){
                 return newDate;
             }
             return null;
@@ -90,7 +90,7 @@ public class Scheduler {
     private Profile getProfile(String fname, String lname, String dob){
         try{
             Date birthday = new Date(dob);
-            if (birthday.isValid(true, dob)){
+            if (birthday.isValid()){
                 return new Profile(fname,lname, new Date(dob));
             }
             return null;

@@ -1,3 +1,5 @@
+import java.util.Calendar;
+
 public class Date implements Comparable<Date> {
     private int year;
     private int month;
@@ -26,6 +28,8 @@ public class Date implements Comparable<Date> {
             OCTOBER = 10,
             NOVEMBER = 11,
             DECEMBER = 12;
+
+    public static final int zeroBaseShift = 1;
 
     public static final int
             isLeapYearFEBRUARYDay = 29,
@@ -60,20 +64,13 @@ public class Date implements Comparable<Date> {
     //check if the date is a valid calendar date
     // cannot change the signature of this method
     // need to fix this
-    public boolean isValid(boolean dob, String date) {
-        String startMessage = "";
-        if (dob){
-            startMessage = "Patient dob: ";
-        }
-        else{
-            startMessage = "Appointment date: ";
-        }
+    public boolean isValid() {
+
+        // checks if appt date or dob is set to today
+        if (isToday()) return false;
 
         // year validation
-        if (year < minYear){
-            System.out.println(String.format("%s%s is not a valid calendar date.", startMessage, date));
-            return false;
-        }
+        if (year < minYear) return false;
 
         // moth validation
         if (month < minMonth || month > maxMonth) return false;
@@ -136,6 +133,20 @@ public class Date implements Comparable<Date> {
 
         // Compare days
         return Integer.compare(this.day, other.day);
+    }
+
+    // checks if the inputted date is today's date
+    public boolean isToday() {
+        Calendar today = Calendar.getInstance();
+
+        int todayMonth = today.get(Calendar.MONTH) + zeroBaseShift;
+        int todayDay = today.get(Calendar.DAY_OF_MONTH);
+        int todayYear = today.get(Calendar.YEAR);
+
+        return this.month == todayMonth
+                && this.day == todayDay
+                && this.year == todayYear;
+
     }
 
 
