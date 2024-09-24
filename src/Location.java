@@ -1,23 +1,30 @@
 public enum Location {
-    BRIDGEWATER("Somerset County", "08807"),
-    EDISON("Middlesex County", "08817"),
-    PISCATAWAY("Middlesex County", "08854"),
-    PRINCETON("Merer County", "08542"),
-    MORRISTOWN("Morris County", "07960"),
-    CLARK("Union County", "07066");
+    BRIDGEWATER("BRIDGEWATER", "Somerset County", "08807"),
+    EDISON("EDISON","Middlesex County", "08817"),
+    PISCATAWAY("PISCATAWAY","Middlesex County", "08854"),
+    PRINCETON("PRINCETON","Merer County", "08542"),
+    MORRISTOWN("MORRISTOWN","Morris County", "07960"),
+    CLARK("CLARK","Union County", "07066");
 
+    private final String city;
     private final String county;
     private final String zip;
 
-    Location(String county, String zip) {
+    Location(String city, String county, String zip) {
+        this.city = city;
         this.county = county;
         this.zip = zip;
     }
 
     @Override
     public String toString() {
-        return this.getCounty() + "," + this.getZip();
+        return getCity() + ", " + getCounty() + ", " + getZip();
     }
+
+    public String getCity() {
+        return city;
+    }
+
     public String getCounty() {
         return county;
     }

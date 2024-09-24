@@ -7,7 +7,7 @@ import java.util.Scanner;
  * - Schedule appoint, Cancel appoint,
  */
 public class Scheduler {
-    private List clinic = new List();
+    private List clinic = new List(4);
     private boolean exited = false;
 
     public Scheduler(){} // constructor
@@ -50,10 +50,10 @@ public class Scheduler {
                 exited = true;
                 break;
             case "S": // used to schedule an appoint
-                clinic.add(new Appointment(getDate(arguments[1]),
-                        getTimeslot(arguments[2]),
-                        getProfile(arguments[3], arguments[4], arguments[5]),
-                        Provider.setProvider(arguments[6])
+                clinic.add(new Appointment(getDate(arguments[0]),
+                        getTimeslot(arguments[1]),
+                        getProfile(arguments[2], arguments[3], arguments[4]),
+                        Provider.setProvider(arguments[5])
                         )
                     );// placeholder
                 break;
