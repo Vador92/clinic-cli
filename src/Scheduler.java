@@ -36,6 +36,7 @@ public class Scheduler {
      */
     private String command;
     private String[] arguments = null;
+
     private void processCommand(String input){
         getInput(input);
         switch(command){
