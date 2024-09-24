@@ -34,15 +34,21 @@ public class Scheduler {
      */
     private void processCommand(String input, List clinic){
         // command is always the first section before the comma
-        String command = input.substring(0, input.indexOf(','));
+        String command;
+        if (input.indexOf(',') == -1){
+            command = input;
+        }
+        else{
+            command = input.substring(0, input.indexOf(','));
+            String arguments = input.substring(1).trim();
+        }
         // arguments are anything past the first argument
-        String arguments = input.substring(1).trim();
         switch(command){
             case "Q": // changes exited to true
                 exited = true;
                 break;
             case "S": // used to schedule an appoint
-                clinic.add(new Appointment(command.strip(',')));// placeholder, replace with function
+                System.out.println("Schedule appointment"); // placeholder
                 break;
             case "PP": //
                 System.out.println("No appointments yet"); // placeholder
