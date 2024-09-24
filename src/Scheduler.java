@@ -92,7 +92,7 @@ public class Scheduler {
     private Date getDate(String date){
         try{
             Date newDate = new Date(date);
-            if (newDate.isValid()){
+            if (newDate.isValid(false)){
                 return newDate;
             }
             return null;
