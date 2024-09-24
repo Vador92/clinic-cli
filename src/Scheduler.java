@@ -7,6 +7,7 @@ import java.util.Scanner;
  * - Schedule appoint, Cancel appoint,
  */
 public class Scheduler {
+    // initialize list to 4 when we start the program
     private List clinic = new List(4);
     private boolean exited = false;
 
@@ -20,7 +21,7 @@ public class Scheduler {
             // get the line, send it over, make sure the first
             // letter is an actual command and then
             //  call the necessary function
-            processCommand(scanner.nextLine(), clinic);
+            processCommand(scanner.nextLine());
         }
         System.out.println("Scheduler is terminated."); // exit the scheduler
     }
@@ -32,30 +33,24 @@ public class Scheduler {
     3. check command
     4. pass arguments
      */
-    private void processCommand(String input, List clinic){
-        // command is always the first section before the comma
-        String command;
-        String[] arguments = null;
-        if (input.indexOf(',') == -1){
-            command = input;
-        }
-        else{
-            command = input.substring(0, input.indexOf(','));
-            String argString = input.substring(input.indexOf(',') + 1).trim();
-            arguments = argString.split(",");
-        }
-        // arguments are anything past the first argument
+    private String command;
+    private String[] arguments = null;
+    private void processCommand(String input){
+        getInput(input);
         switch(command){
             case "Q": // changes exited to true
                 exited = true;
                 break;
             case "S": // used to schedule an appoint
-                clinic.add(new Appointment(getDate(arguments[0]),
-                        getTimeslot(arguments[1]),
-                        getProfile(arguments[2], arguments[3], arguments[4]),
-                        Provider.setProvider(arguments[5])
-                        )
-                    );// placeholder
+                try{
+                    clinic.add(new Appointment(getDate(arguments[0]),
+                                    getTimeslot(arguments[1]),
+                                    getProfile(arguments[2], arguments[3], arguments[4]),
+                                    Provider.setProvider(arguments[5])
+                            )
+                    );
+                }
+                catch(Exception e){System.out.println(e);}
                 break;
             case "PP": //
                 System.out.println("No appointments yet"); // placeholder
@@ -106,6 +101,16 @@ public class Scheduler {
         }
         catch(Exception e){
             return null;
+        }
+    }
+
+    private void getInput(String input){
+        if (input.indexOf(',') == -1)
+            command = input;
+        else{
+            command = input.substring(0, input.indexOf(','));
+            String argString = input.substring(input.indexOf(',') + 1).trim();
+            arguments = argString.split(",");
         }
     }
 }

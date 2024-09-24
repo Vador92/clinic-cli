@@ -109,10 +109,21 @@ public class Date implements Comparable<Date> {
         return String.format("%d/%d/%d", month, day, year);
     }
 
-    // need to adjust
+    // compare the month, day, and year of two Date Objects in sequence
     @Override
-    public int compareTo(Date o) {
-        return 0;
+    public int compareTo(Date other) {
+        // Compare years
+        if (this.year != other.year) {
+            return Integer.compare(this.year, other.year);
+        }
+
+        // Compare months
+        if (this.month != other.month) {
+            return Integer.compare(this.month, other.month);
+        }
+
+        // Compare days
+        return Integer.compare(this.day, other.day);
     }
 
 

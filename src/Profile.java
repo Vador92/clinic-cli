@@ -3,13 +3,29 @@ public class Profile implements Comparable<Profile> {
     private String lname;
     private Date dob;
 
-    //might need getter functions here to make the fname, lname, and dob public variables if the patient class needs it
-
+    // constructor for Object Profile
     public Profile (String fname, String lname, Date dob) {
         this.fname = fname;
         this.lname = lname;
         this.dob = dob;
     }
+
+    // getter method for First Name
+    public String getFname() {
+        return fname;
+    }
+
+    // getter method for Last Name
+    public String getLname() {
+        return lname;
+    }
+
+    // getter method for Object Date of Birth
+    public Date getDob() {
+        return dob;
+    }
+
+    // checks if there are duplicate Profile Objects with the same fields, or null fields
     public boolean equals(Object object) {
         if(this == object) {
             return true;
@@ -20,13 +36,19 @@ public class Profile implements Comparable<Profile> {
         }
 
         Profile other = (Profile) object;
-        // change later this most likely is wrong
-        return fname.equalsIgnoreCase(other.fname) && lname.equalsIgnoreCase(other.lname) && dob.equals(other.dob);
+
+        if (fname == null || lname == null || dob == null) {
+            return false;
+        }
+
+        return fname.equalsIgnoreCase(other.fname)
+                && lname.equalsIgnoreCase(other.lname)
+                && dob.equals(other.dob);
     }
 
     @Override
     public String toString() {
-        return fname + " " + lname + " " + dob;
+        return getFname() + " " + getLname() + " " + getDob();
     }
 
 
