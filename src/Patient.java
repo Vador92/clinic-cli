@@ -3,8 +3,11 @@ public class Patient {
     private Visit visits;
 
 
-
     public int charge() {
         return 0;
     }
+
+
+
+
 }

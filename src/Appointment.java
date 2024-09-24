@@ -16,7 +16,10 @@ public class Appointment implements Comparable<Appointment> {
     // Method to convert the object to a readable string in the terminal
     @Override
     public String toString() {
-        return "";
+        return String.format("%s %s %s [%s]", date.toString(),
+                timeslot.toString(),
+                patient.toString(),
+                provider.toString());
     }
 
     // Compare two different Appointments, this is needed for sorting

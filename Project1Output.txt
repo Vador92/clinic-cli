@@ -24,6 +24,7 @@ Appointment date: 5/30/2025 is not within six months.
 2/3/2025 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
 Appointment date: 4/11/2025 is not within six months.
 3/3/2025 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+
 0 is not a valid time slot.
 A is not a valid time slot.
 8 is not a valid time slot.

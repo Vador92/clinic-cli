@@ -35,7 +35,7 @@ public enum Provider {
 
     @Override
     public String toString() {
-        return lname + location.toString() + "," + specialty.toString();
+        return lname + ", " + location.toString() + ", " + specialty.toString();
     }
 
 //    public Location getLocation() {
