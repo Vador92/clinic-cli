@@ -50,24 +50,19 @@ public class Date implements Comparable<Date> {
             if (year % CENTENNIAL == 0) {
                 if (year % QUATERCENTENNIAL == 0) {
                     return true;
-                } else {
-                    return false;
                 }
-            } else {
-                return false;
             }
-        } else {
-            return false;
         }
+        return false;
     }
 
     //check if the date is a valid calendar date
     // cannot change the signature of this method
     // need to fix this
     public boolean isValid() {
-
+        Calendar calendar = Calendar.getInstance();
         // checks if appt date or dob is set to today
-        if (isToday()) return false;
+        if (isToday(calendar)) return false;
 
         // year validation
         if (year < minYear) return false;
@@ -136,9 +131,7 @@ public class Date implements Comparable<Date> {
     }
 
     // checks if the inputted date is today's date
-    public boolean isToday() {
-        Calendar today = Calendar.getInstance();
-
+    public boolean isToday(Calendar today) {
         int todayMonth = today.get(Calendar.MONTH) + zeroBaseShift;
         int todayDay = today.get(Calendar.DAY_OF_MONTH);
         int todayYear = today.get(Calendar.YEAR);
@@ -147,6 +140,21 @@ public class Date implements Comparable<Date> {
                 && this.day == todayDay
                 && this.year == todayYear;
 
+    }
+
+    public boolean isSixMonths(){
+        return false;
+    }
+
+    // check if the appointment on weekend
+    public boolean isWeekDay(Calendar weekday){
+        weekday.set(year, month - zeroBaseShift, day);
+        int dayOfWeek = weekday.get(Calendar.DAY_OF_WEEK);
+        if (dayOfWeek == Calendar.SATURDAY
+                || dayOfWeek == Calendar.SUNDAY) {
+            return false;
+        }
+        return true;
     }
 
 

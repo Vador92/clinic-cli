@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectTreeColorHighlighter">
+    <files>
+      <node color="7" path="$PROJECT_DIR$/src/Appointment.java" />
+      <node color="3" path="$PROJECT_DIR$/src/Date.java" />
+      <node color="1" path="$PROJECT_DIR$/src/List.java" />
+      <node color="4" path="$PROJECT_DIR$/src/Location.java" />
+      <node color="1" path="$PROJECT_DIR$/src/MedicalRecord.java" />
+      <node color="1" path="$PROJECT_DIR$/src/Patient.java" />
+      <node color="3" path="$PROJECT_DIR$/src/Profile.java" />
+      <node color="5" path="$PROJECT_DIR$/src/Provider.java" />
+      <node color="4" path="$PROJECT_DIR$/src/RunProject1.java" />
+      <node color="3" path="$PROJECT_DIR$/src/Scheduler.java" />
+      <node color="4" path="$PROJECT_DIR$/src/Specialty.java" />
+      <node color="4" path="$PROJECT_DIR$/src/Timeslot.java" />
+      <node color="7" path="$PROJECT_DIR$/src/Visit.java" />
+    </files>
+    <colors>
+      <color id="1" value="#4f060d" name="Not Started" enabled="true" />
+      <color id="2" value="#44220e" name="Buggy" enabled="true" />
+      <color id="3" value="#3f371b" name="Almost Done" enabled="true" />
+      <color id="4" value="#162c16" name="Finished" enabled="true" />
+      <color id="5" value="#0f2f47" name="Good for now" enabled="true" />
+      <color id="6" value="#171a34" name="Color 6" enabled="true" />
+      <color id="7" value="#311333" name="Just started" enabled="true" />
+      <color id="8" value="#1e1e1e" name="Color 8" enabled="true" />
+    </colors>
+    <option name="marksForCollapsedHighlights" value="Dots" />
+  </component>
+</project>

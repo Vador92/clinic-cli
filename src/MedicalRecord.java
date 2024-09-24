@@ -6,4 +6,5 @@ public class MedicalRecord {
     // Here we should create a method to get the billing statements
     // from the user.
 
+
 }
