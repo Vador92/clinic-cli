@@ -1,4 +1,4 @@
-/*import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DateTest {
@@ -55,6 +55,10 @@ class DateTest {
     @Test
     void testInvalidDates() {
 
+        // Testing invalid date (the appt date or dob is set to today's date)
+        Date invalidTodayDate = new Date("09/24/2024");
+        assertFalse(invalidTodayDate.isValid(), "Date should be invalid as the date is set to today's date");
+
         // Testing invalid date (there is no 30th day in feb)
         Date invalidFebDate = new Date("02/30/2003");
         assertFalse(invalidFebDate.isValid(), "Date should be invalid: 02/30/2003");
@@ -77,7 +81,7 @@ class DateTest {
     }
 }
 
- */
+
 
 
 
