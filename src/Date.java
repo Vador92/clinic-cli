@@ -58,7 +58,14 @@ public class Date implements Comparable<Date> {
     }
 
     //check if the date is a valid calendar date
-    public boolean isValid() {
+    public boolean isValid(boolean dob) {
+        String startMessage = "";
+        if (dob){
+            startMessage = "Patient dob: ";
+        }
+        else{
+            startMessage = "Appointment dob: ";
+        }
 
         // year validation
         if (year < minYear) return false;

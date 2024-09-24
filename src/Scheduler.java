@@ -45,7 +45,8 @@ public class Scheduler {
                 try{
                     clinic.add(new Appointment(getDate(arguments[0]),
                                     getTimeslot(arguments[1]),
-                                    getProfile(arguments[2], arguments[3], arguments[4]),
+                                    getProfile(arguments[2],
+                                            arguments[3], arguments[4]),
                                     Provider.setProvider(arguments[5])
                             )
                     );
@@ -88,7 +89,11 @@ public class Scheduler {
 
     private Date getDate(String date){
         try{
-            return new Date(date);
+            Date newDate = new Date(date);
+            if (newDate.isValid()){
+                return newDate;
+            }
+            return null;
         }
         catch(Exception e){
             return null;
@@ -97,7 +102,11 @@ public class Scheduler {
 
     private Profile getProfile(String fname, String lname, String dob){
         try{
-            return new Profile(fname,lname, new Date(dob));
+            Date birthday = new Date(dob);
+            if (birthday.isValid(true)){
+                return new Profile(fname,lname, new Date(dob));
+            }
+            return null;
         }
         catch(Exception e){
             return null;
