@@ -6,7 +6,7 @@ class ProfileTest {
     @Test
     void testEquals_SameProfile() {
         // Arrange
-        Date dob = new Date(1990, 1, 1);
+        Date dob = new Date(1, 1, 1990);
         Profile profile1 = new Profile("John", "Doe", dob);
         Profile profile2 = new Profile("John", "Doe", dob);
 
@@ -17,7 +17,7 @@ class ProfileTest {
     @Test
     void testEquals_DifferentFirstName() {
         // Arrange
-        Date dob = new Date(1990, 1, 1);
+        Date dob = new Date(1, 1, 1990);
         Profile profile1 = new Profile("John", "Doe", dob);
         Profile profile2 = new Profile("Jane", "Doe", dob);
 
@@ -28,7 +28,7 @@ class ProfileTest {
     @Test
     void testEquals_DifferentLastName() {
         // Arrange
-        Date dob = new Date(1990, 1, 1);
+        Date dob = new Date(1, 1, 1990);
         Profile profile1 = new Profile("John", "Doe", dob);
         Profile profile2 = new Profile("John", "Smith", dob);
 
@@ -39,8 +39,8 @@ class ProfileTest {
     @Test
     void testEquals_DifferentDob() {
         // Arrange
-        Date dob1 = new Date(1990, 1, 1);
-        Date dob2 = new Date(1991, 2, 2);
+        Date dob1 = new Date(1, 1, 1990);
+        Date dob2 = new Date(2, 2, 1991);
         Profile profile1 = new Profile("John", "Doe", dob1);
         Profile profile2 = new Profile("John", "Doe", dob2);
 
@@ -51,7 +51,7 @@ class ProfileTest {
     @Test
     void testEquals_NullFields() {
         // Arrange
-        Date dob = new Date(1990, 1, 1);
+        Date dob = new Date(1, 1, 1990);
         Profile profile1 = new Profile(null, "Doe", dob);
         Profile profile2 = new Profile("John", null, dob);
 
@@ -63,7 +63,7 @@ class ProfileTest {
     @Test
     void testCompareTo_SameProfile() {
         // Arrange
-        Date dob = new Date(1990, 1, 1);
+        Date dob = new Date(1, 1, 1990);
         Profile profile1 = new Profile("John", "Doe", dob);
         Profile profile2 = new Profile("John", "Doe", dob);
 
@@ -74,7 +74,7 @@ class ProfileTest {
     @Test
     void testCompareTo_DifferentLastName() {
         // Arrange
-        Date dob = new Date(1990, 1, 1);
+        Date dob = new Date(1, 1, 1990);
         Profile profile1 = new Profile("John", "Doe", dob);
         Profile profile2 = new Profile("John", "Smith", dob);
 
@@ -85,7 +85,7 @@ class ProfileTest {
     @Test
     void testCompareTo_DifferentFirstName() {
         // Arrange
-        Date dob = new Date(1990, 1, 1);
+        Date dob = new Date(1, 1, 1990);
         Profile profile1 = new Profile("John", "Doe", dob);
         Profile profile2 = new Profile("Jane", "Doe", dob);
 
@@ -96,8 +96,8 @@ class ProfileTest {
     @Test
     void testCompareTo_DifferentDob() {
         // Arrange
-        Date dob1 = new Date(1990, 1, 1);
-        Date dob2 = new Date(1991, 2, 2);
+        Date dob1 = new Date(1, 1, 1990);
+        Date dob2 = new Date(2, 2, 1991);
         Profile profile1 = new Profile("John", "Doe", dob1);
         Profile profile2 = new Profile("John", "Doe", dob2);
 
@@ -108,7 +108,7 @@ class ProfileTest {
     @Test
     void testToString() {
         // Arrange
-        Date dob = new Date(1990, 1, 1);
+        Date dob = new Date(1, 1, 1990);
         Profile profile = new Profile("John", "Doe", dob);
 
         // Act & Assert
