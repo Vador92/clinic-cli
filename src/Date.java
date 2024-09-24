@@ -30,6 +30,7 @@ public class Date implements Comparable<Date> {
             DECEMBER = 12;
 
     public static final int zeroBaseShift = 1;
+    public static final int addSixMonths = 6;
 
     public static final int
             isLeapYearFEBRUARYDay = 29,
@@ -50,24 +51,22 @@ public class Date implements Comparable<Date> {
             if (year % CENTENNIAL == 0) {
                 if (year % QUATERCENTENNIAL == 0) {
                     return true;
-                } else {
-                    return false;
                 }
-            } else {
-                return false;
             }
-        } else {
-            return false;
         }
+        return false;
     }
 
     //check if the date is a valid calendar date
     // cannot change the signature of this method
     // need to fix this
     public boolean isValid() {
+        Calendar calendar = Calendar.getInstance();
 
         // checks if appt date or dob is set to today
-        if (isToday()) return false;
+        if (isToday(calendar)) return false;
+
+        if (isInSixMonths(calendar)) return false;
 
         // year validation
         if (year < minYear) return false;
@@ -136,9 +135,7 @@ public class Date implements Comparable<Date> {
     }
 
     // checks if the inputted date is today's date
-    public boolean isToday() {
-        Calendar today = Calendar.getInstance();
-
+    public boolean isToday(Calendar today) {
         int todayMonth = today.get(Calendar.MONTH) + zeroBaseShift;
         int todayDay = today.get(Calendar.DAY_OF_MONTH);
         int todayYear = today.get(Calendar.YEAR);
@@ -149,9 +146,17 @@ public class Date implements Comparable<Date> {
 
     }
 
+    public boolean isInSixMonths(Calendar today) {
 
-    // date is weekday
-    // this date is six months
+        // Add six months to the current date
+        today.add(Calendar.MONTH, addSixMonths);
 
+        // Retrieve the month and year six months from today
+        int inSixMonthsMonth = today.get(Calendar.MONTH) + zeroBaseShift;  // Adjust for 1-based month
+        int inSixMonthsYear = today.get(Calendar.YEAR);
+
+        // Check if both month and year match six months from today
+        return this.month == inSixMonthsMonth && this.year == inSixMonthsYear;
+    }
 
 }
