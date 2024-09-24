@@ -36,25 +36,12 @@ public class Date implements Comparable<Date> {
             isLeapYearFEBRUARYDay = 29,
             notLeapYearFEBRUARYDay = 28;
 
-
     //constructor to make the Date obj
     public Date(String date) {
         String[] parts = date.split("/");
         this.month = Integer.parseInt(parts[0]);;
         this.day = Integer.parseInt(parts[1]);
         this.year = Integer.parseInt(parts[2]);
-    }
-
-    //check if year is leap year
-    private boolean isLeapYear() {
-        if (year % QUADRENNIAL == 0) {
-            if (year % CENTENNIAL == 0) {
-                if (year % QUATERCENTENNIAL == 0) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     //check if the date is a valid calendar date
@@ -66,7 +53,7 @@ public class Date implements Comparable<Date> {
         // checks if appt date or dob is set to today
         if (isToday(calendar)) return false;
 
-        if (isInSixMonths(calendar)) return false;
+        if (isBeyondSixMonths(calendar)) return false;
 
         // year validation
         if (year < minYear) return false;
@@ -146,7 +133,7 @@ public class Date implements Comparable<Date> {
 
     }
 
-    public boolean isInSixMonths(Calendar today) {
+    public boolean isBeyondSixMonths(Calendar today) {
 
         // Add six months to the current date
         today.add(Calendar.MONTH, addSixMonths);
@@ -156,7 +143,23 @@ public class Date implements Comparable<Date> {
         int inSixMonthsYear = today.get(Calendar.YEAR);
 
         // Check if both month and year match six months from today
-        return this.month == inSixMonthsMonth && this.year == inSixMonthsYear;
+        if (this.month > inSixMonthsMonth
+                && this.year > inSixMonthsYear) {
+            return true;
+        }
+        return false;
+    }
+
+    //check if year is leap year
+    private boolean isLeapYear() {
+        if (year % QUADRENNIAL == 0) {
+            if (year % CENTENNIAL == 0) {
+                if (year % QUATERCENTENNIAL == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }
