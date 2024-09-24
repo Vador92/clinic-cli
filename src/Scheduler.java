@@ -12,6 +12,7 @@ public class Scheduler {
     private boolean exited = false;
 
     public Scheduler(){} // constructor
+
     public void run(){
         Scanner scanner = new Scanner(System.in);
         // enter the scheduler
