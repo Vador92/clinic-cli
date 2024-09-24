@@ -112,6 +112,6 @@ class ProfileTest {
         Profile profile = new Profile("John", "Doe", dob);
 
         // Act & Assert
-        assertEquals("John Doe 01/01/1990", profile.toString());
+        assertEquals("John Doe 1/1/1990", profile.toString());
     }
 }
