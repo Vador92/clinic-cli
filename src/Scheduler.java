@@ -35,12 +35,14 @@ public class Scheduler {
     private void processCommand(String input, List clinic){
         // command is always the first section before the comma
         String command;
+        String[] arguments = null;
         if (input.indexOf(',') == -1){
             command = input;
         }
         else{
             command = input.substring(0, input.indexOf(','));
-            String arguments = input.substring(1).trim();
+            String argString = input.substring(input.indexOf(',') + 1).trim();
+            arguments = argString.split(",");
         }
         // arguments are anything past the first argument
         switch(command){
@@ -48,7 +50,12 @@ public class Scheduler {
                 exited = true;
                 break;
             case "S": // used to schedule an appoint
-                System.out.println("Schedule appointment"); // placeholder
+                clinic.add(new Appointment(new Date(arguments[1]),
+                        Timeslot.fromSchedule(arguments[2]),
+                        new Profile(arguments[3], arguments[4], new Date(arguments[5])),
+                        Provider.setProvider(arguments[6])
+                        )
+                    );// placeholder
                 break;
             case "PP": //
                 System.out.println("No appointments yet"); // placeholder
