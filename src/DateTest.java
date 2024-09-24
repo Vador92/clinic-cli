@@ -36,7 +36,7 @@ class DateTest {
 
         Date date = new Date("02/02/2003");
 
-        assertEquals("02/02/2003", date.toString(), "passed final output");
+        assertEquals("2/2/2003", date.toString(), "passed final output");
     }
 
     @Test

@@ -34,12 +34,10 @@ public class Date implements Comparable<Date> {
 
     //constructor to make the Date obj
     public Date(String date) {
-        int month = Integer.parseInt(date.substring(0, 2)); // mm
-        int day = Integer.parseInt(date.substring(3, 5)); // dd
-        int year = Integer.parseInt(date.substring(6)); //
-        this.month = month;
-        this.day = day;
-        this.year = year;
+        String[] parts = date.split("/");
+        this.month = Integer.parseInt(parts[0]);;
+        this.day = Integer.parseInt(parts[1]);
+        this.year = Integer.parseInt(parts[2]);
     }
 
     //check if year is leap year
@@ -108,7 +106,7 @@ public class Date implements Comparable<Date> {
     // converts the full date to a string with 0s in front of the string literals if necessary
     @Override
     public String toString() {
-        return String.format("%02d/%02d/%d", month, day, year);
+        return String.format("%d/%d/%d", month, day, year);
     }
 
     // compare the month, day, and year of two Date Objects in sequence

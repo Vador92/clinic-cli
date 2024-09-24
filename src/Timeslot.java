@@ -14,23 +14,12 @@ public enum Timeslot {
         this.minute = minute;
     }
 
-    public static Timeslot fromSchedule(String slot){
-        return switch (slot) {
-            case "1" -> SLOT1;
-            case "2" -> SLOT2;
-            case "3" -> SLOT3;
-            case "4" -> SLOT4;
-            case "5" -> SLOT5;
-            case "6" -> SLOT6;
-            default -> null; // print error message w/ slot
-        };
-    }
-
     @Override
     public String toString() {
         return String.format("%d:%02d %s",
                 getHour(), minute, getAMPM());
     }
+
 
     public String getAMPM(){
         if (hour >= 0 && hour < 12)
