@@ -77,6 +77,7 @@ public class Scheduler {
         }
     }
 
+    // change
     private Timeslot getTimeslot(String timeslot){
         return switch (timeslot){
             case "1" -> Timeslot.SLOT1;

@@ -58,6 +58,8 @@ public class Date implements Comparable<Date> {
     }
 
     //check if the date is a valid calendar date
+    // cannot change the signature of this method
+    // need to fix this
     public boolean isValid(boolean dob, String date) {
         String startMessage = "";
         if (dob){
@@ -135,6 +137,10 @@ public class Date implements Comparable<Date> {
         // Compare days
         return Integer.compare(this.day, other.day);
     }
+
+
+    // date is weekday
+    // this date is six months
 
 
 }
