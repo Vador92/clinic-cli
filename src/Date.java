@@ -33,7 +33,10 @@ public class Date implements Comparable<Date> {
 
 
     //constructor to make the Date obj
-    public Date(int month, int day, int year) {
+    public Date(String date) {
+        int month = Integer.parseInt(date.substring(0, 2)); // mm
+        int day = Integer.parseInt(date.substring(3, 5)); // dd
+        int year = Integer.parseInt(date.substring(6)); //
         this.month = month;
         this.day = day;
         this.year = year;
