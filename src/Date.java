@@ -58,17 +58,22 @@ public class Date implements Comparable<Date> {
     }
 
     //check if the date is a valid calendar date
-    public boolean isValid(boolean dob) {
+    // cannot change the signature of this method
+    // need to fix this
+    public boolean isValid(boolean dob, String date) {
         String startMessage = "";
         if (dob){
             startMessage = "Patient dob: ";
         }
         else{
-            startMessage = "Appointment dob: ";
+            startMessage = "Appointment date: ";
         }
 
         // year validation
-        if (year < minYear) return false;
+        if (year < minYear){
+            System.out.println(String.format("%s%s is not a valid calendar date.", startMessage, date));
+            return false;
+        }
 
         // moth validation
         if (month < minMonth || month > maxMonth) return false;
@@ -132,6 +137,10 @@ public class Date implements Comparable<Date> {
         // Compare days
         return Integer.compare(this.day, other.day);
     }
+
+
+    // date is weekday
+    // this date is six months
 
 
 }

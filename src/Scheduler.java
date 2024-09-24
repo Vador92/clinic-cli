@@ -36,7 +36,6 @@ public class Scheduler {
      */
     private String command;
     private String[] arguments = null;
-
     private void processCommand(String input){
         getInput(input);
         switch(command){
@@ -44,16 +43,13 @@ public class Scheduler {
                 exited = true;
                 break;
             case "S": // used to schedule an appoint
-                try{
-                    clinic.add(new Appointment(getDate(arguments[0]),
-                                    getTimeslot(arguments[1]),
-                                    getProfile(arguments[2],
-                                            arguments[3], arguments[4]),
-                                    Provider.setProvider(arguments[5])
-                            )
+                clinic.add(new Appointment(getDate(arguments[0]),
+                        Timeslot.setTimeslot(arguments[1]),
+                        getProfile(arguments[2],
+                                arguments[3], arguments[4]),
+                        Provider.setProvider(arguments[5])
+                        )
                     );
-                }
-                catch(Exception e){System.out.println(e);}
                 break;
             case "PP": //
                 System.out.println("No appointments yet"); // placeholder
@@ -77,22 +73,11 @@ public class Scheduler {
         }
     }
 
-    private Timeslot getTimeslot(String timeslot){
-        return switch (timeslot){
-            case "1" -> Timeslot.SLOT1;
-            case "2" -> Timeslot.SLOT2;
-            case "3" -> Timeslot.SLOT3;
-            case "4" -> Timeslot.SLOT4;
-            case "5" -> Timeslot.SLOT5;
-            case "6" -> Timeslot.SLOT6;
-            default -> null;
-        };
-    }
 
     private Date getDate(String date){
         try{
             Date newDate = new Date(date);
-            if (newDate.isValid(false)){
+            if (newDate.isValid(false, date)){
                 return newDate;
             }
             return null;
@@ -105,7 +90,7 @@ public class Scheduler {
     private Profile getProfile(String fname, String lname, String dob){
         try{
             Date birthday = new Date(dob);
-            if (birthday.isValid(true)){
+            if (birthday.isValid(true, dob)){
                 return new Profile(fname,lname, new Date(dob));
             }
             return null;
@@ -114,13 +99,15 @@ public class Scheduler {
             return null;
         }
     }
-
+    // Need to keep this method, in order to get specific commands
+    // and arguments needed for each method
     private void getInput(String input){
         if (input.indexOf(',') == -1)
             command = input;
         else{
             command = input.substring(0, input.indexOf(','));
-            String argString = input.substring(input.indexOf(',') + 1).trim();
+            String argString = input.substring(
+                    input.indexOf(',') + 1).trim();
             arguments = argString.split(",");
         }
     }
