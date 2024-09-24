@@ -30,6 +30,7 @@ public class Date implements Comparable<Date> {
             DECEMBER = 12;
 
     public static final int zeroBaseShift = 1;
+    public static final int addSixMonths = 6;
 
     public static final int
             isLeapYearFEBRUARYDay = 29,
@@ -61,8 +62,11 @@ public class Date implements Comparable<Date> {
     // need to fix this
     public boolean isValid() {
         Calendar calendar = Calendar.getInstance();
+
         // checks if appt date or dob is set to today
         if (isToday(calendar)) return false;
+
+        if (isInSixMonths(calendar)) return false;
 
         // year validation
         if (year < minYear) return false;
@@ -142,24 +146,17 @@ public class Date implements Comparable<Date> {
 
     }
 
-    public boolean isSixMonths(){
-        return false;
+    public boolean isInSixMonths(Calendar today) {
+
+        // Add six months to the current date
+        today.add(Calendar.MONTH, addSixMonths);
+
+        // Retrieve the month and year six months from today
+        int inSixMonthsMonth = today.get(Calendar.MONTH) + zeroBaseShift;  // Adjust for 1-based month
+        int inSixMonthsYear = today.get(Calendar.YEAR);
+
+        // Check if both month and year match six months from today
+        return this.month == inSixMonthsMonth && this.year == inSixMonthsYear;
     }
-
-    // check if the appointment on weekend
-    public boolean isWeekDay(Calendar weekday){
-        weekday.set(year, month - zeroBaseShift, day);
-        int dayOfWeek = weekday.get(Calendar.DAY_OF_WEEK);
-        if (dayOfWeek == Calendar.SATURDAY
-                || dayOfWeek == Calendar.SUNDAY) {
-            return false;
-        }
-        return true;
-    }
-
-
-    // date is weekday
-    // this date is six months
-
 
 }

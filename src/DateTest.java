@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.Calendar;
 
 class DateTest {
 
@@ -53,10 +54,35 @@ class DateTest {
     }
 
     @Test
+    void testIsToday() {
+        // Testing today
+        Calendar calendar = Calendar.getInstance();
+        Date todayDate = new Date(
+                String.format("%d/%d/%d",
+                        calendar.get(Calendar.MONTH) + 1,
+                        calendar.get(Calendar.DAY_OF_MONTH),
+                        calendar.get(Calendar.YEAR)));
+        assertTrue(todayDate.isToday(calendar), "Date should match today's date");
+
+        // Testing a past date
+        Date pastDate = new Date("01/01/2020");
+        assertFalse(pastDate.isToday(calendar), "Date should not match today's date");
+
+        // Testing a future date
+        Date futureDate = new Date("12/31/2099");
+        assertFalse(futureDate.isToday(calendar), "Date should not match today's date");
+    }
+
+    @Test
     void testInvalidDates() {
 
         // Testing invalid date (the appt date or dob is set to today's date)
-        Date invalidTodayDate = new Date("09/24/2024");
+        Calendar calendar = Calendar.getInstance();
+        Date invalidTodayDate = new Date(
+                String.format("%d/%d/%d",
+                        calendar.get(Calendar.MONTH) + 1,
+                        calendar.get(Calendar.DAY_OF_MONTH),
+                        calendar.get(Calendar.YEAR)));
         assertFalse(invalidTodayDate.isValid(), "Date should be invalid as the date is set to today's date");
 
         // Testing invalid date (there is no 30th day in feb)
@@ -78,6 +104,25 @@ class DateTest {
         // Testing year before 1900 (self-explanatory)
         Date invalidYearDate = new Date("01/01/1899");
         assertFalse(invalidYearDate.isValid(), "Date should be invalid: 01/01/1899 (year < 1900)");
+    }
+
+    @Test
+    void testIsInSixMonths() {
+        Calendar calendar = Calendar.getInstance();
+
+        // Testing date exactly six months from today
+        calendar.add(Calendar.MONTH, 6);
+        Date sixMonthsDate = new Date(
+                String.format("%d/%d/%d",
+                        calendar.get(Calendar.MONTH) + 1,
+                        calendar.get(Calendar.DAY_OF_MONTH),
+                        calendar.get(Calendar.YEAR)));
+        calendar.add(Calendar.MONTH, -6); // Reset calendar
+        assertTrue(sixMonthsDate.isInSixMonths(calendar), "Date should be exactly six months from today");
+
+        // Testing a date not exactly six months from today
+        Date notSixMonthsDate = new Date("01/01/2020");
+        assertFalse(notSixMonthsDate.isInSixMonths(calendar), "Date should not be six months from today");
     }
 }
 
