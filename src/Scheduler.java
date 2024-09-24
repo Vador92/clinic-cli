@@ -50,9 +50,9 @@ public class Scheduler {
                 exited = true;
                 break;
             case "S": // used to schedule an appoint
-                clinic.add(new Appointment(new Date(arguments[1]),
-                        Timeslot.SlOT,
-                        new Profile(arguments[3], arguments[4], new Date(arguments[5])),
+                clinic.add(new Appointment(getDate(arguments[1]),
+                        getTimeslot(arguments[2]),
+                        getProfile(arguments[3], arguments[4], arguments[5]),
                         Provider.setProvider(arguments[6])
                         )
                     );// placeholder
@@ -79,13 +79,33 @@ public class Scheduler {
         }
     }
 
-    private Timeslot getTimeslot(){
-
+    private Timeslot getTimeslot(String timeslot){
+        return switch (timeslot){
+            case "1" -> Timeslot.SLOT1;
+            case "2" -> Timeslot.SLOT2;
+            case "3" -> Timeslot.SLOT3;
+            case "4" -> Timeslot.SLOT4;
+            case "5" -> Timeslot.SLOT5;
+            case "6" -> Timeslot.SLOT6;
+            default -> null;
+        };
     }
 
-    private Date getDate(){
-
+    private Date getDate(String date){
+        try{
+            return new Date(date);
+        }
+        catch(Exception e){
+            return null;
+        }
     }
 
-    private
+    private Profile getProfile(String fname, String lname, String dob){
+        try{
+            return new Profile(fname,lname, new Date(dob));
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
 }
