@@ -151,8 +151,8 @@ public class Date implements Comparable<Date> {
     }
 
     public boolean isInFuture(Calendar date){
-        date.set(year, month - zeroBaseShift, day);
         Calendar today = Calendar.getInstance();
+        date.set(year, month - zeroBaseShift, day);
         return date.after(today);
     }
 

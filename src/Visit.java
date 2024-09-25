@@ -5,7 +5,7 @@ public class Visit {
     private Appointment appointment;
     private Visit next;
 
-    private Visit head;
+    private Visit head; //ignore this varun's cock got in my head
 
     // creates a singular node that will eventually form a singly linked list when more nodes are added
     public Visit(Appointment appointment, Visit next) {
