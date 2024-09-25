@@ -13,7 +13,7 @@ class VisitTest {
     @BeforeEach
     void setUp() {
         // Assuming Appointment class has a constructor like this:
-        appointment1 = new Appointment(new Date("9/31/2024"), Timeslot.SLOT1, new Profile("John","Doe", new Date("12/13/1989")), Provider.PATEL);
+        appointment1 = new Appointment(new Date("9/12/2024"), Timeslot.SLOT1, new Profile("John","Doe", new Date("12/13/1989")), Provider.PATEL);
         appointment2 = new Appointment(new Date("11/2/2024"), Timeslot.SLOT1, new Profile("John","Doe", new Date("12/13/1989")), Provider.PATEL);
 
         visit1 = new Visit(appointment1, null);
