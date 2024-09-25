@@ -1,3 +1,5 @@
+import java.util.Calendar;
+
 public class Appointment implements Comparable<Appointment> {
     private Date date;
     private Timeslot timeslot;
@@ -12,6 +14,55 @@ public class Appointment implements Comparable<Appointment> {
         this.provider = provider;
     }
 
+    //
+    public static Appointment createAppointment(String[] args){
+        Calendar calendar = Calendar.getInstance();
+       Date appointmentDate = new Date(args[0]);
+       Timeslot timeslot = Timeslot.setTimeslot(args[1]);
+       Provider provider = Provider.setProvider(args[5]);
+       // the if statement below should be a new method
+       if (!appointmentDate.isValid()){
+           if(!appointmentDate.isToday(calendar)) {
+               System.out.println("Appointment date: "
+                       + appointmentDate.toString()
+                       + " is today or a date before today.");
+               return null;
+           }
+           if(!appointmentDate.isWeekend(calendar)){
+               System.out.println("Appointment date: "+
+                       appointmentDate.toString() +
+                       " is Saturday or Sunday.");
+               return null;
+           }
+           if(!appointmentDate.isBeyondSixMonths(calendar)){
+               System.out.println("Appointment date: "+
+                       appointmentDate.toString()+
+                       " ");
+               return null;
+           }
+       }
+       Date dob = new Date(args[4]);
+       if (!dob.isValid()){
+           if(dob.isToday(calendar) ||
+                dob,isInFuture(calendar)) {
+               System.out.println("Patient dob: "+
+                       dob.toString()+
+                       " is today or a date after today.");
+               return null;
+           }
+       }
+       Profile patient = new Profile(args[2], args[3], dob);
+
+        return new Appointment(appointmentDate, timeslot, patient, provider);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj){
+            return true;
+        }
+        return false;
+    }
 
     // Method to convert the object to a readable string in the terminal
     @Override

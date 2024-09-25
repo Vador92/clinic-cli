@@ -41,49 +41,32 @@ public class Scheduler {
         switch(command){
             case "Q": // changes exited to true
                 exited = true;
-                break;
+                return;
             case "S": // used to schedule an appoint
-                clinic.add(new Appointment(getDate(arguments[0]),
-                        Timeslot.setTimeslot(arguments[1]),
-                        getProfile(arguments[2],
-                                arguments[3], arguments[4]),
-                        Provider.setProvider(arguments[5])
-                        )
-                    );
-                break;
+                Appointment newAppointment =
+                        Appointment.createAppointment(arguments);
+                clinic.add(newAppointment);
+                return;
             case "PP": //
-                System.out.println("No appointments yet"); // placeholder
-                break;
+                // placeholder
+                return;
             case "C":
                 System.out.println("Appointment canceled"); // placeholder
-                break;
+                return;
             case "R":
                 System.out.println("Rescheduled appointment"); // placeholder
-                break;
+                return;
             case "PA":
                 System.out.println("Displaying appointments, sorted"); // placeholder
-                break;
+                return;
             case "PL":
                 System.out.println("Displaying appointments, sorted 1");  // placeholder
-                break;
+                return;
             case "PS":
-                System.out.println("Billing statements"); // placeholder
+                System.out.println("Billing statements");
+                return;// placeholder
             default:
-                System.out.println("Invalid command!"); // placeholder
-        }
-    }
-
-
-    private Date getDate(String date){
-        try{
-            Date newDate = new Date(date);
-            if (newDate.isValid()){
-                return newDate;
-            }
-            return null;
-        }
-        catch(Exception e){
-            return null;
+                System.out.println("Invalid command!");// placeholder
         }
     }
 

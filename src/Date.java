@@ -44,6 +44,19 @@ public class Date implements Comparable<Date> {
         this.year = Integer.parseInt(parts[2]);
     }
 
+    public static Date getDate(String date){
+        try{
+            Date newDate = new Date(date);
+            if (newDate.isValid()){
+                return newDate;
+            }
+            return null;
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+
     //check if the date is a valid calendar date
     // cannot change the signature of this method
     // need to fix this
@@ -51,8 +64,9 @@ public class Date implements Comparable<Date> {
         Calendar calendar = Calendar.getInstance();
         // checks if appt date or dob is set to today
         if (isToday(calendar)) {
-            System.out.println(this.toString()
-                    + "is today or a date after today");
+            return false;
+        }
+        if (isWeekend(calendar)) {
             return false;
         }
         if (isBeyondSixMonths(calendar)) {
@@ -124,6 +138,16 @@ public class Date implements Comparable<Date> {
                 && this.day == todayDay
                 && this.year == todayYear;
 
+    }
+
+    public boolean isWeekend(Calendar date){
+        date.set(year, month - zeroBaseShift, day);
+        int dayOfWeek = date.get(Calendar.DAY_OF_WEEK);
+        if (dayOfWeek == Calendar.SATURDAY
+                || dayOfWeek == Calendar.SUNDAY) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isBeyondSixMonths(Calendar today) {
