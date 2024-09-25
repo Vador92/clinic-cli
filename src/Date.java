@@ -49,38 +49,31 @@ public class Date implements Comparable<Date> {
     // need to fix this
     public boolean isValid() {
         Calendar calendar = Calendar.getInstance();
-
         // checks if appt date or dob is set to today
-        if (isToday(calendar)) return false;
-
-        if (isBeyondSixMonths(calendar)) return false;
-
-        // year validation
-        if (year < minYear) return false;
-
-        // moth validation
-        if (month < minMonth || month > maxMonth) return false;
-
-        // day validation
-        if (day < minDay || day > maxDay) return false;
-
-        //month and day range validation
-        switch (month) {
-            case JANUARY: case MARCH: case MAY: case JULY:
-                case AUGUST: case OCTOBER: case DECEMBER:
-                return day <= 31;
-            case APRIL: case JUNE: case SEPTEMBER: case NOVEMBER:
-                return day <= 30;
-            case FEBRUARY:
-                if (isLeapYear()) {
-                    return day <= isLeapYearFEBRUARYDay;
-                } else {
-                    return day <= notLeapYearFEBRUARYDay;
-                }
-            default:
-                return false;
-
+        if (isToday(calendar)) {
+            System.out.println(this.toString()
+                    + "is today or a date after today");
+            return false;
         }
+        if (isBeyondSixMonths(calendar)) {
+            return false;
+        }
+        // year validation
+        if (year < minYear) {
+            return false;
+        }
+        // moth validation
+        if (month < minMonth || month > maxMonth){
+            return false;
+        }
+        // day validation
+        if (day < minDay || day > maxDay){
+            return false;
+        }
+        if(!checkDayRange()){
+            return false;
+        }
+        return true;
     }
 
     // getter method for month
@@ -160,6 +153,26 @@ public class Date implements Comparable<Date> {
             }
         }
         return false;
+    }
+
+    private boolean checkDayRange(){
+        //month and day range validation
+        switch (month) {
+            case JANUARY: case MARCH: case MAY: case JULY:
+            case AUGUST: case OCTOBER: case DECEMBER:
+                return day <= 31;
+            case APRIL: case JUNE: case SEPTEMBER: case NOVEMBER:
+                return day <= 30;
+            case FEBRUARY:
+                if (isLeapYear()) {
+                    return day <= isLeapYearFEBRUARYDay;
+                } else {
+                    return day <= notLeapYearFEBRUARYDay;
+                }
+            default:
+                return false;
+
+        }
     }
 
 }
