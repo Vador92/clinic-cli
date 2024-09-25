@@ -36,7 +36,6 @@ public class Date implements Comparable<Date> {
             isLeapYearFEBRUARYDay = 29,
             notLeapYearFEBRUARYDay = 28;
 
-
     //constructor to make the Date obj
     public Date(String date) {
         String[] parts = date.split("/");
@@ -45,55 +44,36 @@ public class Date implements Comparable<Date> {
         this.year = Integer.parseInt(parts[2]);
     }
 
-    //check if year is leap year
-    private boolean isLeapYear() {
-        if (year % QUADRENNIAL == 0) {
-            if (year % CENTENNIAL == 0) {
-                if (year % QUATERCENTENNIAL == 0) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     //check if the date is a valid calendar date
     // cannot change the signature of this method
     // need to fix this
     public boolean isValid() {
         Calendar calendar = Calendar.getInstance();
-
         // checks if appt date or dob is set to today
-        if (isToday(calendar)) return false;
-
-        if (isInSixMonths(calendar)) return false;
-
-        // year validation
-        if (year < minYear) return false;
-
-        // moth validation
-        if (month < minMonth || month > maxMonth) return false;
-
-        // day validation
-        if (day < minDay || day > maxDay) return false;
-
-        //month and day range validation
-        switch (month) {
-            case JANUARY: case MARCH: case MAY: case JULY:
-                case AUGUST: case OCTOBER: case DECEMBER:
-                return day <= 31;
-            case APRIL: case JUNE: case SEPTEMBER: case NOVEMBER:
-                return day <= 30;
-            case FEBRUARY:
-                if (isLeapYear()) {
-                    return day <= isLeapYearFEBRUARYDay;
-                } else {
-                    return day <= notLeapYearFEBRUARYDay;
-                }
-            default:
-                return false;
-
+        if (isToday(calendar)) {
+            System.out.println(this.toString()
+                    + "is today or a date after today");
+            return false;
         }
+        if (isBeyondSixMonths(calendar)) {
+            return false;
+        }
+        // year validation
+        if (year < minYear) {
+            return false;
+        }
+        // moth validation
+        if (month < minMonth || month > maxMonth){
+            return false;
+        }
+        // day validation
+        if (day < minDay || day > maxDay){
+            return false;
+        }
+        if(!checkDayRange()){
+            return false;
+        }
+        return true;
     }
 
     // getter method for month
@@ -146,7 +126,7 @@ public class Date implements Comparable<Date> {
 
     }
 
-    public boolean isInSixMonths(Calendar today) {
+    public boolean isBeyondSixMonths(Calendar today) {
 
         // Add six months to the current date
         today.add(Calendar.MONTH, addSixMonths);
@@ -156,7 +136,43 @@ public class Date implements Comparable<Date> {
         int inSixMonthsYear = today.get(Calendar.YEAR);
 
         // Check if both month and year match six months from today
-        return this.month == inSixMonthsMonth && this.year == inSixMonthsYear;
+        if (this.month > inSixMonthsMonth
+                && this.year > inSixMonthsYear) {
+            return true;
+        }
+        return false;
+    }
+
+    //check if year is leap year
+    private boolean isLeapYear() {
+        if (year % QUADRENNIAL == 0) {
+            if (year % CENTENNIAL == 0) {
+                if (year % QUATERCENTENNIAL == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean checkDayRange(){
+        //month and day range validation
+        switch (month) {
+            case JANUARY: case MARCH: case MAY: case JULY:
+            case AUGUST: case OCTOBER: case DECEMBER:
+                return day <= 31;
+            case APRIL: case JUNE: case SEPTEMBER: case NOVEMBER:
+                return day <= 30;
+            case FEBRUARY:
+                if (isLeapYear()) {
+                    return day <= isLeapYearFEBRUARYDay;
+                } else {
+                    return day <= notLeapYearFEBRUARYDay;
+                }
+            default:
+                return false;
+
+        }
     }
 
 }
