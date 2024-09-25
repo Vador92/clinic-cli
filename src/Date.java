@@ -156,6 +156,7 @@ public class Date implements Comparable<Date> {
         return date.after(today);
     }
 
+    // need to fix this
     public boolean isBeyondSixMonths(Calendar today) {
 
         // Add six months to the current date
@@ -166,7 +167,7 @@ public class Date implements Comparable<Date> {
         int inSixMonthsYear = today.get(Calendar.YEAR);
 
         // Check if both month and year match six months from today
-        if (this.month > inSixMonthsMonth
+        if (this.month < inSixMonthsMonth
                 && this.year > inSixMonthsYear) {
             return true;
         }

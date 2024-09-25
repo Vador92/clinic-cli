@@ -21,23 +21,26 @@ public class Appointment implements Comparable<Appointment> {
        Timeslot timeslot = Timeslot.setTimeslot(args[1]);
        Provider provider = Provider.setProvider(args[5]);
        // the if statement below should be a new method
-       if (!appointmentDate.isValid()){
-           if(!appointmentDate.isToday(calendar)) {
+       if (appointmentDate.isValid()){
+           //check if today
+           if(appointmentDate.isToday(calendar)) {
                System.out.println("Appointment date: "
                        + appointmentDate.toString()
                        + " is today or a date before today.");
                return null;
            }
-           if(!appointmentDate.isWeekend(calendar)){
+           // check weekend
+           if(appointmentDate.isWeekend(calendar)){
                System.out.println("Appointment date: "+
                        appointmentDate.toString() +
                        " is Saturday or Sunday.");
                return null;
            }
-           if(!appointmentDate.isBeyondSixMonths(calendar)){
+           System.out.println(appointmentDate.isBeyondSixMonths(calendar));
+           if(appointmentDate.isBeyondSixMonths(calendar)){
                System.out.println("Appointment date: "+
                        appointmentDate.toString()+
-                       " ");
+                       " is not within six months.");
                return null;
            }
        }
