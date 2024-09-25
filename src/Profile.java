@@ -67,6 +67,8 @@ public class Profile implements Comparable<Profile> {
         return dob.compareTo(other.dob);
     }
 
+    public
+
     // profile p = new profile (first, last, dob)
     // check for dob if it is before today
 }
