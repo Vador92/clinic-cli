@@ -9,7 +9,7 @@ public class Patient {
     public int charge() {
         return 0;
     }
-
+    // create method to return the visit charge for the patient's visit
 
 
 
