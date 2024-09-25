@@ -14,61 +14,80 @@ public class Appointment implements Comparable<Appointment> {
         this.provider = provider;
     }
 
-    //
-    public static Appointment createAppointment(String[] args){
+    // create new appointment with checks
+    // split the appointment check with the dob check
+    public static Appointment createAppointment(String[] args) {
         Calendar calendar = Calendar.getInstance();
-       Date appointmentDate = new Date(args[0]);
-       Timeslot timeslot = Timeslot.setTimeslot(args[1]);
-       Provider provider = Provider.setProvider(args[5]);
-       // the if statement below should be a new method
-       if (appointmentDate.isValid()){
-           //check if today
-           if(appointmentDate.isToday(calendar)) {
-               System.out.println("Appointment date: "
-                       + appointmentDate.toString()
-                       + " is today or a date before today.");
-               return null;
-           }
-           // check weekend
-           if(appointmentDate.isWeekend(calendar)){
-               System.out.println("Appointment date: "+
-                       appointmentDate.toString() +
-                       " is Saturday or Sunday.");
-               return null;
-           }
-           if(appointmentDate.isBeyondSixMonths(calendar)){
-               System.out.println("Appointment date: "+
-                       appointmentDate.toString()+
-                       " is not within six months.");
-               return null;
-           }
-       }
-       Date dob = new Date(args[4]);
-       if (!dob.isValid()){
-           if(dob.isToday(calendar) ||
-                dob.isInFuture(calendar)) {
-               System.out.println("Patient dob: "+
-                       dob.toString()+
-                       " is today or a date after today.");
-               return null;
-           }
-       }
-       if (timeslot == null){
-           System.out.println(args[1] + " is not a valid time slot.");
-           return null;
-       }
-       if (provider == null){
-           System.out.println(args[5] + " - provider doesn't exist.");
-           return null;
-       }
-       Profile patient = new Profile(args[2], args[3], dob);
+        Date appointmentDate = new Date(args[0]);
+        Timeslot timeslot = Timeslot.setTimeslot(args[1]);
+        Provider provider = Provider.setProvider(args[5]);
+        // the if statement below should be a new method
+        if (!isValidAppointment(calendar, appointmentDate)) {
+            return null;
+        }
+
+        Date dob = new Date(args[4]);
+        if (!isValidDob(calendar, dob)) {
+            return null;
+        }
+
+        if (timeslot == null) {
+            System.out.println(args[1] + " is not a valid time slot.");
+            return null;
+        }
+        if (provider == null) {
+            System.out.println(args[5] + " - provider doesn't exist.");
+            return null;
+        }
+        Profile patient = new Profile(args[2], args[3], dob);
 
         return new Appointment(appointmentDate, timeslot, patient, provider);
     }
 
+    // checks to see if the appointment is valid
+    public static boolean isValidAppointment(Calendar calendar, Date appointmentDate) {
+        if (appointmentDate.isValid()) {
+            //check if today
+            if (appointmentDate.isToday(calendar)) {
+                System.out.println("Appointment date: "
+                        + appointmentDate.toString()
+                        + " is today or a date before today.");
+                return false;
+            }
+            // check weekend
+            if (appointmentDate.isWeekend(calendar)) {
+                System.out.println("Appointment date: " +
+                        appointmentDate.toString() +
+                        " is Saturday or Sunday.");
+                return false;
+            }
+            // check if date is past 6 month threshold
+            if (appointmentDate.isBeyondSixMonths(calendar)) {
+                System.out.println("Appointment date: " +
+                        appointmentDate.toString() +
+                        " is not within six months.");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isValidDob(Calendar calendar, Date dob) {
+        if (!dob.isValid()) {
+            if (dob.isToday(calendar) ||
+                    dob.isInFuture(calendar)) {
+                System.out.println("Patient dob: " +
+                        dob.toString() +
+                        " is today or a date after today.");
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        if(this == obj){
+        if (this == obj) {
             return true;
         }
         return false;
