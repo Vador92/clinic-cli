@@ -150,6 +150,12 @@ public class Date implements Comparable<Date> {
         return false;
     }
 
+    public boolean isInFuture(Calendar date){
+        date.set(year, month - zeroBaseShift, day);
+        Calendar today = Calendar.getInstance();
+        return date.after(today);
+    }
+
     public boolean isBeyondSixMonths(Calendar today) {
 
         // Add six months to the current date

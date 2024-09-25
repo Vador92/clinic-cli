@@ -44,7 +44,7 @@ public class Appointment implements Comparable<Appointment> {
        Date dob = new Date(args[4]);
        if (!dob.isValid()){
            if(dob.isToday(calendar) ||
-                dob,isInFuture(calendar)) {
+                dob.isInFuture(calendar)) {
                System.out.println("Patient dob: "+
                        dob.toString()+
                        " is today or a date after today.");
