@@ -10,6 +10,19 @@ public class Profile implements Comparable<Profile> {
         this.dob = dob;
     }
 
+    private Profile getProfile(String fname, String lname, String dob){
+        try{
+            Date birthday = new Date(dob);
+            if (birthday.isValid()){
+                return new Profile(fname,lname, new Date(dob));
+            }
+            return null;
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+
     // getter method for First Name
     public String getFname() {
         return fname;

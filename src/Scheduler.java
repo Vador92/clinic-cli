@@ -45,7 +45,9 @@ public class Scheduler {
             case "S": // used to schedule an appoint
                 Appointment newAppointment =
                         Appointment.createAppointment(arguments);
-                clinic.add(newAppointment);
+                if (newAppointment != null){
+                    clinic.add(newAppointment);
+                }
                 return;
             case "PP": //
                 // placeholder
@@ -70,18 +72,7 @@ public class Scheduler {
         }
     }
 
-    private Profile getProfile(String fname, String lname, String dob){
-        try{
-            Date birthday = new Date(dob);
-            if (birthday.isValid()){
-                return new Profile(fname,lname, new Date(dob));
-            }
-            return null;
-        }
-        catch(Exception e){
-            return null;
-        }
-    }
+
     // Need to keep this method, in order to get specific commands
     // and arguments needed for each method
     private void getInput(String input){

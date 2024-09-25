@@ -36,7 +36,6 @@ public class Appointment implements Comparable<Appointment> {
                        " is Saturday or Sunday.");
                return null;
            }
-           System.out.println(appointmentDate.isBeyondSixMonths(calendar));
            if(appointmentDate.isBeyondSixMonths(calendar)){
                System.out.println("Appointment date: "+
                        appointmentDate.toString()+
@@ -53,6 +52,14 @@ public class Appointment implements Comparable<Appointment> {
                        " is today or a date after today.");
                return null;
            }
+       }
+       if (timeslot == null){
+           System.out.println(args[1] + " is not a valid time slot.");
+           return null;
+       }
+       if (provider == null){
+           System.out.println(args[5] + " - provider doesn't exist.");
+           return null;
        }
        Profile patient = new Profile(args[2], args[3], dob);
 
