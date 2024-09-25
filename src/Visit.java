@@ -5,24 +5,27 @@ public class Visit {
     private Appointment appointment;
     private Visit next;
 
+    private Visit head;
+
+    // creates a singular node that will eventually form a singly linked list when more nodes are added
     public Visit(Appointment appointment, Visit next) {
         this.appointment = appointment;
+        this.next = null;
+    }
+
+    // getter method for the next node in the linked list
+    public Visit getNext() {
+        return next;
+    }
+
+    // setter method to link the next node
+    public void setNext(Visit next) {
         this.next = next;
     }
 
-    // method for adding visits that a patient has scheduled
-    public void add() {
-
-    }
-
-    // method for adding a vist that occurs before other visits
-    public void addFirst() {
-
-    }
-
-
-    public Visit getNext() {
-        return next;
+    // getter method for a patient's appointment data
+    public Appointment getAppointment () {
+        return appointment;
     }
 
 }
