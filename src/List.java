@@ -7,14 +7,23 @@ public class List {
         this.size = 0;
     }
 
+    // this is to make sure there is no duplicate entry being scheduled
+    // this should be ran in create appointment
     private int find(Appointment appointment) {
-        return 0;
+        for (int i = 0; i < this.size; i++) {
+            if (this.appointments[i].equals(appointment)) {
+                return 1;
+            }
+        }
+        return -1;
     }
 
     private void grow(){
         //grow thought process
         Appointment[] expandedArray = new Appointment[appointments.length + 4];
+        // copy contents from original array to new array
         System.arraycopy(appointments, 0, expandedArray, 0, appointments.length);
+        // set appointments to extended array
         appointments = expandedArray;
     }
 
