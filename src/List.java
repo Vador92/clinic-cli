@@ -24,7 +24,9 @@ public class List {
         //grow thought process
         Appointment[] expandedArray = new Appointment[appointments.length + 4];
         // copy contents from original array to new array
-        System.arraycopy(appointments, 0, expandedArray, 0, appointments.length);
+        for (int i = 0; i < appointments.length; i++) {
+            expandedArray[i] = appointments[i];
+        }
         // set appointments to extended array
         appointments = expandedArray;
     }
