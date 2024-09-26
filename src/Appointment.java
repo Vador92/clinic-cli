@@ -85,12 +85,27 @@ public class Appointment implements Comparable<Appointment> {
         return true;
     }
 
+    public Profile getPatientProfile() {
+        return patient;
+    }
+
+
+    // this is the class that equates it fields are the same
+    // need to fix this method
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        // make sure we are checking if we are doing the same obj
+        if (this == obj){
             return true;
         }
-        return false;
+        if(obj == null || getClass() != obj.getClass()){
+            return false;
+        }
+        Appointment appointment = (Appointment) obj;
+
+        // if timeslot and day is same
+        return date.compareTo(appointment.date) && timeslot.equals(appointment.timeslot)
+            && patient.equals(appointment.patient) && provider.equals(appointment.provider);
     }
 
     // Method to convert the object to a readable string in the terminal
