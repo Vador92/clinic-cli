@@ -60,18 +60,22 @@ public class Date implements Comparable<Date> {
     //check if the date is a valid calendar date
     // cannot change the signature of this method
     // need to fix this
+    // just need to check if this is a valid calendar day
+    // need to fix this, see block comment below method
     public boolean isValid() {
         Calendar calendar = Calendar.getInstance();
         // checks if appt date or dob is set to today
-        if (isToday(calendar)) {
-            return false;
-        }
-        if (isWeekend(calendar)) {
-            return false;
-        }
-        if (isBeyondSixMonths(calendar)) {
-            return false;
-        }
+        // this stuff is not needed
+//        if (isToday(calendar)) {
+//            return false;
+//        }
+//        if (isWeekend(calendar)) {
+//            return false;
+//        }
+//        if (isBeyondSixMonths(calendar)) {
+//            return false;
+//        }
+        // this is fine
         // year validation
         if (year < minYear) {
             return false;
@@ -84,11 +88,76 @@ public class Date implements Comparable<Date> {
         if (day < minDay || day > maxDay){
             return false;
         }
+        // this is fine
         if(!checkDayRange()){
             return false;
         }
         return true;
     }
+
+    /*
+    For the months of January, March, May, July, August, October, and December, each has 31 days; April,
+    June, September, and November each has 30 days; February has 28 days in a non-leap year, and 29
+    days in a leap year. DO NOT use magic numbers for the months, days, and years. You can use the
+    constants defined in the Calendar class or define your own constant names. Below are examples
+    for defining the constant names.
+    public static final int QUADRENNIAL = 4;
+    public static final int CENTENNIAL = 100;
+    public static final int QUATERCENTENNIAL = 400;
+    o To determine whether a year is a leap year, follow these steps:
+    Step 1. If the year is evenly divisible by 4, go to step 2. Otherwise, go to step 5.
+    Step 2. If the year is evenly divisible by 100, go to step 3. Otherwise, go to step 4.
+    Step 3. If the year is evenly divisible by 400, go to step 4. Otherwise, go to step 5.
+    Step 4. The year is a leap year.
+    Step 5. The year is not a leap year.
+     */
+
+    // other checks for appointment and dob
+    // checks if the inputted date is today's date
+    public boolean isToday(Calendar today) {
+        int todayMonth = today.get(Calendar.MONTH) + zeroBaseShift;
+        int todayDay = today.get(Calendar.DAY_OF_MONTH);
+        int todayYear = today.get(Calendar.YEAR);
+
+        return this.month == todayMonth
+                && this.day == todayDay
+                && this.year == todayYear;
+
+    }
+
+    public boolean isWeekend(Calendar date){
+        date.set(year, month - zeroBaseShift, day);
+        int dayOfWeek = date.get(Calendar.DAY_OF_WEEK);
+        if (dayOfWeek == Calendar.SATURDAY
+                || dayOfWeek == Calendar.SUNDAY) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isInFuture(Calendar date){
+        Calendar today = Calendar.getInstance();
+        date.set(year, month - zeroBaseShift, day);
+        return date.after(today);
+    }
+
+    // need to fix this
+    public boolean isBeyondSixMonths(Calendar today) {
+
+        // Create a copy of the 'today' Calendar object to avoid modifying the original
+        Calendar sixMonthsLater = (Calendar) today.clone();
+
+        // Add six months to the copied date
+        sixMonthsLater.add(Calendar.MONTH, addSixMonths);
+
+        // Create a Calendar instance for the current Date object
+        Calendar thisDate = Calendar.getInstance();
+        thisDate.set(this.year, this.month - zeroBaseShift, this.day);
+
+        // Check if thisDate is after sixMonthsLater (i.e., more than six months in the future)
+        return thisDate.after(sixMonthsLater);
+    }
+
 
     // getter method for month
     public int getMonth() {
@@ -149,50 +218,7 @@ public class Date implements Comparable<Date> {
     }
 
 
-    // checks if the inputted date is today's date
-    public boolean isToday(Calendar today) {
-        int todayMonth = today.get(Calendar.MONTH) + zeroBaseShift;
-        int todayDay = today.get(Calendar.DAY_OF_MONTH);
-        int todayYear = today.get(Calendar.YEAR);
 
-        return this.month == todayMonth
-                && this.day == todayDay
-                && this.year == todayYear;
-
-    }
-
-    public boolean isWeekend(Calendar date){
-        date.set(year, month - zeroBaseShift, day);
-        int dayOfWeek = date.get(Calendar.DAY_OF_WEEK);
-        if (dayOfWeek == Calendar.SATURDAY
-                || dayOfWeek == Calendar.SUNDAY) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isInFuture(Calendar date){
-        Calendar today = Calendar.getInstance();
-        date.set(year, month - zeroBaseShift, day);
-        return date.after(today);
-    }
-
-    // need to fix this
-    public boolean isBeyondSixMonths(Calendar today) {
-
-        // Create a copy of the 'today' Calendar object to avoid modifying the original
-        Calendar sixMonthsLater = (Calendar) today.clone();
-
-        // Add six months to the copied date
-        sixMonthsLater.add(Calendar.MONTH, addSixMonths);
-
-        // Create a Calendar instance for the current Date object
-        Calendar thisDate = Calendar.getInstance();
-        thisDate.set(this.year, this.month - zeroBaseShift, this.day);
-
-        // Check if thisDate is after sixMonthsLater (i.e., more than six months in the future)
-        return thisDate.after(sixMonthsLater);
-    }
 
 
     //check if year is leap year

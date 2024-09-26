@@ -1,10 +1,14 @@
+/**
+ * @author Varun
+ */
 public class List {
     private Appointment[] appointments;
     private int size;
 
     // error handling
-    final static Integer NOT_FOUND = -1;
+    final Integer NOT_FOUND = -1;
 
+    // this is fine
     public List(int size) {
         this.appointments = new Appointment[size];
         this.size = 0;
@@ -13,6 +17,7 @@ public class List {
     // this is to make sure there is no duplicate entry being scheduled
     // this should be ran in create appointment
     // return index
+    // this is fine
     private int find(Appointment appointment) {
         for (int i = 0; i < this.size; i++) {
             //
@@ -23,6 +28,7 @@ public class List {
         return NOT_FOUND;
     }
 
+    // this is fine
     private void grow(){
         //grow thought process
         Appointment[] expandedArray = new Appointment[appointments.length + 4];
@@ -34,6 +40,7 @@ public class List {
         appointments = expandedArray;
     }
 
+    // this is fine
     // this should check to see if the contents are the same
     // used to block duplicate appointments from being made
     // use find to check if it contains
@@ -41,6 +48,7 @@ public class List {
         return find(appointment) != NOT_FOUND;
     }
 
+    // NEED TO FIX THIS
     // increase appointments if too big
     // and add new appointment
     public void add(Appointment appointment) {
@@ -48,17 +56,25 @@ public class List {
             grow();
         }
         // check duplicate
+        // can't use system.out here
         if (!contains(appointment)) {
+            // check if same date and time as another provider
             appointments[size] = appointment;
             size++;
-            System.out.println(appointment.toString() + " booked.");
+            // print this in the scheduler class
+            //System.out.println(appointment.toString() + " booked.");
         }
-        else{
-            Appointment duplicate = appointments[find(appointment)];
-            Profile dupProfile = duplicate.getPatientProfile();
-            System.out.println(dupProfile.toString()+ " has existing appoint at timeslot");
-        }
+
+            // just print in the scheduler class
+            // Appointment duplicate = appointments[find(appointment)];
+            // Profile dupProfile = duplicate.getPatientProfile();
+            //System.out.println(dupProfile.toString()+ " has existing appoint at timeslot");
+
     }
+
+    // overload add this will remove and add new
+
+
 
     // use the finds method to see if it exists
     // if it does, get the index
@@ -66,33 +82,105 @@ public class List {
     // then replace the last one using size - 1, with the index
     // need to make sure it exits when calling the command
     public void remove(Appointment appointment) {
-        if(!contains(appointment)) {
+        if(contains(appointment)) {
             // should print date, timeslot, profile
-            System.out.println(appointment.getDate().toString()
-                    + " " + appointment.getTimeslot().toString()
-                    + " " + appointment.getPatientProfile().toString()
-                    + " not found.");
-        }
-        else{
+            // cannot system out here
+            // just check if size is same
+//            System.out.println(appointment.getDate().toString()
+//                    + " " + appointment.getTimeslot().toString()
+//                    + " " + appointment.getPatientProfile().toString()
+//                    + " not found.");
+//            return;
+
             int index = find(appointment);
             appointments[index] = appointments[size - 1];
             appointments[size - 1] = null;
             size--;
-            System.out.println(appointment.getDate().toString()
-                    + " " + appointment.getTimeslot().toString()
-                    + " " + appointment.getPatientProfile().toString()
-                    + " has been canceled.");
+            // cannot system out here
+            // check if size decreased
+//            System.out.println(appointment.getDate().toString()
+//                    + " " + appointment.getTimeslot().toString()
+//                    + " " + appointment.getPatientProfile().toString()
+//                    + " has been canceled.");
         }
     }
 
-    // sort algo for this
+    // print in order of patients
     public void printByPatient(){
+        // edge case for empty list
+        if(size == 0 ){
+            System.out.println("The schedule calendar is empty.");
+            return;
+        }
+
+        quickSortPatient();
+
+
+
+        // basically do the quicksort, getting all the indexes' patients
+        // using the last name
+        // if the same, use first name
+        // if the same. use dob
+
+        // print list in the order of indexes
+
 
     }
+
+    // sort algo for this
+    public void printByLocation(){
+        if (size == 0){
+            System.out.println("The schedule calendar is empty.");
+            return;
+        }
+
+        quickSortLocation();
+    }
+
     // sort algo for this
     public void printByAppointment(){
+        if(size == 0 ){
+            System.out.println("The schedule calendar is empty.");
+        }
+
+        quickSortAppointment();
+    }
+
+
+
+    // sorting algorithms for each one
+    private void quickSortPatient(){
+
+    }
+
+    private void quickSortLocation(){
+
+    }
+
+    private void quickSortAppointment(){
 
     }
 
 
 }
+
+/*
+ You can add necessary constants, constructors, and methods. However, you CANNOT change or add
+instance variables. -2 points for each violation.
+
+
+ You MUST implement and use the methods listed above; you CANNOT change the signatures of the
+methods. -2 points for each violation.
+
+Fix this
+ You CAN use System.out ONLY in the three print() methods listed above.
+
+This is good
+ The find() method searches for an appointment in the list and returns the index if it is found; it returns
+NOT_FOUND if it is not in the list. Define a constant value -1 for NOT_FOUND, or -2 point.
+
+ You must use an “in-place” sorting algorithm to implement the sorting, i.e., the order of the objects in the
+array will be rearranged after the sorting without using an additional array. You CANNOT use
+Arrays.sort() or System.arraycopy() or any other Java library classes or utilities for sorting. You must
+write the code yourself to sort it. You will lose 10 points for the violation.
+ */

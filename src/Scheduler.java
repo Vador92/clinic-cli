@@ -43,6 +43,7 @@ public class Scheduler {
                 exited = true;
                 return;
             case "S": // used to schedule an appoint
+                // once completely valid, we create one
                 Appointment newAppointment =
                         Appointment.createAppointment(arguments);
                 if (newAppointment != null){
@@ -73,17 +74,20 @@ public class Scheduler {
                 System.out.println("Rescheduled appointment"); // placeholder
                 return;
             case "PP": //
-                // placeholder
+                clinic.printByPatient();
                 return;
             case "PA":
-                System.out.println("Displaying appointments, sorted"); // placeholder
+                clinic.printByAppointment(); // placeholder
                 return;
             case "PL":
-                System.out.println("Displaying appointments, sorted 1");  // placeholder
+                clinic.printByLocation();  // placeholder
                 return;
             case "PS":
                 System.out.println("Billing statements");
                 return;// placeholder
+            case "":
+                System.out.println("");
+                return;
             default:
                 System.out.println("Invalid command!");// placeholder
         }
