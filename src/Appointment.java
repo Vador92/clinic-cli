@@ -1,3 +1,7 @@
+/**
+ * @author Varun
+ */
+
 import java.util.Calendar;
 
 public class Appointment implements Comparable<Appointment> {

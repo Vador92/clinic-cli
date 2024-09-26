@@ -1,3 +1,6 @@
+/**
+ * @author Varun
+ */
 public enum Timeslot {
     SLOT1 (9, 0),
     SLOT2 (10, 45),
