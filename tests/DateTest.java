@@ -107,23 +107,43 @@ class DateTest {
     }
 
     @Test
-    void testIsInSixMonths() {
-        Calendar calendar = Calendar.getInstance();
+    void testIsBeyondSixMonths() {
+        Calendar today = Calendar.getInstance();
 
-        // Testing date exactly six months from today
-        calendar.add(Calendar.MONTH, 6);
-        Date sixMonthsDate = new Date(
+        // Test Case 1: Date exactly 6 months from today (should return false)
+        Calendar sixMonthsLater = (Calendar) today.clone();
+        sixMonthsLater.add(Calendar.MONTH, 6);
+        Date exactlySixMonthsLater = new Date(
                 String.format("%d/%d/%d",
-                        calendar.get(Calendar.MONTH) + 1,
-                        calendar.get(Calendar.DAY_OF_MONTH),
-                        calendar.get(Calendar.YEAR)));
-        calendar.add(Calendar.MONTH, -6); // Reset calendar
-        assertTrue(sixMonthsDate.isBeyondSixMonths(calendar), "Date should be exactly six months from today");
+                        sixMonthsLater.get(Calendar.MONTH),
+                        sixMonthsLater.get(Calendar.DAY_OF_MONTH),
+                        sixMonthsLater.get(Calendar.YEAR))
+        );
+        assertFalse(exactlySixMonthsLater.isBeyondSixMonths(today), "Date exactly six months later should not be beyond six months");
 
-        // Testing a date not exactly six months from today
-        Date notSixMonthsDate = new Date("01/01/2020");
-        assertFalse(notSixMonthsDate.isBeyondSixMonths(calendar), "Date should not be six months from today");
+        // Test Case 2: Date more than 6 months from today (should return true)
+        Calendar moreThanSixMonthsLater = (Calendar) today.clone();
+        moreThanSixMonthsLater.add(Calendar.MONTH, 7);  // Add 7 months to ensure it is beyond six months
+        Date beyondSixMonths = new Date(
+                String.format("%d/%d/%d",
+                        moreThanSixMonthsLater.get(Calendar.MONTH) + 1,
+                        moreThanSixMonthsLater.get(Calendar.DAY_OF_MONTH),
+                        moreThanSixMonthsLater.get(Calendar.YEAR))
+        );
+        assertTrue(beyondSixMonths.isBeyondSixMonths(today), "Date more than six months later should be beyond six months");
+
+        // Test Case 3: Date less than 6 months from today (should return false)
+        Calendar lessThanSixMonthsLater = (Calendar) today.clone();
+        lessThanSixMonthsLater.add(Calendar.MONTH, 5);  // Add 5 months to ensure it's less than six months
+        Date withinSixMonths = new Date(
+                String.format("%d/%d/%d",
+                        lessThanSixMonthsLater.get(Calendar.MONTH) + 1,
+                        lessThanSixMonthsLater.get(Calendar.DAY_OF_MONTH),
+                        lessThanSixMonthsLater.get(Calendar.YEAR))
+        );
+        assertFalse(withinSixMonths.isBeyondSixMonths(today), "Date within six months should not be beyond six months");
     }
+
 }
 
 

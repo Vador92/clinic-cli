@@ -159,20 +159,20 @@ public class Date implements Comparable<Date> {
     // need to fix this
     public boolean isBeyondSixMonths(Calendar today) {
 
-        // Add six months to the current date
-        today.add(Calendar.MONTH, addSixMonths);
+        // Create a copy of the 'today' Calendar object to avoid modifying the original
+        Calendar sixMonthsLater = (Calendar) today.clone();
 
-        // Retrieve the month and year six months from today
-        int inSixMonthsMonth = today.get(Calendar.MONTH) + zeroBaseShift;  // Adjust for 1-based month
-        int inSixMonthsYear = today.get(Calendar.YEAR);
+        // Add six months to the copied date
+        sixMonthsLater.add(Calendar.MONTH, addSixMonths);
 
-        // Check if both month and year match six months from today
-        if (this.month < inSixMonthsMonth
-                && this.year > inSixMonthsYear) {
-            return true;
-        }
-        return false;
+        // Create a Calendar instance for the current Date object
+        Calendar thisDate = Calendar.getInstance();
+        thisDate.set(this.year, this.month - zeroBaseShift, this.day);
+
+        // Check if thisDate is after sixMonthsLater (i.e., more than six months in the future)
+        return thisDate.after(sixMonthsLater);
     }
+
 
     //check if year is leap year
     private boolean isLeapYear() {
