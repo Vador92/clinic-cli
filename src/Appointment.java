@@ -104,7 +104,7 @@ public class Appointment implements Comparable<Appointment> {
         Appointment appointment = (Appointment) obj;
 
         // if timeslot and day is same
-        return date.compareTo(appointment.date) && timeslot.equals(appointment.timeslot)
+        return date.equals(appointment.date) && timeslot.equals(appointment.timeslot)
             && patient.equals(appointment.patient) && provider.equals(appointment.provider);
     }
 
