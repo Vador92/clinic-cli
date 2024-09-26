@@ -44,6 +44,11 @@ public class Appointment implements Comparable<Appointment> {
         return new Appointment(appointmentDate, timeslot, patient, provider);
     }
 
+    // method to reschedule appointment
+    public void rescheduleAppointment(Appointment oldAppointment, Timeslot newTimeslot) {
+        
+    }
+
     // checks to see if the appointment is valid
     public static boolean isValidAppointment(Calendar calendar, Date appointmentDate) {
         if (appointmentDate.isValid()) {

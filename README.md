@@ -1,6 +1,13 @@
 # softwaremethproject1
 scheduler software to help a clinic manage appointments.
 
+## Current Blockers
+- The system shall not schedule an appointment if a given patient has an existing appointment with the same date
+and time. So can multiple people have the same date and time and/or provider. also can you schedule two appointments same day
+- The provider is not available at the specified timeslot. (can't have duplicate on the same day)
+- The equals() method returns true if two appointments have the same date,
+  timeslot, and patient; returns false otherwise.
+
 ## Requirements:
 
     1. The system shall maintain an appointment calendar for all upcoming appointments.

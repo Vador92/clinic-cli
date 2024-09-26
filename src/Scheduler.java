@@ -56,12 +56,24 @@ public class Scheduler {
                     clinic.remove(cancelAppointment);
                 }
                 return;
+            case "R":
+                // if appointment is null or timeslot is null return
+                // takes all but last argument
+                String[] oldArgs = new String[arguments.length-1];
+                for (int i = 0; i < oldArgs.length; i++){
+                    oldArgs[i] = arguments[i];
+                }
+                Appointment rescheduleAppointment =
+                        Appointment.createAppointment(oldArgs);
+                Timeslot newtime = Timeslot.setTimeslot(arguments[arguments.length-1]);
+                if (rescheduleAppointment != null && newtime != null){
+
+                }
+                // !null and !null
+                System.out.println("Rescheduled appointment"); // placeholder
+                return;
             case "PP": //
                 // placeholder
-                return;
-
-            case "R":
-                System.out.println("Rescheduled appointment"); // placeholder
                 return;
             case "PA":
                 System.out.println("Displaying appointments, sorted"); // placeholder
