@@ -39,6 +39,7 @@ public class Profile implements Comparable<Profile> {
     }
 
     // checks if there are duplicate Profile Objects with the same fields, or null fields
+    @Override
     public boolean equals(Object object) {
         if(this == object) {
             return true;

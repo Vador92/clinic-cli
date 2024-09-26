@@ -9,10 +9,12 @@ public class List {
 
     // this is to make sure there is no duplicate entry being scheduled
     // this should be ran in create appointment
+    // return index
     private int find(Appointment appointment) {
         for (int i = 0; i < this.size; i++) {
-            if (this.appointments[i].equals(appointment)) {
-                return 1;
+            //
+            if (appointments[i].equals(appointment)) {
+                return i; // index
             }
         }
         return -1;
@@ -27,9 +29,11 @@ public class List {
         appointments = expandedArray;
     }
 
-
+    // this should check to see if the contents are the same
+    // used to block duplicate appointments from being made
+    // use find to check if it contains
     public boolean contains(Appointment appointment) {
-        return false;
+        return find(appointment) != -1;
     }
 
     // increase appointments if too big
@@ -38,11 +42,23 @@ public class List {
         if (size == appointments.length) {
             grow();
         }
-        appointments[size] = appointment;
-        size++;
-        System.out.println(appointment.toString() + " booked.");
+        // check duplicate
+        if (!contains(appointment)) {
+            appointments[size] = appointment;
+            size++;
+            System.out.println(appointment.toString() + " booked.");
+        }
+        else{
+            Appointment duplicate = appointments[find(appointment)];
+            Profile dupProfile = duplicate.getPatientProfile();
+            System.out.println(dupProfile.toString()+ " has existing appoint at timeslot");
+        }
     }
 
+    // use the finds method to see if it exists
+    // if it does, get the index
+    // then remove that
+    // then replace the last one using size - 1, with the index
     public void remove(Appointment appointment) {
 
     }
