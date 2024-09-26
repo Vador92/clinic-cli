@@ -144,6 +144,29 @@ class DateTest {
         assertFalse(withinSixMonths.isBeyondSixMonths(today), "Date within six months should not be beyond six months");
     }
 
+    @Test
+    public void testDuplicateAppointmentDates() {
+        // Create two Date objects with the same date
+        Date appointmentDate1 = new Date("09/25/2024");
+        Date appointmentDate2 = new Date("09/25/2024");
+
+        // They should be equal, meaning they represent the same appointment date
+        assertTrue(appointmentDate1.equals(appointmentDate2));
+
+        // Create two Date objects with different dates
+        Date appointmentDate3 = new Date("09/25/2024");
+        Date appointmentDate4 = new Date("10/01/2024");
+
+        // These should not be equal, meaning they represent different appointment dates
+        assertFalse(appointmentDate3.equals(appointmentDate4));
+
+        // Check null comparison
+        assertFalse(appointmentDate1.equals(null));
+
+        // Check comparison with an object of another class
+        assertFalse(appointmentDate1.equals("someString"));
+    }
+
 }
 
 

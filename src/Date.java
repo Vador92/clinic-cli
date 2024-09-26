@@ -129,6 +129,26 @@ public class Date implements Comparable<Date> {
         return Integer.compare(this.day, other.day);
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+
+        // Cast the object to a Date instance
+        Date other = (Date) object;
+
+        // Compare year, month, and day
+        return this.year == other.year
+                && this.month == other.month
+                && this.day == other.day;
+    }
+
+
     // checks if the inputted date is today's date
     public boolean isToday(Calendar today) {
         int todayMonth = today.get(Calendar.MONTH) + zeroBaseShift;
