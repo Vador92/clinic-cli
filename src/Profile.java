@@ -66,6 +66,7 @@ public class Profile implements Comparable<Profile> {
     }
 
 
+    // need to change compareTo method
     @Override
     public int compareTo(Profile other) {
         int lnameCompare = lname.compareToIgnoreCase(other.lname); //checks for duplicate lnames
