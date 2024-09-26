@@ -85,8 +85,15 @@ public class Appointment implements Comparable<Appointment> {
         return true;
     }
 
+    // section for getters to be used in the List
     public Profile getPatientProfile() {
         return patient;
+    }
+    public Date getDate(){
+        return date;
+    }
+    public Timeslot getTimeslot() {
+        return timeslot;
     }
 
 
@@ -103,9 +110,11 @@ public class Appointment implements Comparable<Appointment> {
         }
         Appointment appointment = (Appointment) obj;
 
-        // if timeslot and day is same
-        return date.equals(appointment.date) && timeslot.equals(appointment.timeslot)
-            && patient.equals(appointment.patient) && provider.equals(appointment.provider);
+        // if all objects are the same as the one being fed in
+        return date.equals(appointment.date) &&
+                timeslot.equals(appointment.timeslot)
+            && patient.equals(appointment.patient)
+                && provider.equals(appointment.provider);
     }
 
     // Method to convert the object to a readable string in the terminal

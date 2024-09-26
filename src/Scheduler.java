@@ -49,12 +49,17 @@ public class Scheduler {
                     clinic.add(newAppointment);
                 }
                 return;
+            case "C":
+                Appointment cancelAppointment =
+                        Appointment.createAppointment(arguments);
+                if (cancelAppointment != null){
+                    clinic.remove(cancelAppointment);
+                }
+                return;
             case "PP": //
                 // placeholder
                 return;
-            case "C":
-                System.out.println("Appointment canceled"); // placeholder
-                return;
+
             case "R":
                 System.out.println("Rescheduled appointment"); // placeholder
                 return;
