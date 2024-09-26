@@ -1,5 +1,6 @@
-import java.util.LinkedList;
-
+/**
+ * @author Yuet
+ */
 // Linked list for the visits
 public class Visit {
     private Appointment appointment;

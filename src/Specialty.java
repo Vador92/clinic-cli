@@ -1,3 +1,6 @@
+/**
+ * @author Varun
+ */
 public enum Specialty {
     FAMILY(250),
     PEDIATRICIAN(300),

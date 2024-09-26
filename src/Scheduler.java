@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
+ * @author Varun
  * This class is the main class that controls the terminal loop.
  * During this loop, user can enter commands to do the following
  * - Schedule appoint, Cancel appoint,
