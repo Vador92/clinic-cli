@@ -43,30 +43,51 @@ public class Scheduler {
                 exited = true;
                 return;
             case "S": // used to schedule an appoint
+                // once completely valid, we create one
                 Appointment newAppointment =
                         Appointment.createAppointment(arguments);
                 if (newAppointment != null){
                     clinic.add(newAppointment);
                 }
                 return;
-            case "PP": //
-                // placeholder
-                return;
             case "C":
-                System.out.println("Appointment canceled"); // placeholder
+                Appointment cancelAppointment =
+                        Appointment.createAppointment(arguments);
+                if (cancelAppointment != null){
+                    clinic.remove(cancelAppointment);
+                }
                 return;
             case "R":
+                // if appointment is null or timeslot is null return
+                // takes all but last argument
+                String[] oldArgs = new String[arguments.length-1];
+                for (int i = 0; i < oldArgs.length; i++){
+                    oldArgs[i] = arguments[i];
+                }
+                Appointment rescheduleAppointment =
+                        Appointment.createAppointment(oldArgs);
+                Timeslot newtime = Timeslot.setTimeslot(arguments[arguments.length-1]);
+                if (rescheduleAppointment != null && newtime != null){
+
+                }
+                // !null and !null
                 System.out.println("Rescheduled appointment"); // placeholder
                 return;
+            case "PP": //
+                clinic.printByPatient();
+                return;
             case "PA":
-                System.out.println("Displaying appointments, sorted"); // placeholder
+                clinic.printByAppointment(); // placeholder
                 return;
             case "PL":
-                System.out.println("Displaying appointments, sorted 1");  // placeholder
+                clinic.printByLocation();  // placeholder
                 return;
             case "PS":
                 System.out.println("Billing statements");
                 return;// placeholder
+            case "":
+                System.out.println("");
+                return;
             default:
                 System.out.println("Invalid command!");// placeholder
         }

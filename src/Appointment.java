@@ -44,7 +44,13 @@ public class Appointment implements Comparable<Appointment> {
         return new Appointment(appointmentDate, timeslot, patient, provider);
     }
 
+    // method to reschedule appointment
+    public void rescheduleAppointment(Appointment oldAppointment, Timeslot newTimeslot) {
+        
+    }
+
     // checks to see if the appointment is valid
+
     public static boolean isValidAppointment(Calendar calendar, Date appointmentDate) {
         if (appointmentDate.isValid()) {
             //check if today
@@ -72,6 +78,7 @@ public class Appointment implements Comparable<Appointment> {
         return true;
     }
 
+    // separate
     public static boolean isValidDob(Calendar calendar, Date dob) {
         if (!dob.isValid()) {
             if (dob.isToday(calendar) ||
@@ -85,10 +92,21 @@ public class Appointment implements Comparable<Appointment> {
         return true;
     }
 
+    // section for getters to be used in the List
     public Profile getPatientProfile() {
         return patient;
     }
+    public Date getDate(){
+        return date;
+    }
+    public Timeslot getTimeslot() {
+        return timeslot;
+    }
 
+
+    public boolean overBooked(Appointment anotherAppointment) {
+        return true;
+    }
 
     // this is the class that equates it fields are the same
     // need to fix this method
@@ -103,9 +121,11 @@ public class Appointment implements Comparable<Appointment> {
         }
         Appointment appointment = (Appointment) obj;
 
-        // if timeslot and day is same
-        return date.equals(appointment.date) && timeslot.equals(appointment.timeslot)
-            && patient.equals(appointment.patient) && provider.equals(appointment.provider);
+        // if all objects are the same as the one being fed in
+        // just need to check three things, provider and date different
+        return date.equals(appointment.date) &&
+                timeslot.equals(appointment.timeslot)
+            && patient.equals(appointment.patient);
     }
 
     // Method to convert the object to a readable string in the terminal
@@ -124,3 +144,17 @@ public class Appointment implements Comparable<Appointment> {
     }
 
 }
+
+/*
+1. The date of an appointment is
+     an invalid calendar date,
+     today,
+     a date before today
+     a date on Saturday or Sunday
+     a date not within six months from today.
+2. The timeslot does not exist.
+3. The date of birth of a patient is not a valid calendar date, is today, or is a future date.
+4. An appointment with the same patient profile, date, and timeslot already exists.
+5. The provider does not exist.
+6. The provider is not available at the specified timeslot.
+ */
