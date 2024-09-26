@@ -47,7 +47,7 @@ public class Scheduler {
                 // once completely valid, we create one
                 Appointment newAppointment =
                         Appointment.createAppointment(arguments);
-                if (newAppointment != null){
+                if (newAppointment != null && !clinic.contains(newAppointment)){
                     clinic.add(newAppointment);
                 }
                 return;

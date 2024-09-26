@@ -35,6 +35,9 @@ public class Appointment implements Comparable<Appointment> {
             return null;
         }
 
+
+        // make sure provider is available on that date and timeslot in order for an appointment to be created
+
         if (timeslot == null) {
             System.out.println(args[1] + " is not a valid time slot.");
             return null;

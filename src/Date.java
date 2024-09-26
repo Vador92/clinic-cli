@@ -79,7 +79,7 @@ public class Date implements Comparable<Date> {
 //        if (isBeyondSixMonths(calendar)) {
 //            return false;
 //        }
-        // this is fine
+        // below stuff is fine
         // year validation
         if (year < minYear) {
             return false;
@@ -128,6 +128,8 @@ public class Date implements Comparable<Date> {
                 && this.year == todayYear;
 
     }
+
+    // public boolean isBeforeToday (need to make this, check if appt is before today)
 
     public boolean isWeekend(Calendar date){
         date.set(year, month - zeroBaseShift, day);
