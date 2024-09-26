@@ -1,0 +1,85 @@
+Scheduler is running.
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Displaying appointments, sorted
+Displaying appointments, sorted 1
+Invalid command!
+9/31/2024 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+13/30/2024 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+0/30/2024 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+9/0/2024 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+2/30/2024 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+2/29/2024 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+11/2/2024 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+10/27/2024 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+5/30/2025 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+2/28/2025 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+2/3/2025 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+4/11/2025 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+3/3/2025 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+Invalid command!
+Invalid command!
+0 is not a valid time slot.
+A is not a valid time slot.
+8 is not a valid time slot.
+Invalid command!
+10/30/2024 9:00 AM John Doe 12/32/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+10/30/2024 9:00 AM John Doe 1/0/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+10/30/2024 9:00 AM John Doe 0/31/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+10/30/2024 9:00 AM John Doe 13/31/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+10/30/2024 9:00 AM John Doe 2/29/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+10/30/2024 9:00 AM John Doe 12/31/2024 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+Invalid command!
+Invalid command!
+Invalid command!
+10/30/2024 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+10/30/2024 9:00 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+Chang - provider doesn't exist.
+10/30/2024 9:00 AM Jane Doe 5/1/1996 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+10/30/2024 10:45 AM John Doe 12/13/1989 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+Invalid command!
+Invalid command!
+11/5/2024 11:15 AM John Doe 12/13/1989 [LIM, BRIDGEWATER, Somerset 08807, PEDIATRICIAN] booked.
+11/5/2024 11:15 AM John Doe 1/13/1985 [CERAVOLO, EDISON, Middlesex 08817, PEDIATRICIAN] booked.
+12/11/2024 1:30 PM Jane Doe 5/1/1996 [ZIMNES, CLARK, Union 07066, FAMILY] booked.
+12/11/2024 3:00 PM April March 1/20/2003 [HARPER, CLARK, Union 07066, FAMILY] booked.
+1/17/2025 4:15 PM Duke Ellington 1/20/2003 [KAUR, PRINCETON, Merer 08542, ALLERGIST] booked.
+2/11/2025 10:45 AM Roy Brook 2/29/2004 [TAYLOR, PISCATAWAY, Middlesex 08854, PEDIATRICIAN] booked.
+2/11/2025 11:15 AM Carl Brown 8/8/1999 [RAMESH, MORRISTOWN, Morris 07960, ALLERGIST] booked.
+2/11/2025 3:00 PM Paul Siegel 5/1/2000 [RAMESH, MORRISTOWN, Morris 07960, ALLERGIST] booked.
+10/29/2024 3:00 PM Paul Siegel 5/1/2000 [RAMESH, MORRISTOWN, Morris 07960, ALLERGIST] booked.
+12/30/2024 9:00 AM Paul Siegel 5/1/2000 [RAMESH, MORRISTOWN, Morris 07960, ALLERGIST] booked.
+12/2/2024 1:30 PM Paul Siegel 5/1/2000 [LIM, BRIDGEWATER, Somerset 08807, PEDIATRICIAN] booked.
+12/16/2024 11:15 AM Jane Doe 5/1/1996 [KAUR, PRINCETON, Merer 08542, ALLERGIST] booked.
+10/30/2024 3:00 PM April March 1/20/2003 [PATEL, BRIDGEWATER, Somerset 08807, FAMILY] booked.
+11/5/2024 11:15 AM Kate Lindsey 7/15/2002 [HARPER, CLARK, Union 07066, FAMILY] booked.
+Invalid command!
+Displaying appointments, sorted
+Displaying appointments, sorted 1
+Invalid command!
+Appointment canceled
+Appointment canceled
+12/11/2024 1:30 PM Jane Doe 5/1/1996 [TAYLOR, PISCATAWAY, Middlesex 08854, PEDIATRICIAN] booked.
+Appointment canceled
+Appointment canceled
+10/29/2024 3:00 PM Paul Siegel 5/1/2000 [LIM, BRIDGEWATER, Somerset 08807, PEDIATRICIAN] booked.
+Invalid command!
+Rescheduled appointment
+Rescheduled appointment
+Rescheduled appointment
+Rescheduled appointment
+Rescheduled appointment
+Rescheduled appointment
+Rescheduled appointment
+Invalid command!
+Displaying appointments, sorted 1
+Billing statements
+Scheduler is terminated.
