@@ -14,8 +14,9 @@ public class MedicalRecord {
     // used for adding up all the charges
 
     // constructor
-    public MedicalRecord() {
-
+    public MedicalRecord(int size) {
+        this.patients = new Patient[size];
+        this.size = 0;
     }
 
     public void add(Patient newPatient){

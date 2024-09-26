@@ -35,8 +35,6 @@ public enum Timeslot {
                 getHour(), minute, getAMPM());
     }
 
-
-
     public String getAMPM(){
         if (hour >= 0 && hour < 12)
             return "AM";

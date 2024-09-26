@@ -1,7 +1,7 @@
 /**
  * @author Yuet
  */
-public class Patient {
+public class Patient implements Comparable<Patient>{
     private Profile profile;
     private Visit visits;
 
@@ -24,8 +24,9 @@ public class Patient {
     }
 
     @Override
-    public int compareTo(){
-        return 0;
+    public int compareTo(Patient otherPatient) {
+        // For example, compare by visit charge
+        return Integer.compare(this.charge(), otherPatient.charge());
     }
 
 }

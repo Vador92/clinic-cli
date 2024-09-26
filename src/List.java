@@ -73,7 +73,11 @@ public class List {
     }
 
     // overload add this will remove and add new
-
+    // take the patients profile and appointment date and time
+    // if appointment exists, create new appointment with the same provider, if provider is available
+    // so you check to see if provider is busy
+    // if not busy reschedule
+    // return false
 
 
     // use the finds method to see if it exists
