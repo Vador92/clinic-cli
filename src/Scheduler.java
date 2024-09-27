@@ -137,14 +137,6 @@ public class Scheduler {
 
     // fix reschedule
     private void handleReschedule() {
-        // create date, timeslot, and profile
-        // check if timeslot valid
-        // check if provider available
-        // then change original schedule
-        // 3 checks
-        // 1 if there is a timeslot and provider available
-        // 2 if there a timeslot and provider not available
-        // 3 there is not thing in the first place
         Date checkDate = new Date(arguments[0]);
         Timeslot checkTimeslot = Timeslot.setTimeslot(arguments[1]);
         Timeslot newTimeslot = Timeslot.setTimeslot(arguments[5]);
@@ -177,20 +169,18 @@ public class Scheduler {
                         return;
                     }
                 }
-
             }
-            // this is not working properly
             if (checkTimeslot != null){
                 System.out.println(checkDate.toString()
                         + " " + checkTimeslot.toString()
                         + " " + checkProfile.toString()
                         + " does not exist.");
             }
-            else{
-                System.out.println(checkDate.toString()
-                        + " " + arguments[1]
-                        + " " + checkProfile.toString()
-                        + " does not exist.");
+            else {
+                System.out.println(
+                        arguments[1]
+                        + " is not a valid time slot"
+                );
             }
         } else {
             System.out.println(arguments[5]
