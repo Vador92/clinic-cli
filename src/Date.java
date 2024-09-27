@@ -218,12 +218,14 @@ public class Date implements Comparable<Date> {
     //check if year is leap year
     private boolean isLeapYear() {
         if (year % QUADRENNIAL == 0) {
-            if (year % CENTENNIAL != 0) {
+            if (year % CENTENNIAL == 0) {
+                return year % QUATERCENTENNIAL == 0;
+            }
+            else{
                 return true;
             }
-            return false;
         }
-        else return year % QUADRENNIAL == 0;
+        return false;
     }
 
     private boolean checkMonthDays(){
