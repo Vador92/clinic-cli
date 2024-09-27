@@ -61,11 +61,6 @@ public class Date implements Comparable<Date> {
         }
     }
 
-    //check if the date is a valid calendar date
-    // cannot change the signature of this method
-    // need to fix this
-    // just need to check if this is a valid calendar day
-    // need to fix this, see block comment below method
     public boolean isValid() {
 
         // year validation
@@ -77,6 +72,7 @@ public class Date implements Comparable<Date> {
         if (month < minMonth || month > maxMonth){
             return false;
         }
+
         // day validation
         if (day < minDay || day > maxDay){
             return false;
@@ -90,10 +86,6 @@ public class Date implements Comparable<Date> {
         return true;
     }
 
-    // other checks for appointment and dob
-
-
-
     // checks if the inputted date is today's date
     public boolean isToday(Calendar today) {
         int todayMonth = today.get(Calendar.MONTH) + zeroBaseShift;
@@ -105,6 +97,7 @@ public class Date implements Comparable<Date> {
                 && this.year == todayYear;
 
     }
+
     // checks if an appointment is schedules to a date before today
     public boolean isBeforeToday(Calendar today) {
 
@@ -119,7 +112,7 @@ public class Date implements Comparable<Date> {
         return todayDate.before(today);
     }
 
-
+    // checks if the day is on a weekend
     public boolean isWeekend(Calendar date){
         date.set(year, month - zeroBaseShift, day);
         int dayOfWeek = date.get(Calendar.DAY_OF_WEEK);
@@ -130,6 +123,7 @@ public class Date implements Comparable<Date> {
         return false;
     }
 
+    // checks if the date is in the future
     public boolean isInFuture(Calendar date){
         Calendar today = Calendar.getInstance();
         date.set(year, month - zeroBaseShift, day);
