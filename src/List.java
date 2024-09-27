@@ -48,22 +48,17 @@ public class List {
         return find(appointment) != NOT_FOUND;
     }
 
-    // NEED TO FIX THIS
     // increase appointments if too big
     // and add new appointment
     public void add(Appointment newAppointment) {
         if (size == appointments.length) {
             grow();
         }
-
         if (!contains(newAppointment)) {
             // check if same date and time as another provider
             appointments[size] = newAppointment;
             size++;
         }
-
-            // just print in the scheduler class
-            //System.out.println(dupProfile.toString()+ " has existing appoint at timeslot");
     }
 
     public boolean findProviderAvailability(Date checkDate, Timeslot checkTimeslot, Provider checkProvider) {
@@ -94,42 +89,22 @@ public class List {
         return appointments[index];
     }
 
-    // overload add this will remove and add new
-    // take the patients profile and appointment date and time
-    // if appointment exists, create new appointment with the same provider, if provider is available
-    // so you check to see if provider is busy
-    // if not busy reschedule
-    // return false
-
 
     // use the finds method to see if it exists
     // if it does, get the index
     // then remove that
     // then replace the last one using size - 1, with the index
-    // need to make sure it exits when calling the command
-    // fix this
     public void remove(Appointment appointment) {
         if(contains(appointment)) {
-            // should print date, timeslot, profile
-            // cannot system out here
-            // just check if size is same
-//            System.out.println(appointment.getDate().toString()
-//                    + " " + appointment.getTimeslot().toString()
-//                    + " " + appointment.getPatientProfile().toString()
-//                    + " not found.");
-//            return;
-
             int index = find(appointment);
             appointments[index] = appointments[size - 1];
             appointments[size - 1] = null;
             size--;
-            // cannot system out here
-            // check if size decreased
-//            System.out.println(appointment.getDate().toString()
-//                    + " " + appointment.getTimeslot().toString()
-//                    + " " + appointment.getPatientProfile().toString()
-//                    + " has been canceled.");
         }
+    }
+
+    public int getSize(){
+        return size;
     }
 
     // print in order of patients
@@ -140,23 +115,9 @@ public class List {
             return;
         }
 
-        quickSortPatient();
-
-
-
-        // basically do the quicksort, getting all the indexes' patients
-        // using the last name
-        // if the same, use first name
-        // if the same. use dob
-
-        // print list in the order of indexes
-
-
+        quickSortPatient(0, size-1);
     }
 
-    public int getSize(){
-        return size;
-    }
 
     // sort algo for this
     public void printByLocation(){
@@ -166,6 +127,9 @@ public class List {
         }
 
         quickSortLocation();
+        for (int i = 0; i < size; i++){
+            System.out.println(appointments[i].toString());
+        }
     }
 
     // sort algo for this
@@ -178,19 +142,28 @@ public class List {
     }
 
 
+    private void quickSortPatient(int low, int high) {
+        if (low < high) {
+            int pivotIndex = partitionPatient(low, high);
+            quickSortPatient(low, pivotIndex - 1);
+            quickSortPatient(pivotIndex + 1, high);
+        }
+    }
 
-    // sorting algorithms for each one
-    private void quickSortPatient(){
+    private int partitionPatient(int low, int high) {
+        return 1;
+    }
+
+    private void quickSortLocation() {
 
     }
 
-    private void quickSortLocation(){
+    private void quickSortAppointment() {
 
     }
 
-    private void quickSortAppointment(){
 
-    }
+
 
 
 }

@@ -5,7 +5,7 @@ public class Patient implements Comparable<Patient>{
     private Profile profile;
     private Visit visits;
 
-    public Patient(String arg) {
+    public Patient() {
     }
 
     public int charge() {
