@@ -96,21 +96,23 @@ public class Scheduler {
 
     //
     private void handleNewAppointment(Appointment newAppointment){
-        if (newAppointment != null && !clinic.contains(newAppointment)){
-            int index = clinic.findProviderAvailability(newAppointment);
-            if(index == NOT_FOUND){
-                clinic.add(newAppointment);
-                System.out.println(newAppointment.toString() + " booked.");
+        if (newAppointment != null){
+            if(!clinic.contains(newAppointment)){
+                int index = clinic.findProviderAvailability(newAppointment);
+                if(index == NOT_FOUND){
+                    clinic.add(newAppointment);
+                    System.out.println(newAppointment.toString() + " booked.");
+                }
+                else{
+                    Appointment existing = clinic.get(index);
+                    System.out.println(existing.getPatientProfile().toString()
+                            + " has an existing appointment at the same time slot.");
+                }
             }
             else{
-                Appointment existing = clinic.get(index);
-                System.out.println(existing.getPatientProfile().toString()
+                System.out.println(newAppointment.getPatientProfile().toString()
                         + " has an existing appointment at the same time slot.");
             }
-        }
-        else{
-            System.out.println(newAppointment.getPatientProfile().toString()
-            + " has an existing appointment at the same time slot.");
         }
     }
 
