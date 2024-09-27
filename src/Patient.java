@@ -26,9 +26,8 @@ public class Patient implements Comparable<Patient>{
             Specialty specialty = provider.getSpecialty();
 
             // adds to the total charge to an appointment after it is completed
-            if (appointment.isCompleted()) {
-                totalCharge += Specialty.getCharge();
-            }
+            totalCharge += provider.getSpecialty().getCharge();
+
 
             // moves to the next appointment node
             currentVisit = currentVisit.getNext();
@@ -44,10 +43,18 @@ public class Patient implements Comparable<Patient>{
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return false;
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Patient other = (Patient) object;
+        return this.profile.equals(other.profile);
     }
 
+    // need to complete this
     @Override
     public int compareTo(Patient otherPatient) {
         // For example, compare by visit charge

@@ -40,5 +40,9 @@ public enum Provider {
                 + ", " + specialty.toString();
     }
 
+    public Specialty getSpecialty(){
+        return specialty;
+    }
+
 
 }
