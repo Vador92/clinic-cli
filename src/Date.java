@@ -36,6 +36,11 @@ public class Date implements Comparable<Date> {
     public static final int zeroBaseShift = 1;
     public static final int addSixMonths = 6;
 
+    private static final int START_OF_DAY_HOUR = 0;
+    private static final int START_OF_DAY_MINUTE = 0;
+    private static final int START_OF_DAY_SECOND = 0;
+    private static final int START_OF_DAY_MILLISECOND = 0;
+
     public static final int
             isLeapYearFEBRUARYDay = 29,
             notLeapYearFEBRUARYDay = 28;
@@ -102,12 +107,17 @@ public class Date implements Comparable<Date> {
     public boolean isBeforeToday(Calendar today) {
 
         Calendar todayDate = Calendar.getInstance();
-        todayDate.set(this.year, this.month - zeroBaseShift, this.day, 0, 0, 0);
+        todayDate.set(this.year,
+                this.month - zeroBaseShift,
+                this.day,
+                START_OF_DAY_HOUR,
+                START_OF_DAY_MINUTE,
+                START_OF_DAY_SECOND);
 
-        today.set(Calendar.HOUR_OF_DAY, 0);
-        today.set(Calendar.MINUTE, 0);
-        today.set(Calendar.SECOND, 0);
-        today.set(Calendar.MILLISECOND, 0);
+        today.set(Calendar.HOUR_OF_DAY, START_OF_DAY_HOUR);
+        today.set(Calendar.MINUTE, START_OF_DAY_MINUTE);
+        today.set(Calendar.SECOND, START_OF_DAY_SECOND);
+        today.set(Calendar.MILLISECOND, START_OF_DAY_MILLISECOND);
 
         return todayDate.before(today);
     }
