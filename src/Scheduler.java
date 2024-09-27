@@ -13,6 +13,8 @@ public class Scheduler {
     private boolean exited = false;
 
     final static int NOT_FOUND = -1;
+    final static int EMPTY = 0;
+    final static int PRINT_SHIFT = 1;
 
     public Scheduler(){} // constructor
 
@@ -71,7 +73,7 @@ public class Scheduler {
                 clinic.printByLocation();  // placeholder
                 return;
             case "PS":
-                System.out.println("Billing statements");
+                handleBillingStatements();
                 return;// placeholder
             case "":
                 System.out.println("");
@@ -188,4 +190,17 @@ public class Scheduler {
             );
         }
     }
+
+    private void handleBillingStatements(){
+        MedicalRecord records = new MedicalRecord().add(clinic);
+        if (records.getSize() != EMPTY){
+            for (int i = 0; i < records.getSize(); i++){
+                System.out.print(String.format("(%d) %s", i+PRINT_SHIFT, records.getRecord(i).toString()));
+            }
+        }
+        else{
+            System.out.println("The schedule calendar is empty.");
+        }
+    }
+
 }

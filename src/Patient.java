@@ -37,9 +37,17 @@ public class Patient implements Comparable<Patient>{
     }
     // create method to return the visit charge for the patient's visit
 
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public int getCharge() {
+        return charge();
+    }
+
     @Override
     public String toString() {
-        return profile + " [amount due: $" + charge() + "]";
+        return profile.toString() + " [amount due: $" + getCharge() + "]";
     }
 
     @Override

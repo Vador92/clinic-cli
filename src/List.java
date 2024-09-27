@@ -137,8 +137,6 @@ public class List {
         if(size == 0 ){
             System.out.println("The schedule calendar is empty.");
         }
-
-        quickSortAppointment();
     }
 
 

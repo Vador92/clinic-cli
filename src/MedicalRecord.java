@@ -6,21 +6,70 @@ public class MedicalRecord {
     private Patient[] patients;
     private int size; // number of patient objects in the array
 
-
-    // Here we should create a method to get the billing statements
-    // from the user.
-
+    final static int EMPTY = 0;
+    final static int SOURCE = 0;
+    final static int INCREMENT = 1;
     // medical record is only used when the PS command is called, "completes" or clears out the appt list
     // used for adding up all the charges
 
     // constructor
-    public MedicalRecord(int size) {
-        this.patients = new Patient[size];
-        this.size = 0;
+    public MedicalRecord() {
+        this.patients = new Patient[1];
+        this.size = EMPTY;
     }
 
-    public void add(Patient newPatient){
+    public MedicalRecord add(List clinic){
+        // create new medical record
+        MedicalRecord medicalRecord = new MedicalRecord();
+        // check if clinic is empty
+        if (clinic.getSize() == EMPTY){
+            return medicalRecord;
+        }
 
+        // if not empty then add the first patient
+        Patient firstPatient = new Patient(clinic.get(SOURCE).getPatientProfile(), null);
+        // increment size
+        medicalRecord.size+=INCREMENT;
+        clinic.remove(clinic.get(SOURCE));
+        medicalRecord.patients[SOURCE] = firstPatient;
+
+        // then check the rest
+        for (int i = SOURCE; i < clinic.getSize(); i++) {
+            Patient newPatient = new Patient(clinic.get(i).getPatientProfile(), null);
+
+        }
+        while (clinic.getSize() != EMPTY){
+            clinic.remove(clinic.get(SOURCE));
+        }
+        return medicalRecord;
+    }
+
+    // add to visits
+    private void nextAppointment(MedicalRecord medicalRecord, int index){
+
+    }
+
+    private void grow(){
+        Patient[] expandedPatient = new Patient[patients.length + INCREMENT];
+        // copy contents from original array to new array
+        for (int i = SOURCE; i < patients.length; i++) {
+            expandedPatient[i] = patients[i];
+        }
+        // set appointments to extended array
+        patients = expandedPatient;
+    }
+
+    public int getSize(){
+        return size;
+    }
+
+    public Patient getRecord(int index){
+        return patients[index];
+    }
+
+    @Override
+    public String toString() {
+        return null;
     }
 }
 
