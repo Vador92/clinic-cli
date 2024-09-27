@@ -107,6 +107,7 @@ public class List {
     // then remove that
     // then replace the last one using size - 1, with the index
     // need to make sure it exits when calling the command
+    // fix this
     public void remove(Appointment appointment) {
         if(contains(appointment)) {
             // should print date, timeslot, profile

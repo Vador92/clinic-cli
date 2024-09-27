@@ -120,13 +120,13 @@ public class Scheduler {
         if (cancelAppointment != null){
             int startingSize = clinic.getSize();
             clinic.remove(cancelAppointment);
-            if (startingSize == clinic.getSize()){
+            if (startingSize > clinic.getSize()){
                 System.out.println(cancelAppointment.getDate().toString()
                         + " " + cancelAppointment.getTimeslot().toString()
                         + " " + cancelAppointment.getPatientProfile().toString()
                         + " has been cancelled.");
             }
-            else if (startingSize > clinic.getSize()){
+            else if (startingSize == clinic.getSize()){
                 System.out.println(cancelAppointment.getDate().toString()
                         + " " + cancelAppointment.getTimeslot().toString()
                         + " " + cancelAppointment.getPatientProfile().toString()
