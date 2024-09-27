@@ -68,6 +68,11 @@ public class Date implements Comparable<Date> {
 
     public boolean isValid() {
 
+        // maximum day values validation based on month
+        if (!checkMonthDays()) {
+            return false;
+        }
+
         // year validation
         if (year < minYear) {
             return false;
@@ -80,11 +85,6 @@ public class Date implements Comparable<Date> {
 
         // day validation
         if (day < minDay || day > maxDay){
-            return false;
-        }
-
-        // maximum day values validation based on month
-        if (!checkMonthDays()) {
             return false;
         }
 
@@ -218,13 +218,12 @@ public class Date implements Comparable<Date> {
     //check if year is leap year
     private boolean isLeapYear() {
         if (year % QUADRENNIAL == 0) {
-            if (year % CENTENNIAL == 0) {
-                if (year % QUATERCENTENNIAL == 0) {
-                    return true;
-                }
+            if (year % CENTENNIAL != 0) {
+                return true;
             }
+            return false;
         }
-        return false;
+        else return year % QUADRENNIAL == 0;
     }
 
     private boolean checkMonthDays(){
