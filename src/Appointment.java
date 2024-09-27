@@ -83,9 +83,8 @@ public class Appointment implements Comparable<Appointment> {
         return true;
     }
 
-    // separate
     public static boolean isValidDob(Calendar calendar, Date dob) {
-        if (!dob.isValid()) {
+        if (dob.isValid()) {
             if (dob.isToday(calendar) ||
                     dob.isInFuture(calendar)) {
                 System.out.println("Patient dob: " +
@@ -93,8 +92,12 @@ public class Appointment implements Comparable<Appointment> {
                         " is today or a date after today.");
                 return false;
             }
+            return true;
         }
-        return true;
+        System.out.println("Patient dob: " +
+                dob.toString() +
+                " is not a valid calendar date.");
+        return false;
     }
 
     // section for getters to be used in the List
