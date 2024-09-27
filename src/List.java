@@ -55,8 +55,7 @@ public class List {
         if (size == appointments.length) {
             grow();
         }
-        // check duplicate
-        // can't use system.out here
+
         if (!contains(newAppointment)) {
             // check if same date and time as another provider
             appointments[size] = newAppointment;
@@ -65,6 +64,12 @@ public class List {
 
             // just print in the scheduler class
             //System.out.println(dupProfile.toString()+ " has existing appoint at timeslot");
+    }
+
+    // overload function
+    // for rescheduling
+    public void add(Appointment oldAppointment, Timeslot newTimeslot) {
+
     }
 
     public int checkProviderAvailability(Appointment newAppointment) {
@@ -78,7 +83,6 @@ public class List {
             }
         }
         return NOT_FOUND;
-
     }
 
     public Appointment get(int index) {
@@ -142,6 +146,10 @@ public class List {
         // print list in the order of indexes
 
 
+    }
+
+    public int getSize(){
+        return size;
     }
 
     // sort algo for this

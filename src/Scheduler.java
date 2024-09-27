@@ -46,33 +46,20 @@ public class Scheduler {
                 exited = true;
                 return;
             case "S": // used to schedule an appoint
-                // once completely valid, we create one
                 Appointment newAppointment =
                         Appointment.createAppointment(arguments);
                 // handle error handling in appointment
-                // make this a new function
                 handleNewAppointment(newAppointment);
                 return;
             case "C":
                 Appointment cancelAppointment =
                         Appointment.createAppointment(arguments);
-                if (cancelAppointment != null){
-                    clinic.remove(cancelAppointment);
-                }
+                handleCancel(cancelAppointment);
                 return;
             case "R":
                 // if appointment is null or timeslot is null return
                 // takes all but last argument
-                String[] oldArgs = new String[arguments.length-1];
-                for (int i = 0; i < oldArgs.length; i++){
-                    oldArgs[i] = arguments[i];
-                }
-                Appointment rescheduleAppointment =
-                        Appointment.createAppointment(oldArgs);
-                Timeslot newtime = Timeslot.setTimeslot(arguments[arguments.length-1]);
-                if (rescheduleAppointment != null && newtime != null){
-
-                }
+                handleReschedule();
                 // !null and !null
                 System.out.println("Rescheduled appointment"); // placeholder
                 return;
@@ -123,5 +110,28 @@ public class Scheduler {
                         + " has an existing appointment at the same time slot.");
             }
         }
+    }
+
+    private void handleCancel(Appointment cancelAppointment){
+        if (cancelAppointment != null){
+            int startingSize = clinic.getSize();
+            clinic.remove(cancelAppointment);
+            if (startingSize == clinic.getSize()){
+                System.out.println(cancelAppointment.getDate().toString()
+                        + " " + cancelAppointment.getTimeslot().toString()
+                        + " " + cancelAppointment.getPatientProfile().toString()
+                        + " has been cancelled.");
+            }
+            else if (startingSize > clinic.getSize()){
+                System.out.println(cancelAppointment.getDate().toString()
+                        + " " + cancelAppointment.getTimeslot().toString()
+                        + " " + cancelAppointment.getPatientProfile().toString()
+                        + " does not exist.");
+            }
+        }
+    }
+
+    private void handleReschedule(){
+
     }
 }
