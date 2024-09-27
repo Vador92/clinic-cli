@@ -12,6 +12,8 @@ public class Scheduler {
     private List clinic = new List(4);
     private boolean exited = false;
 
+    final static int NOT_FOUND = -1;
+
     public Scheduler(){} // constructor
 
     public void run(){
@@ -47,9 +49,9 @@ public class Scheduler {
                 // once completely valid, we create one
                 Appointment newAppointment =
                         Appointment.createAppointment(arguments);
-                if (newAppointment != null && !clinic.contains(newAppointment)){
-                    clinic.add(newAppointment);
-                }
+                // handle error handling in appointment
+                // make this a new function
+                handleNewAppointment(newAppointment);
                 return;
             case "C":
                 Appointment cancelAppointment =
@@ -94,7 +96,6 @@ public class Scheduler {
         }
     }
 
-
     // Need to keep this method, in order to get specific commands
     // and arguments needed for each method
     private void getInput(String input){
@@ -105,6 +106,22 @@ public class Scheduler {
             String argString = input.substring(
                     input.indexOf(',') + 1).trim();
             arguments = argString.split(",");
+        }
+    }
+
+    //
+    private void handleNewAppointment(Appointment newAppointment){
+        if (newAppointment != null && !clinic.contains(newAppointment)){
+            int index = clinic.checkProviderAvailability(newAppointment);
+            if(index == NOT_FOUND){
+                clinic.add(newAppointment);
+                System.out.println(newAppointment.toString() + " booked.");
+            }
+            else{
+                Appointment existing = clinic.get(index);
+                System.out.println(existing.getPatientProfile().toString()
+                        + " has an existing appointment at the same time slot.");
+            }
         }
     }
 }

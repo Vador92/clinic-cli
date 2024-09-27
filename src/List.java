@@ -51,25 +51,38 @@ public class List {
     // NEED TO FIX THIS
     // increase appointments if too big
     // and add new appointment
-    public void add(Appointment appointment) {
+    public void add(Appointment newAppointment) {
         if (size == appointments.length) {
             grow();
         }
         // check duplicate
         // can't use system.out here
-        if (!contains(appointment)) {
+        if (!contains(newAppointment)) {
             // check if same date and time as another provider
-            appointments[size] = appointment;
+            appointments[size] = newAppointment;
             size++;
-            // print this in the scheduler class
-            //System.out.println(appointment.toString() + " booked.");
         }
 
             // just print in the scheduler class
-            // Appointment duplicate = appointments[find(appointment)];
-            // Profile dupProfile = duplicate.getPatientProfile();
             //System.out.println(dupProfile.toString()+ " has existing appoint at timeslot");
+    }
 
+    public int checkProviderAvailability(Appointment newAppointment) {
+        // need to check if the same date, timeslot, and provided
+        for (int i = 0; i < size; i++) {
+            if (appointments[i].getDate().equals(newAppointment.getDate())
+                    && appointments[i].getTimeslot().equals(newAppointment.getTimeslot())
+                    &&  appointments[i].getProvider().equals(newAppointment.getProvider())
+            ){
+                return i;
+            }
+        }
+        return NOT_FOUND;
+
+    }
+
+    public Appointment get(int index) {
+        return appointments[index];
     }
 
     // overload add this will remove and add new
