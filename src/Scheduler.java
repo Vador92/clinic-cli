@@ -60,8 +60,6 @@ public class Scheduler {
                 // if appointment is null or timeslot is null return
                 // takes all but last argument
                 handleReschedule();
-                // !null and !null
-                System.out.println("Rescheduled appointment"); // placeholder
                 return;
             case "PP": //
                 clinic.printByPatient();
@@ -99,7 +97,7 @@ public class Scheduler {
     //
     private void handleNewAppointment(Appointment newAppointment){
         if (newAppointment != null && !clinic.contains(newAppointment)){
-            int index = clinic.checkProviderAvailability(newAppointment);
+            int index = clinic.findProviderAvailability(newAppointment);
             if(index == NOT_FOUND){
                 clinic.add(newAppointment);
                 System.out.println(newAppointment.toString() + " booked.");
@@ -132,6 +130,52 @@ public class Scheduler {
     }
 
     private void handleReschedule(){
+        // create date, timeslot, and profile
+        // check if timeslot valid
+        // check if provider available
+        // then change original schedule
+        // 3 checks
+        // 1 if there is a timeslot and provider available
+        // 2 if there a timeslot and provider not available
+        // 3 there is not thing in the first place
+        Date checkDate = new Date(arguments[0]);
+        Timeslot checkTimeslot = Timeslot.setTimeslot(arguments[1]);
+        Timeslot newTimeslot = Timeslot.setTimeslot(arguments[5]);
+        Profile checkProfile = new Profile(arguments[2],
+                arguments[3], new Date(arguments[4]));
+        if (newTimeslot != null){
+            for (int i = 0; i < clinic.getSize(); i++){
+                if (clinic.get(i).getDate().equals(checkDate)
+                        && clinic.get(i).getTimeslot().equals(checkTimeslot)
+                        && clinic.get(i).getPatientProfile().equals(checkProfile)){
+                    Provider checkProvider = clinic.get(i).getProvider();
+                    if(!clinic.findProviderAvailability(
+                            checkDate,checkTimeslot, checkProvider
+                    )){
+                        clinic.remove(clinic.get(i));
+                        Appointment rescheduledAppointment
+                                = new Appointment(
+                                checkDate, newTimeslot,
+                                checkProfile, checkProvider
+                        );
+                        clinic.add(rescheduledAppointment);
+                        System.out.println("Rescheduled to "
+                                + rescheduledAppointment.toString()
+                        );
+                    }
+                    else{
+                        System.out.println(checkProvider.toString()
+                        + " is not available at "
+                        + newTimeslot.toString());
+                    }
+                }
+            }
+        }
+        else{
+            System.out.println(arguments[5]
+                    + " is not a valid time slot."
+            );
+        }
 
     }
 }

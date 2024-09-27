@@ -66,13 +66,18 @@ public class List {
             //System.out.println(dupProfile.toString()+ " has existing appoint at timeslot");
     }
 
-    // overload function
-    // for rescheduling
-    public void add(Appointment oldAppointment, Timeslot newTimeslot) {
-
+    public boolean findProviderAvailability(Date checkDate, Timeslot checkTimeslot, Provider checkProvider) {
+        for (int i = 0; i < size; i++) {
+            if (appointments[i].getDate().equals(checkDate)
+                    && appointments[i].getTimeslot().equals(checkTimeslot)
+                    && appointments[i].getProvider().equals(checkProvider)) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public int checkProviderAvailability(Appointment newAppointment) {
+    public int findProviderAvailability(Appointment newAppointment) {
         // need to check if the same date, timeslot, and provided
         for (int i = 0; i < size; i++) {
             if (appointments[i].getDate().equals(newAppointment.getDate())
