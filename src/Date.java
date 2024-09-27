@@ -93,9 +93,10 @@ public class Date implements Comparable<Date> {
 
     // checks if the inputted date is today's date
     public boolean isToday(Calendar today) {
-        int todayMonth = today.get(Calendar.MONTH) + zeroBaseShift;
-        int todayDay = today.get(Calendar.DAY_OF_MONTH);
-        int todayYear = today.get(Calendar.YEAR);
+        Calendar todayClone = (Calendar) today.clone();
+        int todayMonth = todayClone.get(Calendar.MONTH) + zeroBaseShift;
+        int todayDay = todayClone.get(Calendar.DAY_OF_MONTH);
+        int todayYear = todayClone.get(Calendar.YEAR);
 
         return this.month == todayMonth
                 && this.day == todayDay
@@ -126,7 +127,7 @@ public class Date implements Comparable<Date> {
     public boolean isWeekend(Calendar date){
         Calendar dateClone = (Calendar) date.clone();
         dateClone.set(year, month - zeroBaseShift, day);
-        int dayOfWeek = date.get(Calendar.DAY_OF_WEEK);
+        int dayOfWeek = dateClone.get(Calendar.DAY_OF_WEEK);
         if (dayOfWeek == Calendar.SATURDAY
                 || dayOfWeek == Calendar.SUNDAY) {
             return true;
@@ -139,25 +140,9 @@ public class Date implements Comparable<Date> {
         Calendar dateClone = (Calendar) date.clone();
         Calendar today = Calendar.getInstance();
         dateClone.set(year, month - zeroBaseShift, day);
-        return date.after(today);
+        return dateClone.after(today);
     }
 
-    // need to fix this
-//    public boolean isBeyondSixMonths(Calendar today) {
-//
-//        // Create a copy of the 'today' Calendar object to avoid modifying the original
-//        Calendar sixMonthsLater = (Calendar) today.clone();
-//
-//        // Add six months to the copied date
-//        sixMonthsLater.add(Calendar.MONTH, addSixMonths);
-//
-//        // Create a Calendar instance for the current Date object
-//        Calendar thisDate = Calendar.getInstance();
-//        thisDate.set(this.year, this.month - zeroBaseShift, this.day);
-//
-//        // Check if thisDate is after sixMonthsLater (i.e., more than six months in the future)
-//        return thisDate.after(sixMonthsLater);
-//    }
     public boolean isBeyondSixMonths(Calendar today) {
 
         Calendar sixMonthsLater = (Calendar) today.clone();
@@ -165,7 +150,7 @@ public class Date implements Comparable<Date> {
         sixMonthsLater.add(sixMonthsLater.MONTH, 6);  // Adding exactly 6 months
 
         Calendar thisDate = Calendar.getInstance();
-        thisDate.set(this.year, this.month - 1, this.day);  // months are zero-based, so subtract 1 from this.month
+        thisDate.set(this.year, this.month - zeroBaseShift, this.day);  // months are zero-based, so subtract 1 from this.month
 
         // Check if thisDate is after sixMonthsLater (i.e., more than six months in the future)
         return thisDate.after(sixMonthsLater);
