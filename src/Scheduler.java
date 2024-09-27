@@ -108,6 +108,10 @@ public class Scheduler {
                         + " has an existing appointment at the same time slot.");
             }
         }
+        else{
+            System.out.println(newAppointment.getPatientProfile().toString()
+            + " has an existing appointment at the same time slot.");
+        }
     }
 
     private void handleCancel(Appointment cancelAppointment){
