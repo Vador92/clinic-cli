@@ -36,8 +36,8 @@ public enum Provider {
 
     @Override
     public String toString() {
-        return name() + ", " + location.toString()
-                + ", " + specialty.toString();
+        return "[" + name() + ", " + location.toString()
+                + ", " + specialty.toString() + "]";
     }
 
 

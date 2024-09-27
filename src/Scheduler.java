@@ -94,7 +94,7 @@ public class Scheduler {
         }
     }
 
-    //
+    //something wrong with the way we handle overbook and duplicate
     private void handleNewAppointment(Appointment newAppointment){
         if (newAppointment != null){
             if(!clinic.contains(newAppointment)){
@@ -105,7 +105,7 @@ public class Scheduler {
                 }
                 else{
                     Appointment existing = clinic.get(index);
-                    System.out.println(existing.getPatientProfile().toString()
+                    System.out.println(existing.getProvider().toString()
                             + " has an existing appointment at the same time slot.");
                 }
             }

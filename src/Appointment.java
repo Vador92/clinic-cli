@@ -142,7 +142,7 @@ public boolean equals(Object obj) {
 // Method to convert the object to a readable string in the terminal
 @Override
 public String toString() {
-    return String.format("%s %s %s [%s]", date.toString(),
+    return String.format("%s %s %s %s", date.toString(),
             timeslot.toString(),
             patient.toString(),
             provider.toString());
