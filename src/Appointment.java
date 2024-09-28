@@ -54,7 +54,7 @@ public class Appointment implements Comparable<Appointment> {
     public static boolean isValidAppointment(Calendar calendar, Date appointmentDate) {
         if (!appointmentDate.isValid()) {
             System.out.println("Appointment date: " + appointmentDate.toString()
-                    + " is not a valid calendar date");
+                    + " is not a valid calendar date.");
             return false;
         }
         //check if today
