@@ -5,7 +5,7 @@ public enum Location {
     BRIDGEWATER("Somerset", "08807"),
     EDISON("Middlesex", "08817"),
     PISCATAWAY("Middlesex", "08854"),
-    PRINCETON("Mecrer", "08542"),
+    PRINCETON("Mercer", "08542"),
     MORRISTOWN("Morris", "07960"),
     CLARK("Union", "07066");
 
