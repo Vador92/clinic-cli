@@ -1,4 +1,6 @@
-    /**
+import java.lang.reflect.AccessibleObject;
+
+/**
      * @author Varun
      */
     public class List {
@@ -128,7 +130,7 @@
                 System.out.println("The schedule calendar is empty.");
                 return;
             }
-
+            bubbleSortLocation(this.appointments);
             for (int i = 0; i < size; i++){
                 System.out.println(appointments[i].toString());
             }
@@ -139,11 +141,15 @@
             if(size == 0 ){
                 System.out.println("The schedule calendar is empty.");
             }
+            bubbleSortAppointment(this.appointments);
+            for (int i = 0; i < size; i++) {
+                System.out.println(this.appointments[i].toString());
+            }
         }
 
-        public void bubbleSortPatient(Appointment[] appointments) {
+        private void bubbleSortPatient(Appointment[] appointments) {
             int n = size;
-            for (int i = 0; i < n - 1; i++) {
+            for (int i = 0; i < n-1; i++) {
                 for (int j = 0; j < n - i - 1; j++) {
                     if (appointments[j].getPatientProfile().compareTo(appointments[j+1].getPatientProfile()) > 0)  {
                         swap(j, j+1);
@@ -154,8 +160,6 @@
                         ){
                             // problem with swapping
                             swap(j, j+1);
-                            System.out.println(appointments[j].toString()
-                            + " \n" + appointments[j+1].toString());
                         }
                         else if (appointments[j].getDate().compareTo(appointments[j+1].getDate()) == 0){
                             if(
@@ -169,8 +173,57 @@
             }
         }
 
-        public void bubbleSortAppointment(){
 
+        private void bubbleSortAppointment(Appointment[] appointments) {
+            int n = size;
+            for (int i = 0; i < n-1; i++) {
+                for (int j = 0; j < n - i - 1; j++) {
+                    if (appointments[j].getDate().compareTo(appointments[j+1].getDate()) > 0)  {
+                        swap(j, j+1);
+                    }
+                    else if (appointments[j].getDate().compareTo(appointments[j+1].getDate()) == 0)  {
+                        if (
+                                appointments[j].getTimeslot().compareTo(appointments[j+1].getTimeslot()) > 0
+                        ){
+                            // problem with swapping
+                            swap(j, j+1);
+                        }
+                        else if (appointments[j].getTimeslot().compareTo(appointments[j+1].getTimeslot()) == 0){
+                            if(
+                                    appointments[j].getProvider().compareTo(appointments[j+1].getProvider()) > 0
+                            ){
+                                swap(j, j+1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void bubbleSortLocation(Appointment[] appointments){
+            int n = size;
+            for (int i = 0; i < n-1; i++) {
+                for (int j = 0; j < n - i - 1; j++) {
+                    if (appointments[j].getProvider().getLocation().compareTo(appointments[j+1].getProvider().getLocation()) > 0)  {
+                        swap(j, j+1);
+                    }
+                    else if (appointments[j].getProvider().getLocation().compareTo(appointments[j+1].getProvider().getLocation()) == 0)  {
+                        if (
+                                appointments[j].getDate().compareTo(appointments[j+1].getDate()) > 0
+                        ){
+                            // problem with swapping
+                            swap(j, j+1);
+                        }
+                        else if (appointments[j].getDate().compareTo(appointments[j+1].getDate()) == 0){
+                            if(
+                                    appointments[j].getTimeslot().compareTo(appointments[j+1].getTimeslot()) > 0
+                            ){
+                                swap(j, j+1);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public void swap(int a, int b) {

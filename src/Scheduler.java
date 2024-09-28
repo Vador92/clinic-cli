@@ -67,7 +67,7 @@ public class Scheduler {
                 clinic.printByPatient();
                 return;
             case "PA":
-                clinic.printByAppointment(); // placeholder
+                clinic.printByAppointment();
                 return;
             case "PL":
                 clinic.printByLocation();  // placeholder
