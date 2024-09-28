@@ -172,18 +172,11 @@ public class Scheduler {
                     }
                 }
             }
-            if (checkTimeslot != null){
-                System.out.println(checkDate.toString()
-                        + " " + checkTimeslot.toString()
+            System.out.println(checkDate.toString()
+                        + " " + arguments[1]
                         + " " + checkProfile.toString()
                         + " does not exist.");
-            }
-            else {
-                System.out.println(
-                        arguments[1]
-                        + " is not a valid time slot"
-                );
-            }
+
         } else {
             System.out.println(arguments[5]
                     + " is not a valid time slot."
