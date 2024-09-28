@@ -1,6 +1,9 @@
 /**
  * @author Yuet
  */
+
+import java.text.DecimalFormat;
+
 public class Patient implements Comparable<Patient>{
     private Profile profile;
     private Visit visits;
@@ -66,7 +69,8 @@ public class Patient implements Comparable<Patient>{
 
     @Override
     public String toString() {
-        return profile.toString() + " [amount due: $" + getCharge() + "]";
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        return profile.toString() + " [amount due: $" + df.format(getCharge()) + "]";
     }
 
     @Override

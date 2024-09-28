@@ -10,6 +10,7 @@ public class MedicalRecord {
     final static int SOURCE = 0;
     final static int NOT_FOUND = -1;
     final static int INCREMENT = 1;
+    final static int PRINT_SHIFT = 1;
     // medical record is only used when the PS command is called, "completes" or clears out the appt list
     // used for adding up all the charges
 
@@ -33,7 +34,8 @@ public class MedicalRecord {
         medicalRecord.size+=INCREMENT;
         clinic.remove(clinic.get(SOURCE));
         medicalRecord.patients[SOURCE] = firstPatient;
-
+        medicalRecord.patients[SOURCE].addAppointment(clinic.get(SOURCE));
+        medicalRecord.patients[SOURCE].getCharge();
         // then check the rest
         for (int i = SOURCE; i < clinic.getSize(); i++) {
             Patient newPatient = new Patient(clinic.get(i).getPatientProfile(), null);
@@ -43,6 +45,8 @@ public class MedicalRecord {
                     medicalRecord.grow();
                 }
                 medicalRecord.patients[medicalRecord.size] = newPatient;
+                medicalRecord.patients[medicalRecord.size].addAppointment(clinic.get(i));
+                medicalRecord.patients[medicalRecord.size].getCharge();
                 medicalRecord.size++;
             }
             else{
@@ -59,6 +63,7 @@ public class MedicalRecord {
     private void nextAppointment(MedicalRecord medicalRecord, int index, Appointment newAppointment){
         Patient exisingPatient = medicalRecord.getRecord(index);
         exisingPatient.addAppointment(newAppointment);
+        exisingPatient.getCharge();
     }
 
     private void grow(){
@@ -93,7 +98,7 @@ public class MedicalRecord {
         int size = this.getSize();
         String billingRecords= "";
         for (int i = SOURCE; i < size; i++) {
-            billingRecords += String.format("(%d) ", i) +
+            billingRecords += String.format("(%d) ", i+PRINT_SHIFT) +
                     this.getRecord(i).toString() + "\n";
         }
         return billingRecords;
