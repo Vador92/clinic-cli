@@ -8,7 +8,8 @@ import java.lang.reflect.AccessibleObject;
         private int size;
 
         // error handling
-        final Integer NOT_FOUND = -1;
+        final int NOT_FOUND = -1;
+        final int GROW_SIZE = 4;
 
         // this is fine
         public List(int size) {
@@ -33,7 +34,7 @@ import java.lang.reflect.AccessibleObject;
         // this is fine
         private void grow(){
             //grow thought process
-            Appointment[] expandedArray = new Appointment[appointments.length + 4];
+            Appointment[] expandedArray = new Appointment[appointments.length + GROW_SIZE];
             // copy contents from original array to new array
             for (int i = 0; i < appointments.length; i++) {
                 expandedArray[i] = appointments[i];
@@ -124,7 +125,6 @@ import java.lang.reflect.AccessibleObject;
 
         }
 
-
         //
         public void printByLocation(){
             if (size == 0){
@@ -175,7 +175,6 @@ import java.lang.reflect.AccessibleObject;
                 }
             }
         }
-
 
         private void bubbleSortAppointment(Appointment[] appointments) {
             int n = size;
@@ -229,16 +228,11 @@ import java.lang.reflect.AccessibleObject;
             }
         }
 
-        public void swap(int a, int b) {
+        private void swap(int a, int b) {
             Appointment temp = appointments[a];
             appointments[a] = appointments[b];
             appointments[b] = temp;
         }
-
-
-
-
-
 
     }
 

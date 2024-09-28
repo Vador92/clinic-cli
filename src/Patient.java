@@ -10,6 +10,21 @@ public class Patient implements Comparable<Patient>{
         this.visits = visits;
     }
 
+    public void addAppointment(Appointment newAppointment) {
+        Visit newVisit = new Visit(newAppointment, null);
+
+        if (this.visits == null){
+            this.visits = newVisit;
+        }
+        else {
+            Visit currentVisit = this.visits;
+            while(currentVisit.getNext() != null){
+                currentVisit = currentVisit.getNext();
+            }
+            currentVisit.setNext(newVisit);
+        }
+    }
+
     public int charge() {
 
         // creates a variable that keeps track of all the charges for each
@@ -43,6 +58,10 @@ public class Patient implements Comparable<Patient>{
 
     public int getCharge() {
         return charge();
+    }
+
+    public Visit getVisits() {
+        return visits;
     }
 
     @Override

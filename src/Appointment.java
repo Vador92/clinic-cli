@@ -82,78 +82,72 @@ public class Appointment implements Comparable<Appointment> {
         return true;
     }
 
-public static boolean isValidDob(Calendar calendar, Date dob) {
-    if (dob.isValid()) {
-        if (dob.isToday(calendar) ||
-                dob.isInFuture(calendar)) {
-            System.out.println("Patient dob: " +
-                    dob.toString() +
-                    " is today or a date after today.");
-            return false;
+    public static boolean isValidDob(Calendar calendar, Date dob) {
+        if (dob.isValid()) {
+            if (dob.isToday(calendar) ||
+                    dob.isInFuture(calendar)) {
+                System.out.println("Patient dob: " +
+                        dob.toString() +
+                        " is today or a date after today.");
+                return false;
+            }
+            return true;
         }
-        return true;
-    }
-    System.out.println("Patient dob: " +
-            dob.toString() +
-            " is not a valid calendar date.");
-    return false;
-}
-
-// section for getters to be used in the List
-public Profile getPatientProfile() {
-    return patient;
-}
-public Date getDate(){
-    return date;
-}
-public Timeslot getTimeslot() {
-    return timeslot;
-}
-
-public Provider getProvider(){
-    return provider;
-}
-
-
-public boolean overBooked(Appointment anotherAppointment) {
-    return true;
-}
-
-// this is the class that equates it fields are the same
-// need to fix this method
-@Override
-public boolean equals(Object obj) {
-    // make sure we are checking if we are doing the same obj
-    if (this == obj){
-        return true;
-    }
-    if(obj == null || getClass() != obj.getClass()){
+        System.out.println("Patient dob: " +
+                dob.toString() +
+                " is not a valid calendar date.");
         return false;
     }
-    Appointment appointment = (Appointment) obj;
 
-    // if all objects are the same as the one being fed in
-    // just need to check three things, provider and date different
-    return date.equals(appointment.date) &&
-            timeslot.equals(appointment.timeslot)
-            && patient.equals(appointment.patient);
-}
+    // section for getters to be used in the List
+    public Profile getPatientProfile() {
+        return patient;
+    }
+    public Date getDate(){
+        return date;
+    }
+    public Timeslot getTimeslot() {
+        return timeslot;
+    }
 
-// Method to convert the object to a readable string in the terminal
-@Override
-public String toString() {
-    return String.format("%s %s %s %s", date.toString(),
-            timeslot.toString(),
-            patient.toString(),
-            provider.toString());
-}
+    public Provider getProvider(){
+        return provider;
+    }
 
-// Compare two different Appointments, this is needed for sorting
-@Override
-public int compareTo(Appointment appointment) {
-    return 0;
-}
+    // this is the class that equates it fields are the same
+// need to fix this method
+    @Override
+    public boolean equals(Object obj) {
+        // make sure we are checking if we are doing the same obj
+        if (this == obj){
+            return true;
+        }
+        if(obj == null || getClass() != obj.getClass()){
+            return false;
+        }
+        Appointment appointment = (Appointment) obj;
 
+        // if all objects are the same as the one being fed in
+        // just need to check three things, provider and date different
+        return date.equals(appointment.date) &&
+                timeslot.equals(appointment.timeslot)
+                && patient.equals(appointment.patient);
+    }
+
+    // Method to convert the object to a readable string in the terminal
+    @Override
+    public String toString() {
+        return String.format("%s %s %s %s", date.toString(),
+                timeslot.toString(),
+                patient.toString(),
+                provider.toString());
+    }
+
+    // Compare two different Appointments, this is needed for sorting
+    @Override
+    public int compareTo(Appointment appointment) {
+        return 0;
+    }
 }
 
 /*

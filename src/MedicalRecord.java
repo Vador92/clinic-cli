@@ -8,6 +8,7 @@ public class MedicalRecord {
 
     final static int EMPTY = 0;
     final static int SOURCE = 0;
+    final static int NOT_FOUND = -1;
     final static int INCREMENT = 1;
     // medical record is only used when the PS command is called, "completes" or clears out the appt list
     // used for adding up all the charges
@@ -36,7 +37,17 @@ public class MedicalRecord {
         // then check the rest
         for (int i = SOURCE; i < clinic.getSize(); i++) {
             Patient newPatient = new Patient(clinic.get(i).getPatientProfile(), null);
-
+            int patientIndex = medicalRecord.findPatient(newPatient);
+            if (patientIndex == NOT_FOUND){
+                if(medicalRecord.getSize() == medicalRecord.patients.length){
+                    medicalRecord.grow();
+                }
+                medicalRecord.patients[medicalRecord.size] = newPatient;
+                medicalRecord.size++;
+            }
+            else{
+                medicalRecord.nextAppointment(medicalRecord, patientIndex, clinic.get(i));
+            }
         }
         while (clinic.getSize() != EMPTY){
             clinic.remove(clinic.get(SOURCE));
@@ -45,8 +56,9 @@ public class MedicalRecord {
     }
 
     // add to visits
-    private void nextAppointment(MedicalRecord medicalRecord, int index){
-
+    private void nextAppointment(MedicalRecord medicalRecord, int index, Appointment newAppointment){
+        Patient exisingPatient = medicalRecord.getRecord(index);
+        exisingPatient.addAppointment(newAppointment);
     }
 
     private void grow(){
@@ -57,6 +69,15 @@ public class MedicalRecord {
         }
         // set appointments to extended array
         patients = expandedPatient;
+    }
+
+    private int findPatient(Patient newPatient){
+        for(int i = 0; i < size; i++){
+            if(patients[i].equals(newPatient)){
+                return i;
+            }
+        }
+        return NOT_FOUND;
     }
 
     public int getSize(){
@@ -71,8 +92,8 @@ public class MedicalRecord {
     public String toString() {
         int size = this.getSize();
         String billingRecords= "";
-        for (int i = 0; i < size; i++) {
-            billingRecords +=
+        for (int i = SOURCE; i < size; i++) {
+            billingRecords += String.format("(%d) ", i) +
                     this.getRecord(i).toString() + "\n";
         }
         return billingRecords;

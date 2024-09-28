@@ -9,7 +9,7 @@ public class Visit {
     // creates a singular node that will eventually form a singly linked list when more nodes are added
     public Visit(Appointment appointment, Visit next) {
         this.appointment = appointment;
-        this.next = null;
+        this.next = next;
     }
 
     // getter method for the next node in the linked list
