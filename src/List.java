@@ -120,11 +120,12 @@ import java.lang.reflect.AccessibleObject;
             for (int i = 0; i < size; i++) {
                 System.out.println(this.appointments[i].toString());
             }
+            System.out.println();
 
         }
 
 
-        // sort algo for this
+        //
         public void printByLocation(){
             if (size == 0){
                 System.out.println("The schedule calendar is empty.");
@@ -134,6 +135,7 @@ import java.lang.reflect.AccessibleObject;
             for (int i = 0; i < size; i++){
                 System.out.println(appointments[i].toString());
             }
+            System.out.println();
         }
 
         // sort algo for this
@@ -145,6 +147,7 @@ import java.lang.reflect.AccessibleObject;
             for (int i = 0; i < size; i++) {
                 System.out.println(this.appointments[i].toString());
             }
+            System.out.println();
         }
 
         private void bubbleSortPatient(Appointment[] appointments) {
@@ -204,10 +207,10 @@ import java.lang.reflect.AccessibleObject;
             int n = size;
             for (int i = 0; i < n-1; i++) {
                 for (int j = 0; j < n - i - 1; j++) {
-                    if (appointments[j].getProvider().getLocation().compareTo(appointments[j+1].getProvider().getLocation()) > 0)  {
+                    if (appointments[j].getProvider().getLocation().getCounty().compareTo(appointments[j+1].getProvider().getLocation().getCounty()) > 0)  {
                         swap(j, j+1);
                     }
-                    else if (appointments[j].getProvider().getLocation().compareTo(appointments[j+1].getProvider().getLocation()) == 0)  {
+                    else if (appointments[j].getProvider().getLocation().getCounty().compareTo(appointments[j+1].getProvider().getLocation().getCounty()) == 0)  {
                         if (
                                 appointments[j].getDate().compareTo(appointments[j+1].getDate()) > 0
                         ){
