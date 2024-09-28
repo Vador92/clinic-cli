@@ -69,7 +69,13 @@ public class MedicalRecord {
 
     @Override
     public String toString() {
-        return null;
+        int size = this.getSize();
+        String billingRecords= "";
+        for (int i = 0; i < size; i++) {
+            billingRecords +=
+                    this.getRecord(i).toString() + "\n";
+        }
+        return billingRecords;
     }
 }
 

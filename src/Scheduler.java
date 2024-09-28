@@ -194,9 +194,7 @@ public class Scheduler {
     private void handleBillingStatements(){
         MedicalRecord records = new MedicalRecord().add(clinic);
         if (records.getSize() != EMPTY){
-            for (int i = 0; i < records.getSize(); i++){
-                System.out.print(String.format("(%d) %s", i+PRINT_SHIFT, records.getRecord(i).toString()));
-            }
+            System.out.println(records.toString());
         }
         else{
             System.out.println("The schedule calendar is empty.");
