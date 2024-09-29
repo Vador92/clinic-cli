@@ -28,15 +28,9 @@ public class MedicalRecord {
             return medicalRecord;
         }
 
-        // if not empty then add the first patient
-        Patient firstPatient = new Patient(clinic.get(SOURCE).getPatientProfile(), null);
-        // increment size
-        medicalRecord.size+=INCREMENT;
-        clinic.remove(clinic.get(SOURCE));
-        medicalRecord.patients[SOURCE] = firstPatient;
-        medicalRecord.patients[SOURCE].addAppointment(clinic.get(SOURCE));
-        medicalRecord.patients[SOURCE].getCharge();
-        // then check the rest
+        // sort based on last name first
+        clinic.bubbleSortPatient(clinic.getAppointments());
+
         for (int i = SOURCE; i < clinic.getSize(); i++) {
             Patient newPatient = new Patient(clinic.get(i).getPatientProfile(), null);
             int patientIndex = medicalRecord.findPatient(newPatient);

@@ -110,6 +110,10 @@ import java.lang.reflect.AccessibleObject;
             return size;
         }
 
+        public Appointment[] getAppointments() {
+            return appointments;
+        }
+
         // print in order of patients
         public void printByPatient(){
             // edge case for empty list
@@ -150,7 +154,7 @@ import java.lang.reflect.AccessibleObject;
             System.out.println();
         }
 
-        private void bubbleSortPatient(Appointment[] appointments) {
+        public void bubbleSortPatient(Appointment[] appointments) {
             int n = size;
             for (int i = 0; i < n-1; i++) {
                 for (int j = 0; j < n - i - 1; j++) {
