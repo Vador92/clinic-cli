@@ -26,7 +26,7 @@ public class Scheduler {
     String[] arguments = null;
 
     /**
-     * Creates new scheduler object, to be used in RunProject1 driver class.
+     * Creates new Scheduler object, to be used in RunProject1 driver class.
      */
     public Scheduler() {
 
@@ -211,7 +211,7 @@ public class Scheduler {
     }
 
     /**
-     * The run class for managing the scheduler terminal program.
+     * The Run method for managing the scheduler terminal program.
      * Here, process command is called for each line entered in terminal.
      */
     public void run() {
