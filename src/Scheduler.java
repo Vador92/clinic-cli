@@ -7,7 +7,7 @@
  * 3. Reschedule an existing appointment, if provider is available
  * 4. Print appointments sorted by patient name, location, or date
  * 5. View billing records for each unique patient
- * @author Varun Doreswamy
+ * @author Varun Doreswamy, Yuet Yue
  */
 import java.util.Scanner;
 

@@ -1,5 +1,6 @@
 /**
- * @author Varun
+ * This is an enum class for the 6 specific timeslots
+ * @author Varun Doreswamy
  */
 public enum Timeslot {
     SLOT1 (9, 0),
@@ -12,11 +13,20 @@ public enum Timeslot {
     private final int hour;
     private final int minute;
 
-    private Timeslot(int hour, int minute) {
+    /**
+     * This method creates a new enum object based on hour and minute
+     * @param hour is the hour needed for the timeslot
+     * @param minute is the minute need for the timeslot
+     */
+    Timeslot(int hour, int minute) {
         this.hour = hour;
         this.minute = minute;
     }
 
+    /**
+     * This gets the timeslot in a number form, for a specific error.
+     * @return String of the timeslot
+     */
     public String getTime(){
         return switch (this){
             case SLOT1 -> "1";
@@ -28,6 +38,12 @@ public enum Timeslot {
             default -> "";
         };
     }
+
+    /**
+     * This creates a new timeslot object if a valid time.
+     * @param timeslot is used to see if timeslot is valid
+     * @return Timeslot that corresponds to the 6 timeslots, or null
+     */
     public static Timeslot setTimeslot(String timeslot){
         return switch (timeslot){
             case "1" -> Timeslot.SLOT1;
@@ -40,26 +56,35 @@ public enum Timeslot {
         };
     }
 
+    /**
+     * This returns a formatted String of the timeslot
+     * @return String of formatted time, with AM/PM
+     */
     @Override
     public String toString() {
         return String.format("%d:%02d %s",
                 getHour(), minute, getAMPM());
     }
 
+    /**
+     * This gets the time of day based on AM or PM
+     * @return String of the time of day
+     */
     public String getAMPM(){
         if (hour >= 0 && hour < 12)
             return "AM";
         return "PM";
     }
 
+    /**
+     * This gets the hour of day modified to standard time
+     * @return integer of the adjusted time from military time
+     */
     public int getHour() {
         if (hour > 12) {
             return hour - 12;
         }
         return hour;
     }
-
-
-
 }
 
