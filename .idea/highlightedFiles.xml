@@ -12,8 +12,8 @@
       <node color="1" path="$PROJECT_DIR$/src/Provider.java" />
       <node color="4" path="$PROJECT_DIR$/src/RunProject1.java" />
       <node color="4" path="$PROJECT_DIR$/src/Scheduler.java" />
-      <node color="1" path="$PROJECT_DIR$/src/Specialty.java" />
-      <node color="1" path="$PROJECT_DIR$/src/Timeslot.java" />
+      <node color="4" path="$PROJECT_DIR$/src/Specialty.java" />
+      <node color="4" path="$PROJECT_DIR$/src/Timeslot.java" />
       <node color="1" path="$PROJECT_DIR$/src/Visit.java" />
     </files>
     <colors>
