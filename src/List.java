@@ -122,10 +122,11 @@ import java.lang.reflect.AccessibleObject;
                 return;
             }
             bubbleSortPatient(this.appointments);
+            System.out.println("** Appointments ordered by patient/date/time **");
             for (int i = 0; i < size; i++) {
                 System.out.println(this.appointments[i].toString());
             }
-            System.out.println();
+            System.out.println("** end of list **");
 
         }
 
@@ -136,22 +137,25 @@ import java.lang.reflect.AccessibleObject;
                 return;
             }
             bubbleSortLocation(this.appointments);
+            System.out.println("** Appointments ordered by county/date/time **");
             for (int i = 0; i < size; i++){
                 System.out.println(appointments[i].toString());
             }
-            System.out.println();
+            System.out.println("** end of list **");
         }
 
         // sort algo for this
         public void printByAppointment(){
             if(size == 0 ){
                 System.out.println("The schedule calendar is empty.");
+                return;
             }
             bubbleSortAppointment(this.appointments);
+            System.out.println("** Appointments ordered by date/time/provider **");
             for (int i = 0; i < size; i++) {
                 System.out.println(this.appointments[i].toString());
             }
-            System.out.println();
+            System.out.println("** end of list **");
         }
 
         public void bubbleSortPatient(Appointment[] appointments) {

@@ -188,7 +188,9 @@ public class Scheduler {
     private void handleBillingStatements(){
         MedicalRecord records = new MedicalRecord().add(clinic);
         if (records.getSize() != EMPTY){
+            System.out.println("** Billing statement ordered by patient **");
             System.out.println(records.toString());
+            System.out.println("** end of list **");
         }
         else{
             System.out.println("The schedule calendar is empty.");
