@@ -108,7 +108,9 @@ public class Scheduler {
                 else{
                     Appointment existing = clinic.get(index);
                     System.out.println(existing.getProvider().toString()
-                            + " has an existing appointment at the same time slot.");
+                            + " is not available at slot "
+                            + existing.getTimeslot().getTime()
+                            + ".");
                 }
             }
             else{
@@ -126,7 +128,7 @@ public class Scheduler {
                 System.out.println(cancelAppointment.getDate().toString()
                         + " " + cancelAppointment.getTimeslot().toString()
                         + " " + cancelAppointment.getPatientProfile().toString()
-                        + " has been cancelled.");
+                        + " has been canceled.");
             }
             else if (startingSize == clinic.getSize()){
                 System.out.println(cancelAppointment.getDate().toString()
@@ -144,44 +146,43 @@ public class Scheduler {
         Timeslot newTimeslot = Timeslot.setTimeslot(arguments[5]);
         Profile checkProfile = new Profile(arguments[2],
                 arguments[3], new Date(arguments[4]));
-        if (newTimeslot != null) {
-            for (int i = 0; i < clinic.getSize(); i++) {
-                if (clinic.get(i).getDate().equals(checkDate)
-                        && clinic.get(i).getTimeslot().equals(checkTimeslot)
-                        && clinic.get(i).getPatientProfile().equals(checkProfile)) {
-                    Provider checkProvider = clinic.get(i).getProvider();
-                    if (!clinic.findProviderAvailability(
-                            checkDate, checkTimeslot, checkProvider
-                    )) {
-                        clinic.remove(clinic.get(i));
-                        Appointment rescheduledAppointment
-                                = new Appointment(
-                                checkDate, newTimeslot,
-                                checkProfile, checkProvider
-                        );
-                        clinic.add(rescheduledAppointment);
-                        System.out.println("Rescheduled to "
-                                + rescheduledAppointment.toString()
-                        );
-                        return;
-                    } else {
-                        System.out.println(checkProvider.toString()
-                                + " is not available at "
-                                + newTimeslot.toString());
-                        return;
-                    }
+
+        for (int i = 0; i < clinic.getSize(); i++) {
+            if (clinic.get(i).getDate().equals(checkDate)
+                    && clinic.get(i).getTimeslot().equals(checkTimeslot)
+                    && clinic.get(i).getPatientProfile().equals(checkProfile)) {
+                Provider checkProvider = clinic.get(i).getProvider();
+                if (newTimeslot == null){
+                    System.out.println(arguments[5]
+                    + " is not a valid time slot.");
+                    return;
+                }
+                if (clinic.findProviderAvailability(
+                        checkDate, newTimeslot, checkProvider
+                )) {
+                    clinic.remove(clinic.get(i));
+                    Appointment rescheduledAppointment
+                            = new Appointment(
+                            checkDate, newTimeslot,
+                            checkProfile, checkProvider
+                    );
+                    clinic.add(rescheduledAppointment);
+                    System.out.println("Rescheduled to "
+                            + rescheduledAppointment.toString()
+                    );
+                    return;
+                } else {
+                    System.out.println(checkProvider.toString()
+                            + " is not available at slot "
+                            + arguments[5] + ".");
+                    return;
                 }
             }
-            System.out.println(checkDate.toString()
-                        + " " + arguments[1]
-                        + " " + checkProfile.toString()
-                        + " does not exist.");
-
-        } else {
-            System.out.println(arguments[5]
-                    + " is not a valid time slot."
-            );
         }
+        System.out.println(checkDate.toString()
+                + " " + checkTimeslot.toString()
+                + " " + checkProfile.toString()
+                + " does not exist.");
     }
 
     private void handleBillingStatements(){

@@ -17,6 +17,17 @@ public enum Timeslot {
         this.minute = minute;
     }
 
+    public String getTime(){
+        return switch (this){
+            case SLOT1 -> "1";
+            case SLOT2 -> "2";
+            case SLOT3 -> "3";
+            case SLOT4 -> "4";
+            case SLOT5 -> "5";
+            case SLOT6 -> "6";
+            default -> "";
+        };
+    }
     public static Timeslot setTimeslot(String timeslot){
         return switch (timeslot){
             case "1" -> Timeslot.SLOT1;

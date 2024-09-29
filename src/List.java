@@ -192,7 +192,7 @@ import java.lang.reflect.AccessibleObject;
                         }
                         else if (appointments[j].getTimeslot().compareTo(appointments[j+1].getTimeslot()) == 0){
                             if(
-                                    appointments[j].getProvider().compareTo(appointments[j+1].getProvider()) > 0
+                                    appointments[j].getProvider().name().compareTo(appointments[j+1].getProvider().name()) > 0
                             ){
                                 swap(j, j+1);
                             }
