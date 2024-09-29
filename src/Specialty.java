@@ -33,5 +33,4 @@ public enum Specialty {
     public int getCharge() {
         return charge;
     }
-
 }
