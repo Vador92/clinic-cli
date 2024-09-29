@@ -1,56 +1,53 @@
-import java.util.ArrayList;
+/**
+ * This is the Scheduler class, the user's way of controlling appointments.
+ * Handles user commands, with read, write, and update.
+ * Within the Scheduler, we are able to:
+ * 1. Create an appointment, based on provider availability and duplicates
+ * 2. Cancel an existing appointment
+ * 3. Reschedule an existing appointment, if provider is available
+ * 4. Print appointments sorted by patient name, location, or date
+ * 5. View billing records for each unique patient
+ * @author Varun Doreswamy
+ */
 import java.util.Scanner;
 
-/**
- * @author Varun
- * This class is the main class that controls the terminal loop.
- * During this loop, user can enter commands to do the following
- * - Schedule appoint, Cancel appoint,
- */
 public class Scheduler {
-    // initialize list to 4 when we start the program
-    private List clinic = new List(4);
+    // Constants
+    private static final int NOT_FOUND = -1;
+    private static final int EMPTY = 0;
+    private static final int STARTING_LIST_SIZE = 4;
+    private static final int SOURCE = 0;
+
+    private List clinic = new List(STARTING_LIST_SIZE);
     private boolean exited = false;
 
-    final static int NOT_FOUND = -1;
-    final static int EMPTY = 0;
-    final static int PRINT_SHIFT = 1;
+    // Used to handle each command line
+    String command;
+    String[] arguments = null;
 
-    public Scheduler(){} // constructor
+    /**
+     * Creates new scheduler object, to be used in RunProject1 driver class.
+     */
+    public Scheduler() {
 
-    public void run(){
-        Scanner scanner = new Scanner(System.in);
-        // enter the scheduler
-        System.out.println("Scheduler is running.");
-        while(!exited) // to satisfy the entry condition
-        {
-            // get the line, send it over, make sure the first
-            // letter is an actual command and then
-            //  call the necessary function
-            processCommand(scanner.nextLine());
-        }
-        System.out.println("Scheduler is terminated."); // exit the scheduler
     }
 
-    // check if there is no comma, if not then no substring needed
-    /*
-    1. make sure no comma
-    2. if no comma, split arguments
-    3. check command
-    4. pass arguments
+    /**
+     * Process the line by calling getInput
+     * Finds the case, depending on command, that is split from arguments.
+     * Calls, respective helper function to complete task
+     * Does nothing if invalid commands are entered or empty line for ""
+     * @param input used to generate command and arguments
      */
-    private String command;
-    private String[] arguments = null;
-    private void processCommand(String input){
+    private void processCommand(String input) {
         getInput(input);
         switch(command){
-            case "Q": // changes exited to true
+            case "Q":
                 exited = true;
                 return;
-            case "S": // used to schedule an appoint
+            case "S":
                 Appointment newAppointment =
                         Appointment.createAppointment(arguments);
-                // handle error handling in appointment
                 handleNewAppointment(newAppointment);
                 return;
             case "C":
@@ -59,117 +56,129 @@ public class Scheduler {
                 handleCancel(cancelAppointment);
                 return;
             case "R":
-                // if appointment is null or timeslot is null return
-                // takes all but last argument
                 handleReschedule();
                 return;
-            case "PP": //
+            case "PP":
                 clinic.printByPatient();
                 return;
             case "PA":
                 clinic.printByAppointment();
                 return;
             case "PL":
-                clinic.printByLocation();  // placeholder
+                clinic.printByLocation();
                 return;
             case "PS":
                 handleBillingStatements();
-                return;// placeholder
+                return;
             case "":
                 System.out.println("");
                 return;
             default:
-                System.out.println("Invalid command!");// placeholder
+                System.out.println("Invalid command!");
         }
     }
 
-    // Need to keep this method, in order to get specific commands
-    // and arguments needed for each method
+    /**
+     * This method split the command from the arguments, if arguments exist.
+     * Sets the command and arguments to respective global variable.
+     * @param input input is separated into command and arguments
+     */
     private void getInput(String input){
-        if (input.indexOf(',') == -1)
+        if (input.indexOf(',') == NOT_FOUND)
             command = input;
         else{
-            command = input.substring(0, input.indexOf(','));
+            command = input.substring(SOURCE, input.indexOf(','));
             String argString = input.substring(
                     input.indexOf(',') + 1).trim();
             arguments = argString.split(",");
         }
     }
 
-    //something wrong with the way we handle overbook and duplicate
-    private void handleNewAppointment(Appointment newAppointment){
-        if (newAppointment != null){
-            if(!clinic.contains(newAppointment)){
+    /**
+     * This adds a new appointment to clinic, if it exists and is valid.
+     * Handles error cases where an appointment cannot be booked.
+     * @param newAppointment is used to add new appointment to clinic (List)
+     */
+    private void handleNewAppointment(Appointment newAppointment) {
+        if (newAppointment != null) {
+            if (!clinic.contains(newAppointment)) {
                 int index = clinic.findProviderAvailability(newAppointment);
-                if(index == NOT_FOUND){
+                if (index == NOT_FOUND) {
                     clinic.add(newAppointment);
-                    System.out.println(newAppointment.toString() + " booked.");
-                }
-                else{
+                    System.out.println(newAppointment.toString()
+                            + " booked.");
+                } else {
                     Appointment existing = clinic.get(index);
                     System.out.println(existing.getProvider().toString()
                             + " is not available at slot "
                             + existing.getTimeslot().getTime()
                             + ".");
                 }
-            }
-            else{
-                System.out.println(newAppointment.getPatientProfile().toString()
-                        + " has an existing appointment at the same time slot.");
+            } else {
+                System.out.println(
+                        newAppointment.getPatientProfile().toString()
+                                + " has an existing appointment "
+                                + "at the same time slot."
+                );
             }
         }
     }
 
-    private void handleCancel(Appointment cancelAppointment){
-        if (cancelAppointment != null){
+    /**
+     * This method cancels an existing appointment (if valid) and in List
+     * @param cancelAppointment used to remove appointment from list
+     */
+    private void handleCancel(Appointment cancelAppointment) {
+        if (cancelAppointment != null) {
             int startingSize = clinic.getSize();
             clinic.remove(cancelAppointment);
-            if (startingSize > clinic.getSize()){
+            if (startingSize > clinic.getSize()) {
                 System.out.println(cancelAppointment.getDate().toString()
-                        + " " + cancelAppointment.getTimeslot().toString()
-                        + " " + cancelAppointment.getPatientProfile().toString()
+                        + " "
+                        + cancelAppointment.getTimeslot().toString()
+                        + " "
+                        + cancelAppointment.getPatientProfile().toString()
                         + " has been canceled.");
             }
-            else if (startingSize == clinic.getSize()){
+            else if (startingSize == clinic.getSize()) {
                 System.out.println(cancelAppointment.getDate().toString()
                         + " " + cancelAppointment.getTimeslot().toString()
-                        + " " + cancelAppointment.getPatientProfile().toString()
+                        + " "
+                        + cancelAppointment.getPatientProfile().toString()
                         + " does not exist.");
             }
         }
     }
 
-    // fix reschedule
+    /**
+     * This method reschedules an appointment based on provider availability
+     */
     private void handleReschedule() {
         Date checkDate = new Date(arguments[0]);
         Timeslot checkTimeslot = Timeslot.setTimeslot(arguments[1]);
         Timeslot newTimeslot = Timeslot.setTimeslot(arguments[5]);
         Profile checkProfile = new Profile(arguments[2],
                 arguments[3], new Date(arguments[4]));
-
-        for (int i = 0; i < clinic.getSize(); i++) {
+        for (int i = SOURCE; i < clinic.getSize(); i++) {
             if (clinic.get(i).getDate().equals(checkDate)
                     && clinic.get(i).getTimeslot().equals(checkTimeslot)
-                    && clinic.get(i).getPatientProfile().equals(checkProfile)) {
+                    && clinic.get(i).getPatientProfile().equals(checkProfile)
+            ) {
                 Provider checkProvider = clinic.get(i).getProvider();
-                if (newTimeslot == null){
+                if (newTimeslot == null) {
                     System.out.println(arguments[5]
-                    + " is not a valid time slot.");
+                            + " is not a valid time slot.");
                     return;
                 }
                 if (clinic.findProviderAvailability(
-                        checkDate, newTimeslot, checkProvider
-                )) {
+                        checkDate, newTimeslot, checkProvider)) {
                     clinic.remove(clinic.get(i));
                     Appointment rescheduledAppointment
-                            = new Appointment(
-                            checkDate, newTimeslot,
-                            checkProfile, checkProvider
-                    );
+                            = new Appointment(checkDate, newTimeslot,
+                            checkProfile, checkProvider);
                     clinic.add(rescheduledAppointment);
                     System.out.println("Rescheduled to "
-                            + rescheduledAppointment.toString()
-                    );
+                            + rescheduledAppointment.toString());
                     return;
                 } else {
                     System.out.println(checkProvider.toString()
@@ -179,22 +188,43 @@ public class Scheduler {
                 }
             }
         }
-        System.out.println(checkDate.toString()
-                + " " + checkTimeslot.toString()
-                + " " + checkProfile.toString()
-                + " does not exist.");
+        String time = (checkTimeslot == null) ?
+                arguments[1] : checkTimeslot.toString();
+        System.out.println(checkDate.toString() + " " + time
+                + " " + checkProfile.toString() + " does not exist.");
     }
 
-    private void handleBillingStatements(){
+    /**
+     * This method shows the total charges for each patient.
+     * The order of the patients are by last name.
+     */
+    private void handleBillingStatements() {
         MedicalRecord records = new MedicalRecord().add(clinic);
-        if (records.getSize() != EMPTY){
+        if (records.getSize() != EMPTY) {
             System.out.println("** Billing statement ordered by patient **");
             System.out.println(records.toString());
             System.out.println("** end of list **");
         }
-        else{
+        else {
             System.out.println("The schedule calendar is empty.");
         }
     }
 
+    /**
+     * The run class for managing the scheduler terminal program.
+     * Here, process command is called for each line entered in terminal.
+     */
+    public void run() {
+        Scanner scanner = new Scanner(System.in);
+
+        // Begin scheduler program
+        System.out.println("Scheduler is running.");
+        while(!exited)
+        {
+            // Handle new line from terminal
+            processCommand(scanner.nextLine());
+        }
+        // Exit Scheduler
+        System.out.println("Scheduler is terminated.");
+    }
 }

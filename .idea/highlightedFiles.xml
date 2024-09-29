@@ -2,19 +2,19 @@
 <project version="4">
   <component name="ProjectTreeColorHighlighter">
     <files>
-      <node color="4" path="$PROJECT_DIR$/src/Appointment.java" />
-      <node color="4" path="$PROJECT_DIR$/src/Date.java" />
-      <node color="4" path="$PROJECT_DIR$/src/List.java" />
-      <node color="4" path="$PROJECT_DIR$/src/Location.java" />
+      <node color="1" path="$PROJECT_DIR$/src/Appointment.java" />
+      <node color="1" path="$PROJECT_DIR$/src/Date.java" />
+      <node color="1" path="$PROJECT_DIR$/src/List.java" />
+      <node color="1" path="$PROJECT_DIR$/src/Location.java" />
       <node color="1" path="$PROJECT_DIR$/src/MedicalRecord.java" />
       <node color="1" path="$PROJECT_DIR$/src/Patient.java" />
-      <node color="4" path="$PROJECT_DIR$/src/Profile.java" />
-      <node color="4" path="$PROJECT_DIR$/src/Provider.java" />
+      <node color="1" path="$PROJECT_DIR$/src/Profile.java" />
+      <node color="1" path="$PROJECT_DIR$/src/Provider.java" />
       <node color="4" path="$PROJECT_DIR$/src/RunProject1.java" />
       <node color="3" path="$PROJECT_DIR$/src/Scheduler.java" />
-      <node color="4" path="$PROJECT_DIR$/src/Specialty.java" />
-      <node color="4" path="$PROJECT_DIR$/src/Timeslot.java" />
-      <node color="5" path="$PROJECT_DIR$/src/Visit.java" />
+      <node color="1" path="$PROJECT_DIR$/src/Specialty.java" />
+      <node color="1" path="$PROJECT_DIR$/src/Timeslot.java" />
+      <node color="1" path="$PROJECT_DIR$/src/Visit.java" />
     </files>
     <colors>
       <color id="1" value="#4f060d" name="Not Started" enabled="true" />
