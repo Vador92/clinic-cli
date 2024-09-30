@@ -1,3 +1,4 @@
+import java.util.Scanner;
 /**
  * This is the Scheduler class, the user's way of controlling appointments.
  * Handles user commands, with read, write, and update.
@@ -9,8 +10,6 @@
  * 5. View billing records for each unique patient
  * @author Varun Doreswamy, Yuet Yue
  */
-import java.util.Scanner;
-
 public class Scheduler {
     // Constants
     private static final int NOT_FOUND = -1;
