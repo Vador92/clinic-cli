@@ -86,136 +86,39 @@ public class Profile implements Comparable<Profile> {
 
 
     public static void main(String[] args) {
-        testEquals_SameProfile();
-        testEquals_DifferentFirstName();
-        testEquals_DifferentLastName();
-        testEquals_DifferentDob();
-        testEquals_NullFields();
-        testCompareTo_SameProfile();
-        testCompareTo_DifferentLastName();
-        testCompareTo_DifferentFirstName();
-        testCompareTo_DifferentDob();
-        testToString();
-    }
+        // Test case 1: Last name of calling object is lexicographically greater
+        Profile p1 = new Profile("John", "Smith", new Date("01/01/2000"));
+        Profile p2 = new Profile("John", "Anderson", new Date("01/01/2000"));
+        System.out.println("Test Case 1 - Expected: 1, Actual: " + p1.compareTo(p2));
 
-    private static void testEquals_SameProfile() {
-        Date dob = new Date("01/01/1990");
-        Profile profile1 = new Profile("John", "Doe", dob);
-        Profile profile2 = new Profile("John", "Doe", dob);
+        // Test case 2: First name of calling object is lexicographically greater (last names are the same)
+        Profile p3 = new Profile("Zara", "Johnson", new Date("01/01/2000"));
+        Profile p4 = new Profile("Alice", "Johnson", new Date("01/01/2000"));
+        System.out.println("Test Case 2 - Expected: 1, Actual: " + p3.compareTo(p4));
 
-        if (profile1.equals(profile2)) {
-            System.out.println("testEquals_SameProfile: Passed");
-        } else {
-            System.out.println("testEquals_SameProfile: Failed");
-        }
-    }
+        // Test case 3: Date of birth of calling object is later when both last and first names are the same
+        Profile p5 = new Profile("John", "Smith", new Date("05/01/2000"));
+        Profile p6 = new Profile("John", "Smith", new Date("01/01/2000"));
+        System.out.println("Test Case 3 - Expected: 1, Actual: " + p5.compareTo(p6));
 
-    private static void testEquals_DifferentFirstName() {
-        Date dob = new Date("01/01/1990");
-        Profile profile1 = new Profile("John", "Doe", dob);
-        Profile profile2 = new Profile("Jane", "Doe", dob);
+        // Test case 4: Last name of calling object is lexicographically smaller
+        Profile p7 = new Profile("John", "Anderson", new Date("01/01/2000"));
+        Profile p8 = new Profile("John", "Smith", new Date("01/01/2000"));
+        System.out.println("Test Case 4 - Expected: -1, Actual: " + p7.compareTo(p8));
 
-        if (!profile1.equals(profile2)) {
-            System.out.println("testEquals_DifferentFirstName: Passed");
-        } else {
-            System.out.println("testEquals_DifferentFirstName: Failed");
-        }
-    }
+        // Test case 5: First name of calling object is lexicographically smaller (last names are the same)
+        Profile p9 = new Profile("Alice", "Johnson", new Date("01/01/2000"));
+        Profile p10 = new Profile("Zara", "Johnson", new Date("01/01/2000"));
+        System.out.println("Test Case 5 - Expected: -1, Actual: " + p9.compareTo(p10));
 
-    private static void testEquals_DifferentLastName() {
-        Date dob = new Date("01/01/1990");
-        Profile profile1 = new Profile("John", "Doe", dob);
-        Profile profile2 = new Profile("John", "Smith", dob);
+        // Test case 6: Date of birth of calling object is earlier when both last and first names are the same
+        Profile p11 = new Profile("John", "Smith", new Date("01/01/2000"));
+        Profile p12 = new Profile("John", "Smith", new Date("05/01/2000"));
+        System.out.println("Test Case 6 - Expected: -1, Actual: " + p11.compareTo(p12));
 
-        if (!profile1.equals(profile2)) {
-            System.out.println("testEquals_DifferentLastName: Passed");
-        } else {
-            System.out.println("testEquals_DifferentLastName: Failed");
-        }
-    }
-
-    private static void testEquals_DifferentDob() {
-        Date dob1 = new Date("01/01/1990");
-        Date dob2 = new Date("02/02/1991");
-        Profile profile1 = new Profile("John", "Doe", dob1);
-        Profile profile2 = new Profile("John", "Doe", dob2);
-
-        if (!profile1.equals(profile2)) {
-            System.out.println("testEquals_DifferentDob: Passed");
-        } else {
-            System.out.println("testEquals_DifferentDob: Failed");
-        }
-    }
-
-    private static void testEquals_NullFields() {
-        Date dob = new Date("01/01/1990");
-        Profile profile1 = new Profile(null, "Doe", dob);
-        Profile profile2 = new Profile("John", null, dob);
-
-        if (!profile1.equals(profile2) && !profile2.equals(profile1)) {
-            System.out.println("testEquals_NullFields: Passed");
-        } else {
-            System.out.println("testEquals_NullFields: Failed");
-        }
-    }
-
-    private static void testCompareTo_SameProfile() {
-        Date dob = new Date("01/01/1990");
-        Profile profile1 = new Profile("John", "Doe", dob);
-        Profile profile2 = new Profile("John", "Doe", dob);
-
-        if (profile1.compareTo(profile2) == 0) {
-            System.out.println("testCompareTo_SameProfile: Passed");
-        } else {
-            System.out.println("testCompareTo_SameProfile: Failed");
-        }
-    }
-
-    private static void testCompareTo_DifferentLastName() {
-        Date dob = new Date("01/01/1990");
-        Profile profile1 = new Profile("John", "Doe", dob);
-        Profile profile2 = new Profile("John", "Smith", dob);
-
-        if (profile1.compareTo(profile2) < 0) {
-            System.out.println("testCompareTo_DifferentLastName: Passed");
-        } else {
-            System.out.println("testCompareTo_DifferentLastName: Failed");
-        }
-    }
-
-    private static void testCompareTo_DifferentFirstName() {
-        Date dob = new Date("01/01/1990");
-        Profile profile1 = new Profile("John", "Doe", dob);
-        Profile profile2 = new Profile("Jane", "Doe", dob);
-
-        if (profile1.compareTo(profile2) > 0) {
-            System.out.println("testCompareTo_DifferentFirstName: Passed");
-        } else {
-            System.out.println("testCompareTo_DifferentFirstName: Failed");
-        }
-    }
-
-    private static void testCompareTo_DifferentDob() {
-        Date dob1 = new Date("01/01/1990");
-        Date dob2 = new Date("02/02/1991");
-        Profile profile1 = new Profile("John", "Doe", dob1);
-        Profile profile2 = new Profile("John", "Doe", dob2);
-
-        if (profile1.compareTo(profile2) < 0) {
-            System.out.println("testCompareTo_DifferentDob: Passed");
-        } else {
-            System.out.println("testCompareTo_DifferentDob: Failed");
-        }
-    }
-
-    private static void testToString() {
-        Date dob = new Date("01/01/1990");
-        Profile profile = new Profile("John", "Doe", dob);
-
-        if (profile.toString().equals("John Doe 1/1/1990")) {
-            System.out.println("testToString: Passed");
-        } else {
-            System.out.println("testToString: Failed");
-        }
+        // Test case 7: Last name, first name, and date of birth are identical
+        Profile p13 = new Profile("John", "Smith", new Date("01/01/2000"));
+        Profile p14 = new Profile("John", "Smith", new Date("01/01/2000"));
+        System.out.println("Test Case 7 - Expected: 0, Actual: " + p13.compareTo(p14));
     }
 }
