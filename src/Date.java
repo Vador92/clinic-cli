@@ -323,6 +323,12 @@ public class Date implements Comparable<Date> {
 
     /**
      * This main method acts as the testbed main() for this class
+     * Test Edge Cases:
+     * 1. Year value below 1900
+     * 2. Max day value that does not exist to a corresponding month
+     * 3. Invalid month value
+     * 4. Invalid day value
+     * 5. February leap-year constrictions
      * @param args as the input of dates used for testing edge cases
      */
     public static void main(String[] args) {
