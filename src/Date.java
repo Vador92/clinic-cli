@@ -1,5 +1,12 @@
 /**
- * @author Yuet
+ * This is the Date class which manages all the generations of dates
+ * This checks for all the edge cases provided by the project description:
+ * 1. February day range difference during a leap year
+ * 2. Each month's maximum day value (different for different months)
+ * 3. Checks if a date is in the past, present, or future
+ * 4. Checks if a date is more than six months in the future
+ * 5. Checks if a date has a valid month, day, and year
+ * @author Yuet Yue, Varun Doreswamy
  */
 
 import java.util.Calendar;
@@ -9,16 +16,19 @@ public class Date implements Comparable<Date> {
     private int month;
     private int day;
 
+    // constants for leap year calculations
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
 
+    // constants for month, day, and year edge case checking
     public static final int minYear = 1900;
     public static final int minMonth = 1;
     public static final int maxMonth = 12;
     public static final int minDay = 1;
     public static final int maxDay = 31;
 
+    // month constants for representing months in ints
     public static final int
             JANUARY = 1,
             FEBRUARY = 2,
@@ -33,27 +43,38 @@ public class Date implements Comparable<Date> {
             NOVEMBER = 11,
             DECEMBER = 12;
 
+    // constants for month operations and eliminates zero base month values
     public static final int zeroBaseShift = 1;
     public static final int addSixMonths = 6;
 
+    // constants to represent the start of each time metric
     private static final int START_OF_DAY_HOUR = 0;
     private static final int START_OF_DAY_MINUTE = 0;
     private static final int START_OF_DAY_SECOND = 0;
     private static final int START_OF_DAY_MILLISECOND = 0;
 
+    // day constants to represent the max day in February (leap and non-leap)
     public static final int
             isLeapYearFEBRUARYDay = 29,
             notLeapYearFEBRUARYDay = 28;
 
-    //constructor to make the Date obj
+    /**
+     * This is the constructor method for creating dates
+     * The date object contains month, day, and year as separate ints
+     * @param date gets read and split into separate ints for manipulation
+     */
     public Date(String date) {
         String[] parts = date.split("/");
         this.month = Integer.parseInt(parts[0]);
-        ;
         this.day = Integer.parseInt(parts[1]);
         this.year = Integer.parseInt(parts[2]);
     }
 
+    /**
+     * This method acts as a getter method for the date
+     * @param date gets read and added into a new object
+     * @return the new date object in mm/dd/yyyy format
+     */
     public static Date getDate(String date) {
         try {
             Date newDate = new Date(date);
@@ -66,32 +87,33 @@ public class Date implements Comparable<Date> {
         }
     }
 
+    /**
+     * This method validates the inputted dates based on specified edge cases
+     * This validates month, day, and year values
+     * This also validates the day range for specific months
+     * @return TRUE if the date is valid, FALSE if the date is invalid
+     */
     public boolean isValid() {
-
-        // maximum day values validation based on month
         if (!checkMonthDays()) {
             return false;
         }
-
-        // year validation
         if (year < minYear) {
             return false;
         }
-
-        // month validation
         if (month < minMonth || month > maxMonth) {
             return false;
         }
-
-        // day validation
         if (day < minDay || day > maxDay) {
             return false;
         }
-
         return true;
     }
 
-    // checks if the inputted date is today's date
+    /**
+     * This method checks if the selected calendar date is today
+     * @param today used as a point of comparison to today's calendar date
+     * @return TRUE if the inputted date is today, FALSE if it's not today
+     */
     public boolean isToday(Calendar today) {
         Calendar todayClone = (Calendar) today.clone();
         int todayMonth = todayClone.get(Calendar.MONTH) + zeroBaseShift;
@@ -104,7 +126,11 @@ public class Date implements Comparable<Date> {
 
     }
 
-    // checks if an appointment is schedules to a date before today
+    /**
+     * This method checks if the selected calendar date is in the past
+     * @param today used as a point of comparison to a date before today
+     * @return True if the date is in the past, FALSE if it's not in the past
+     */
     public boolean isBeforeToday(Calendar today) {
         Calendar todayClone = (Calendar) today.clone();
         Calendar todayDate = Calendar.getInstance();
@@ -123,7 +149,11 @@ public class Date implements Comparable<Date> {
         return todayDate.before(todayClone);
     }
 
-    // checks if the day is on a weekend
+    /**
+     * This method checks if the selected calendar date is on a weekend
+     * @param date used to check if the selected date is on Sat or Sun
+     * @return TRUE if date is on the weekend, FALSE if it's not
+     */
     public boolean isWeekend(Calendar date) {
         Calendar dateClone = (Calendar) date.clone();
         dateClone.set(year, month - zeroBaseShift, day);
@@ -135,7 +165,11 @@ public class Date implements Comparable<Date> {
         return false;
     }
 
-    // checks if the date is in the future
+    /**
+     * This method checks if the selected calendar date is in the future
+     * @param date used to check if the selected date is after today's date
+     * @return TRUE if the date is in the future, FALSE if it's not
+     */
     public boolean isInFuture(Calendar date) {
         Calendar dateClone = (Calendar) date.clone();
         Calendar today = Calendar.getInstance();
@@ -143,6 +177,11 @@ public class Date implements Comparable<Date> {
         return dateClone.after(today);
     }
 
+    /**
+     * This method checks if the date is beyond six months into the future
+     * @param today used to check if the date is beyond six months
+     * @return TRUE if beyond six months into the future, FALSE if it's not
+     */
     public boolean isBeyondSixMonths(Calendar today) {
 
         Calendar sixMonthsLater = (Calendar) today.clone();
@@ -156,28 +195,45 @@ public class Date implements Comparable<Date> {
         return thisDate.after(sixMonthsLater);
     }
 
-    // getter method for month
+
+    /**
+     * This method acts as a getter method for the month of the date
+     * @return the month of the date object
+     */
     public int getMonth() {
         return month;
     }
 
-    // getter method for day
+    /**
+     * This method acts as a getter method for the day of the date
+     * @return the day of the date object
+     */
     public int getDay() {
         return day;
     }
 
-    // getter method for year
+    /**
+     * This method acts as a getter method for the year of the date
+     * @return the year of the date object
+     */
     public int getYear() {
         return year;
     }
 
-    // converts the full date to a string with 0s in front of the string literals if necessary
+    /**
+     * This method returns the date in the proper String format
+     * @return String of the month, day, and year of the date object
+     */
     @Override
     public String toString() {
         return String.format("%d/%d/%d", month, day, year);
     }
 
-    // compare the month, day, and year of two Date Objects in sequences
+    /**
+     * This method compares the values within date for sorting purposes
+     * @param other the object to be compared with the month, day, and year
+     * @return -1 if date is earlier, 1 if date is later, 0 if date is equal
+     */
     @Override
     public int compareTo(Date other) {
         // Compare years
@@ -194,6 +250,11 @@ public class Date implements Comparable<Date> {
         return Integer.compare(this.day, other.day);
     }
 
+    /**
+     * This method checks for duplicate date objects
+     * @param object to compare another date object to for duplicate checking
+     * @return TRUE if the date is a duplicate, FALSE if it is different
+     */
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -213,7 +274,10 @@ public class Date implements Comparable<Date> {
                 && this.day == other.day;
     }
 
-    //check if year is leap year
+    /**
+     * This method checks if a year is a leap year
+     * @return TRUE if it is a leap year, FALSE if it is a non-leap year
+     */
     private boolean isLeapYear() {
         if (year % QUADRENNIAL == 0) {
             if (year % CENTENNIAL == 0) {
@@ -225,6 +289,10 @@ public class Date implements Comparable<Date> {
         return false;
     }
 
+    /**
+     * This method validates the maximum day value for a specified month
+     * @return TRUE if the max day is valid to a proper month, FALSE if not
+     */
     private boolean checkMonthDays() {
         //month and day range validation
         switch (month) {
@@ -253,6 +321,10 @@ public class Date implements Comparable<Date> {
         }
     }
 
+    /**
+     * This main method acts as the testbed main() for this class
+     * @param args as the input of dates used for testing edge cases
+     */
     public static void main(String[] args) {
         // Test case 1: Invalid date - Year is below 1900 (years before 1900 are not valid years)
         Date date1 = new Date("02/30/1800");
