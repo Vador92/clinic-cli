@@ -1,16 +1,22 @@
-/**
- * @author Varun
- */
-
 import java.util.Calendar;
 
+/**
+ * This class is for creating, validating, and formatting an appointment.
+ * @author Varun Doreswamy
+ */
 public class Appointment implements Comparable<Appointment> {
     private Date date;
     private Timeslot timeslot;
     private Profile patient;
     private Provider provider;
 
-    // Constructor for making a new appointment object
+    /**
+     * This is the constructor of the appointment object, with 4 parameters.
+     * @param date THis is the date of the appointment
+     * @param timeslot The time of the day
+     * @param patient The patient the appointment is associated with
+     * @param provider The provider which is being seeked by patient.
+     */
     public Appointment(Date date, Timeslot timeslot, Profile patient, Provider provider) {
         this.date = date;
         this.timeslot = timeslot;
@@ -18,8 +24,10 @@ public class Appointment implements Comparable<Appointment> {
         this.provider = provider;
     }
 
-    // create new appointment with checks
-    // split the appointment check with the dob check
+    /**
+     * This method creates a new appointment, checking its validity.
+     * @return A new appointment based on if all checks are good.
+     */
     public static Appointment createAppointment(String[] args) {
         Calendar calendar = Calendar.getInstance();
         Date appointmentDate = new Date(args[0]);
@@ -29,13 +37,10 @@ public class Appointment implements Comparable<Appointment> {
         if (!isValidAppointment(calendar, appointmentDate)) {
             return null;
         }
-
         Date dob = new Date(args[4]);
         if (!isValidDob(calendar, dob)) {
             return null;
         }
-
-
         if (timeslot == null) {
             System.out.println(args[1] + " is not a valid time slot.");
             return null;
@@ -49,15 +54,22 @@ public class Appointment implements Comparable<Appointment> {
         return new Appointment(appointmentDate, timeslot, patient, provider);
     }
 
-    // checks to see if the appointment is valid
 
-    public static boolean isValidAppointment(Calendar calendar, Date appointmentDate) {
+    /**
+     * This method checks the validity of the appointment.
+     * It checks the appointment date, to see if valid, today, or in the past
+     * @param calendar The instance of a calendar used to check conditions
+     * @param appointmentDate Uses the date to compare with Calendar object
+     * @return Boolean of whether appointment is valid or not.
+     */
+    public static boolean isValidAppointment(Calendar calendar,
+                                             Date appointmentDate) {
         if (!appointmentDate.isValid()) {
-            System.out.println("Appointment date: " + appointmentDate.toString()
+            System.out.println("Appointment date: "
+                    + appointmentDate.toString()
                     + " is not a valid calendar date.");
             return false;
         }
-        //check if today
         if (appointmentDate.isToday(calendar) ||
                 appointmentDate.isBeforeToday(calendar)) {
             System.out.println("Appointment date: "
@@ -65,14 +77,12 @@ public class Appointment implements Comparable<Appointment> {
                     + " is today or a date before today.");
             return false;
         }
-        // check weekend
         if (appointmentDate.isWeekend(calendar)) {
             System.out.println("Appointment date: " +
                     appointmentDate.toString() +
                     " is Saturday or Sunday.");
             return false;
         }
-        // check if date is past 6 month threshold
         if (appointmentDate.isBeyondSixMonths(calendar)) {
             System.out.println("Appointment date: " +
                     appointmentDate.toString() +
@@ -82,6 +92,12 @@ public class Appointment implements Comparable<Appointment> {
         return true;
     }
 
+    /**
+     * Method to check if the dob of Patient is valid.
+     * @param calendar Uses calendar object to compare with dob
+     * @param dob The dob of the patient
+     * @return Boolean of whether all conditions pass.
+     */
     public static boolean isValidDob(Calendar calendar, Date dob) {
         if (dob.isValid()) {
             if (dob.isToday(calendar) ||
@@ -99,26 +115,46 @@ public class Appointment implements Comparable<Appointment> {
         return false;
     }
 
-    // section for getters to be used in the List
+    /**
+     * Method to get the patient profile.
+     * @return Profile tied to the appointment
+     */
     public Profile getPatientProfile() {
         return patient;
     }
+
+    /**
+     * Method to get the date of the appointment.
+     * @return Date of the tied appointment
+     */
     public Date getDate(){
         return date;
     }
+
+    /**
+     * Method to get the Timeslot of the appointment.
+     * @return Timeslot of the tied appointment.
+     */
     public Timeslot getTimeslot() {
         return timeslot;
     }
 
+    /**
+     * Method to get the Provider of the appointment.
+     * @return Provider of the tied appointment.
+     */
     public Provider getProvider(){
         return provider;
     }
 
-    // this is the class that equates it fields are the same
-// need to fix this method
+    /**
+     * Method to compare if two appointments are equal.
+     * Two appointments are equal if same date, timeslot, and profile.
+     * @param obj the appointment that is being compared to one calling it.
+     * @return Boolean of whether the two appointments are equal.
+     */
     @Override
     public boolean equals(Object obj) {
-        // make sure we are checking if we are doing the same obj
         if (this == obj){
             return true;
         }
@@ -127,14 +163,15 @@ public class Appointment implements Comparable<Appointment> {
         }
         Appointment appointment = (Appointment) obj;
 
-        // if all objects are the same as the one being fed in
-        // just need to check three things, provider and date different
         return date.equals(appointment.date) &&
                 timeslot.equals(appointment.timeslot)
                 && patient.equals(appointment.patient);
     }
 
-    // Method to convert the object to a readable string in the terminal
+    /**
+     * This method returns a formatted String of the appointment
+     * @return String of the appointment.
+     */
     @Override
     public String toString() {
         return String.format("%s %s %s %s", date.toString(),
@@ -143,23 +180,13 @@ public class Appointment implements Comparable<Appointment> {
                 provider.toString());
     }
 
-    // Compare two different Appointments, this is needed for sorting
+    /**
+     * Compares two appointments, not used because checks are specific.
+     * @param appointment the object to be compared.
+     * @return int for whether it is greater, equal, or less than.
+     */
     @Override
     public int compareTo(Appointment appointment) {
         return 0;
     }
 }
-
-/*
-1. The date of an appointment is
-     an invalid calendar date,
-     today,
-     a date before today
-     a date on Saturday or Sunday
-     a date not within six months from today.
-2. The timeslot does not exist.
-3. The date of birth of a patient is not a valid calendar date, is today, or is a future date.
-4. An appointment with the same patient profile, date, and timeslot already exists.
-5. The provider does not exist.
-6. The provider is not available at the specified timeslot.
- */

@@ -18,7 +18,7 @@ public enum Location {
      * @param county used for first argument of enum
      * @param zip used for second argument of enum
      */
-    Location(String county, String zip) {
+     Location(String county, String zip) {
         this.county = county;
         this.zip = zip;
     }
