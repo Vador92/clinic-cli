@@ -6,6 +6,11 @@ public class Profile implements Comparable<Profile> {
     private String lname;
     private Date dob;
 
+    private static final int LEXICO_GREATER = 1;
+    private static final int LEXICO_LESSER = -1;
+    private static final int LEXICO_EQUAL = 0;
+    private static final int EQUAL = 0;
+
     // constructor for Object Profile
     public Profile(String fname, String lname, Date dob) {
         this.fname = fname;
@@ -71,44 +76,33 @@ public class Profile implements Comparable<Profile> {
     // need to change compareTo method
     @Override
     public int compareTo(Profile other) {
-        /*int lnameCompare = lname.compareToIgnoreCase(other.lname); //checks for duplicate lnames
-        if (lnameCompare != 0) {
-            return lnameCompare; //if duplicates not found return lname
-        }
-
-        int fnameCompare = fname.compareToIgnoreCase(other.fname);
-        if (fnameCompare != 0) {
-            return fnameCompare;
-        }
-
-        return dob.compareTo(other.dob);*/
 
         // Compare last names first
         int lnameCompare = lname.compareToIgnoreCase(other.lname);
-        if (lnameCompare > 0) {
-            return 1;  // Current last name is greater
-        } else if (lnameCompare < 0) {
-            return -1; // Current last name is smaller
+        if (lnameCompare > LEXICO_EQUAL) {
+            return LEXICO_GREATER;  // Current last name is greater
+        } else if (lnameCompare < LEXICO_EQUAL) {
+            return LEXICO_LESSER; // Current last name is smaller
         }
 
         // If last names are equal, compare first names
         int fnameCompare = fname.compareToIgnoreCase(other.fname);
-        if (fnameCompare > 0) {
-            return 1;  // Current first name is greater
-        } else if (fnameCompare < 0) {
-            return -1; // Current first name is smaller
+        if (fnameCompare > LEXICO_EQUAL) {
+            return LEXICO_GREATER;  // Current first name is greater
+        } else if (fnameCompare < LEXICO_EQUAL) {
+            return LEXICO_LESSER; // Current first name is smaller
         }
 
         // If both last and first names are equal, compare date of birth
         int dobCompare = dob.compareTo(other.dob);
-        if (dobCompare > 0) {
-            return 1;  // Current date of birth is later (greater)
-        } else if (dobCompare < 0) {
-            return -1; // Current date of birth is earlier (smaller)
+        if (dobCompare > LEXICO_EQUAL) {
+            return LEXICO_GREATER;  // Current date of birth is later (greater)
+        } else if (dobCompare < LEXICO_EQUAL) {
+            return LEXICO_LESSER; // Current date of birth is earlier (smaller)
         }
 
         // If all fields (last name, first name, and date of birth) are equal
-        return 0;
+        return EQUAL;
     }
 
 
