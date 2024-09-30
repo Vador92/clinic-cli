@@ -33,7 +33,6 @@ public class Appointment implements Comparable<Appointment> {
         Date appointmentDate = new Date(args[0]);
         Timeslot timeslot = Timeslot.setTimeslot(args[1]);
         Provider provider = Provider.setProvider(args[5]);
-        // the if statement below should be a new method
         if (!isValidAppointment(calendar, appointmentDate)) {
             return null;
         }
