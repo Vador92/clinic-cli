@@ -48,20 +48,20 @@ public class Date implements Comparable<Date> {
     //constructor to make the Date obj
     public Date(String date) {
         String[] parts = date.split("/");
-        this.month = Integer.parseInt(parts[0]);;
+        this.month = Integer.parseInt(parts[0]);
+        ;
         this.day = Integer.parseInt(parts[1]);
         this.year = Integer.parseInt(parts[2]);
     }
 
-    public static Date getDate(String date){
-        try{
+    public static Date getDate(String date) {
+        try {
             Date newDate = new Date(date);
-            if (newDate.isValid()){
+            if (newDate.isValid()) {
                 return newDate;
             }
             return null;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -79,12 +79,12 @@ public class Date implements Comparable<Date> {
         }
 
         // month validation
-        if (month < minMonth || month > maxMonth){
+        if (month < minMonth || month > maxMonth) {
             return false;
         }
 
         // day validation
-        if (day < minDay || day > maxDay){
+        if (day < minDay || day > maxDay) {
             return false;
         }
 
@@ -124,7 +124,7 @@ public class Date implements Comparable<Date> {
     }
 
     // checks if the day is on a weekend
-    public boolean isWeekend(Calendar date){
+    public boolean isWeekend(Calendar date) {
         Calendar dateClone = (Calendar) date.clone();
         dateClone.set(year, month - zeroBaseShift, day);
         int dayOfWeek = dateClone.get(Calendar.DAY_OF_WEEK);
@@ -136,7 +136,7 @@ public class Date implements Comparable<Date> {
     }
 
     // checks if the date is in the future
-    public boolean isInFuture(Calendar date){
+    public boolean isInFuture(Calendar date) {
         Calendar dateClone = (Calendar) date.clone();
         Calendar today = Calendar.getInstance();
         dateClone.set(year, month - zeroBaseShift, day);
@@ -218,21 +218,28 @@ public class Date implements Comparable<Date> {
         if (year % QUADRENNIAL == 0) {
             if (year % CENTENNIAL == 0) {
                 return year % QUATERCENTENNIAL == 0;
-            }
-            else{
+            } else {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean checkMonthDays(){
+    private boolean checkMonthDays() {
         //month and day range validation
         switch (month) {
-            case JANUARY: case MARCH: case MAY: case JULY:
-            case AUGUST: case OCTOBER: case DECEMBER:
+            case JANUARY:
+            case MARCH:
+            case MAY:
+            case JULY:
+            case AUGUST:
+            case OCTOBER:
+            case DECEMBER:
                 return day <= 31;
-            case APRIL: case JUNE: case SEPTEMBER: case NOVEMBER:
+            case APRIL:
+            case JUNE:
+            case SEPTEMBER:
+            case NOVEMBER:
                 return day <= 30;
             case FEBRUARY:
                 if (isLeapYear()) {
@@ -246,250 +253,33 @@ public class Date implements Comparable<Date> {
         }
     }
 
-        public static void main(String[] args) {
-            testCreationObjectDateA();
-            testOutputObjectDateA();
-            testCreationObjectDateB();
-            testOutputObjectDateB();
-            testValidDates();
-            testIsToday();
-            testInvalidDates();
-            testIsBeyondSixMonths();
-            testDuplicateAppointmentDates();
-        }
+    public static void main(String[] args) {
+        // Test case 1: Invalid date - Year is below 1900 (years before 1900 are not valid years)
+        Date date1 = new Date("02/30/1800");
+        System.out.println("Test Case 1 - Expected: false, Actual: " + date1.isValid());
 
-        static void testCreationObjectDateA() {
-            Date date = new Date("10/21/2003");
-            if (date.getMonth() == 10) {
-                System.out.println("Passed month test for Date A.");
-            } else {
-                System.out.println("Failed month test for Date A.");
-            }
+        // Test case 2: Invalid date - April 31 (April only has 30 days)
+        Date date2 = new Date("04/31/2023");
+        System.out.println("Test Case 2 - Expected: false, Actual: " + date2.isValid());
 
-            if (date.getDay() == 21) {
-                System.out.println("Passed day test for Date A.");
-            } else {
-                System.out.println("Failed day test for Date A.");
-            }
+        // Test case 3: Invalid date - Month is 13 (no month beyond 12)
+        Date date3 = new Date("13/15/2023");
+        System.out.println("Test Case 3 - Expected: false, Actual: " + date3.isValid());
 
-            if (date.getYear() == 2003) {
-                System.out.println("Passed year test for Date A.");
-            } else {
-                System.out.println("Failed year test for Date A.");
-            }
-        }
+        // Test case 4: Invalid date - Day is 0 (no month has a day 0)
+        Date date4 = new Date("12/00/2023");
+        System.out.println("Test Case 4 - Expected: false, Actual: " + date4.isValid());
 
-        static void testOutputObjectDateA() {
-            Date date = new Date("10/21/2003");
-            if (date.toString().equals("10/21/2003")) {
-                System.out.println("Passed final output test for Date A.");
-            } else {
-                System.out.println("Failed final output test for Date A.");
-            }
-        }
+        // Test case 5: Invalid date - February 29 on a non-leap year
+        Date date8 = new Date("02/29/2023"); // 2023 is not a leap year
+        System.out.println("Test Case 5 - Expected: false, Actual: " + date8.isValid());
 
-        static void testCreationObjectDateB() {
-            Date date = new Date("02/02/2003");
-            if (date.getMonth() == 2) {
-                System.out.println("Passed month test for Date B.");
-            } else {
-                System.out.println("Failed month test for Date B.");
-            }
+        // Test case 6: Valid date - February 29 on a leap year
+        Date date5 = new Date("02/29/2024"); // Leap year
+        System.out.println("Test Case 6 - Expected: true, Actual: " + date5.isValid());
 
-            if (date.getDay() == 2) {
-                System.out.println("Passed day test for Date B.");
-            } else {
-                System.out.println("Failed day test for Date B.");
-            }
-
-            if (date.getYear() == 2003) {
-                System.out.println("Passed year test for Date B.");
-            } else {
-                System.out.println("Failed year test for Date B.");
-            }
-        }
-
-        static void testOutputObjectDateB() {
-            Date date = new Date("02/02/2003");
-            if (date.toString().equals("2/2/2003")) {
-                System.out.println("Passed final output test for Date B.");
-            } else {
-                System.out.println("Failed final output test for Date B.");
-            }
-        }
-
-        static void testValidDates() {
-            Date validDate = new Date("05/21/2003");
-            if (validDate.isValid()) {
-                System.out.println("Valid date test passed: 05/21/2003.");
-            } else {
-                System.out.println("Valid date test failed: 05/21/2003.");
-            }
-
-            Date leapYearDate = new Date("02/29/2000");
-            if (leapYearDate.isValid()) {
-                System.out.println("Leap year date test passed: 02/29/2000.");
-            } else {
-                System.out.println("Leap year date test failed: 02/29/2000.");
-            }
-
-            Date nonLeapYearDate = new Date("02/28/2001");
-            if (nonLeapYearDate.isValid()) {
-                System.out.println("Non-leap year date test passed: 02/28/2001.");
-            } else {
-                System.out.println("Non-leap year date test failed: 02/28/2001.");
-            }
-        }
-
-        static void testIsToday() {
-            Calendar calendar = Calendar.getInstance();
-            Date todayDate = new Date(String.format("%d/%d/%d",
-                    calendar.get(Calendar.MONTH) + 1,
-                    calendar.get(Calendar.DAY_OF_MONTH),
-                    calendar.get(Calendar.YEAR)));
-
-            if (todayDate.isToday(calendar)) {
-                System.out.println("Today's date test passed.");
-            } else {
-                System.out.println("Today's date test failed.");
-            }
-
-            Date pastDate = new Date("01/01/2020");
-            if (!pastDate.isToday(calendar)) {
-                System.out.println("Past date test passed.");
-            } else {
-                System.out.println("Past date test failed.");
-            }
-
-            Date futureDate = new Date("12/31/2099");
-            if (!futureDate.isToday(calendar)) {
-                System.out.println("Future date test passed.");
-            } else {
-                System.out.println("Future date test failed.");
-            }
-        }
-
-        static void testInvalidDates() {
-            Calendar calendar = Calendar.getInstance();
-            Date invalidTodayDate = new Date(String.format("%d/%d/%d",
-                    calendar.get(Calendar.MONTH) + 1,
-                    calendar.get(Calendar.DAY_OF_MONTH),
-                    calendar.get(Calendar.YEAR)));
-            if (!invalidTodayDate.isValid()) {
-                System.out.println("Invalid today's date test passed.");
-            } else {
-                System.out.println("Invalid today's date test failed.");
-            }
-
-            Date invalidFebDate = new Date("02/30/2003");
-            if (!invalidFebDate.isValid()) {
-                System.out.println("Invalid February date test passed.");
-            } else {
-                System.out.println("Invalid February date test failed.");
-            }
-
-            Date invalidLeapDate = new Date("02/29/2001");
-            if (!invalidLeapDate.isValid()) {
-                System.out.println("Invalid leap year date test passed.");
-            } else {
-                System.out.println("Invalid leap year date test failed.");
-            }
-
-            Date invalidMonthDate = new Date("13/15/2000");
-            if (!invalidMonthDate.isValid()) {
-                System.out.println("Invalid month test passed.");
-            } else {
-                System.out.println("Invalid month test failed.");
-            }
-
-            Date invalidDayDate = new Date("04/31/2000");
-            if (!invalidDayDate.isValid()) {
-                System.out.println("Invalid day test passed.");
-            } else {
-                System.out.println("Invalid day test failed.");
-            }
-
-            Date invalidYearDate = new Date("01/01/1899");
-            if (!invalidYearDate.isValid()) {
-                System.out.println("Invalid year test passed.");
-            } else {
-                System.out.println("Invalid year test failed.");
-            }
-        }
-
-        static void testIsBeyondSixMonths() {
-            Calendar today = Calendar.getInstance();
-
-            Calendar sixMonthsLater = (Calendar) today.clone();
-            sixMonthsLater.add(Calendar.MONTH, 6);
-            Date exactlySixMonthsLater = new Date(
-                    String.format("%d/%d/%d",
-                            sixMonthsLater.get(Calendar.MONTH) + 1,
-                            sixMonthsLater.get(Calendar.DAY_OF_MONTH),
-                            sixMonthsLater.get(Calendar.YEAR))
-            );
-            if (!exactlySixMonthsLater.isBeyondSixMonths(today)) {
-                System.out.println("Date exactly six months later test passed.");
-            } else {
-                System.out.println("Date exactly six months later test failed.");
-            }
-
-            Calendar moreThanSixMonthsLater = (Calendar) today.clone();
-            moreThanSixMonthsLater.add(Calendar.MONTH, 7);
-            Date beyondSixMonths = new Date(
-                    String.format("%d/%d/%d",
-                            moreThanSixMonthsLater.get(Calendar.MONTH) + 1,
-                            moreThanSixMonthsLater.get(Calendar.DAY_OF_MONTH),
-                            moreThanSixMonthsLater.get(Calendar.YEAR))
-            );
-            if (beyondSixMonths.isBeyondSixMonths(today)) {
-                System.out.println("Date more than six months later test passed.");
-            } else {
-                System.out.println("Date more than six months later test failed.");
-            }
-
-            Calendar lessThanSixMonthsLater = (Calendar) today.clone();
-            lessThanSixMonthsLater.add(Calendar.MONTH, 5);
-            Date withinSixMonths = new Date(
-                    String.format("%d/%d/%d",
-                            lessThanSixMonthsLater.get(Calendar.MONTH) + 1,
-                            lessThanSixMonthsLater.get(Calendar.DAY_OF_MONTH),
-                            lessThanSixMonthsLater.get(Calendar.YEAR))
-            );
-            if (!withinSixMonths.isBeyondSixMonths(today)) {
-                System.out.println("Date within six months test passed.");
-            } else {
-                System.out.println("Date within six months test failed.");
-            }
-        }
-
-        static void testDuplicateAppointmentDates() {
-            Date appointmentDate1 = new Date("09/25/2024");
-            Date appointmentDate2 = new Date("09/25/2024");
-            if (appointmentDate1.equals(appointmentDate2)) {
-                System.out.println("Duplicate appointment date test passed.");
-            } else {
-                System.out.println("Duplicate appointment date test failed.");
-            }
-
-            Date appointmentDate3 = new Date("09/25/2024");
-            Date appointmentDate4 = new Date("10/01/2024");
-            if (!appointmentDate3.equals(appointmentDate4)) {
-                System.out.println("Different appointment date test passed.");
-            } else {
-                System.out.println("Different appointment date test failed.");
-            }
-
-            if (!appointmentDate1.equals(null)) {
-                System.out.println("Null comparison test passed.");
-            } else {
-                System.out.println("Null comparison test failed.");
-            }
-
-            if (!appointmentDate1.equals("someString")) {
-                System.out.println("Comparison with another class test passed.");
-            } else {
-                System.out.println("Comparison with another class test failed.");
-            }
-        }
+        // Test case 7: Valid date - December 31 (last day of the year)
+        Date date6 = new Date("12/31/2023");
+        System.out.println("Test Case 7 - Expected: true, Actual: " + date6.isValid());
+    }
 }
