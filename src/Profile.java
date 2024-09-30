@@ -108,33 +108,33 @@ public class Profile implements Comparable<Profile> {
 
     public static void main(String[] args) {
         // Test case 1: Last name of calling object is lexicographically greater
-        Profile p1 = new Profile("John", "Smith", new Date("01/01/2000"));
+        Profile p1 = new Profile("John", "Doe", new Date("01/01/2000"));
         Profile p2 = new Profile("John", "Anderson", new Date("01/01/2000"));
         System.out.println("Test Case 1 - Expected: 1, Actual: " + p1.compareTo(p2));
 
         // Test case 2: First name of calling object is lexicographically greater (last names are the same)
-        Profile p3 = new Profile("Zara", "Johnson", new Date("01/01/2000"));
-        Profile p4 = new Profile("Alice", "Johnson", new Date("01/01/2000"));
+        Profile p3 = new Profile("John", "Doe", new Date("01/01/2000"));
+        Profile p4 = new Profile("Jane", "Doe", new Date("01/01/2000"));
         System.out.println("Test Case 2 - Expected: 1, Actual: " + p3.compareTo(p4));
 
         // Test case 3: Date of birth of calling object is later when both last and first names are the same
-        Profile p5 = new Profile("John", "Smith", new Date("05/01/2000"));
-        Profile p6 = new Profile("John", "Smith", new Date("01/01/2000"));
+        Profile p5 = new Profile("John", "Doe", new Date("05/01/2000"));
+        Profile p6 = new Profile("John", "Doe", new Date("01/01/2000"));
         System.out.println("Test Case 3 - Expected: 1, Actual: " + p5.compareTo(p6));
 
         // Test case 4: Last name of calling object is lexicographically smaller
         Profile p7 = new Profile("John", "Anderson", new Date("01/01/2000"));
-        Profile p8 = new Profile("John", "Smith", new Date("01/01/2000"));
+        Profile p8 = new Profile("John", "Doe", new Date("01/01/2000"));
         System.out.println("Test Case 4 - Expected: -1, Actual: " + p7.compareTo(p8));
 
         // Test case 5: First name of calling object is lexicographically smaller (last names are the same)
-        Profile p9 = new Profile("Alice", "Johnson", new Date("01/01/2000"));
-        Profile p10 = new Profile("Zara", "Johnson", new Date("01/01/2000"));
+        Profile p9 = new Profile("Jane", "Doe", new Date("01/01/2000"));
+        Profile p10 = new Profile("John", "Doe", new Date("01/01/2000"));
         System.out.println("Test Case 5 - Expected: -1, Actual: " + p9.compareTo(p10));
 
         // Test case 6: Date of birth of calling object is earlier when both last and first names are the same
-        Profile p11 = new Profile("John", "Smith", new Date("01/01/2000"));
-        Profile p12 = new Profile("John", "Smith", new Date("05/01/2000"));
+        Profile p11 = new Profile("John", "Doe", new Date("01/01/2000"));
+        Profile p12 = new Profile("John", "Doe", new Date("05/01/2000"));
         System.out.println("Test Case 6 - Expected: -1, Actual: " + p11.compareTo(p12));
 
         // Test case 7: Last name, first name, and date of birth are identical
