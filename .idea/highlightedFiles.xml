@@ -14,7 +14,7 @@
       <node color="4" path="$PROJECT_DIR$/src/Scheduler.java" />
       <node color="4" path="$PROJECT_DIR$/src/Specialty.java" />
       <node color="4" path="$PROJECT_DIR$/src/Timeslot.java" />
-      <node color="1" path="$PROJECT_DIR$/src/Visit.java" />
+      <node color="4" path="$PROJECT_DIR$/src/Visit.java" />
     </files>
     <colors>
       <color id="1" value="#4f060d" name="Not Started" enabled="true" />

@@ -19,6 +19,7 @@ public class Scheduler {
 
     private List clinic = new List(STARTING_LIST_SIZE);
     private boolean exited = false;
+    private MedicalRecord records = new MedicalRecord();
 
     // Used to handle each command line
     String command;
@@ -198,7 +199,6 @@ public class Scheduler {
      * The order of the patients are by last name.
      */
     private void handleBillingStatements() {
-        MedicalRecord records = new MedicalRecord();
         records.add(clinic);
         if (records.getSize() != EMPTY) {
             System.out.println("** Billing statement ordered by patient **");
