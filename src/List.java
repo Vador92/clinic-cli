@@ -56,8 +56,8 @@ public class List {
 
     /**
      * Swaps the places of two appointments.
-     * @param a the first appointment
-     * @param b the second appointment.
+     * @param first the first appointment
+     * @param second the second appointment.
      */
     private void swap(int first, int second) {
         Appointment temp = appointments[first];
