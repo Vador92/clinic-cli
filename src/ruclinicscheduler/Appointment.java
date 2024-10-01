@@ -71,26 +71,26 @@ public class Appointment implements Comparable<Appointment> {
     public static boolean isValidAppointment(Calendar calendar,
                                              Date appointmentDate) {
         if (!appointmentDate.isValid()) {
-            System.out.println("ruclinicscheduler.Appointment date: "
+            System.out.println("Appointment date: "
                     + appointmentDate.toString()
                     + " is not a valid calendar date.");
             return false;
         }
         if (appointmentDate.isToday(calendar) ||
                 appointmentDate.isBeforeToday(calendar)) {
-            System.out.println("ruclinicscheduler.Appointment date: "
+            System.out.println("Appointment date: "
                     + appointmentDate.toString()
                     + " is today or a date before today.");
             return false;
         }
         if (appointmentDate.isWeekend(calendar)) {
-            System.out.println("ruclinicscheduler.Appointment date: " +
+            System.out.println("Appointment date: " +
                     appointmentDate.toString() +
                     " is Saturday or Sunday.");
             return false;
         }
         if (appointmentDate.isBeyondSixMonths(calendar)) {
-            System.out.println("ruclinicscheduler.Appointment date: " +
+            System.out.println("Appointment date: " +
                     appointmentDate.toString() +
                     " is not within six months.");
             return false;
@@ -99,7 +99,7 @@ public class Appointment implements Comparable<Appointment> {
     }
 
     /**
-     * Method to check if the dob of ruclinicscheduler.Patient is valid.
+     * Method to check if the dob of Patient is valid.
      * @param calendar Uses calendar object to compare with dob
      * @param dob The dob of the patient
      * @return Boolean of whether all conditions pass.
@@ -108,14 +108,14 @@ public class Appointment implements Comparable<Appointment> {
         if (dob.isValid()) {
             if (dob.isToday(calendar) ||
                     dob.isInFuture(calendar)) {
-                System.out.println("ruclinicscheduler.Patient dob: " +
+                System.out.println("Patient dob: " +
                         dob.toString() +
                         " is today or a date after today.");
                 return false;
             }
             return true;
         }
-        System.out.println("ruclinicscheduler.Patient dob: " +
+        System.out.println("Patient dob: " +
                 dob.toString() +
                 " is not a valid calendar date.");
         return false;
@@ -123,7 +123,7 @@ public class Appointment implements Comparable<Appointment> {
 
     /**
      * Method to get the patient profile.
-     * @return ruclinicscheduler.Profile tied to the appointment
+     * @return Profile tied to the appointment
      */
     public Profile getPatientProfile() {
         return patient;
@@ -131,23 +131,23 @@ public class Appointment implements Comparable<Appointment> {
 
     /**
      * Method to get the date of the appointment.
-     * @return ruclinicscheduler.Date of the tied appointment
+     * @return Date of the tied appointment
      */
     public Date getDate(){
         return date;
     }
 
     /**
-     * Method to get the ruclinicscheduler.Timeslot of the appointment.
-     * @return ruclinicscheduler.Timeslot of the tied appointment.
+     * Method to get the Timeslot of the appointment.
+     * @return Timeslot of the tied appointment.
      */
     public Timeslot getTimeslot() {
         return timeslot;
     }
 
     /**
-     * Method to get the ruclinicscheduler.Provider of the appointment.
-     * @return ruclinicscheduler.Provider of the tied appointment.
+     * Method to get the Provider of the appointment.
+     * @return Provider of the tied appointment.
      */
     public Provider getProvider(){
         return provider;

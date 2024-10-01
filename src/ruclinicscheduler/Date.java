@@ -3,7 +3,7 @@ package ruclinicscheduler;
 import java.util.Calendar;
 
 /**
- * This is the ruclinicscheduler.Date class which manages all the generations of dates
+ * This is the Date class which manages all the generations of dates
  * This checks for all the edge cases provided by the project description:
  * 1. February day range difference during a leap year
  * 2. Each month's maximum day value (different for different months)
@@ -53,8 +53,8 @@ public class Date implements Comparable<Date> {
 
     // day constants to represent the max day in February (leap and non-leap)
     public static final int
-            isLeapYearFEBRUARYDay = 29,
-            notLeapYearFEBRUARYDay = 28;
+            IS_LEAP_YEAR_FEBRUARY_DAY = 29,
+            NOT_LEAP_YEAR_FEBRUARY_DAY = 28;
 
     // instance variables
     private int year;
@@ -111,9 +111,9 @@ public class Date implements Comparable<Date> {
                 return day <= 30;
             case FEBRUARY:
                 if (isLeapYear()) {
-                    return day <= isLeapYearFEBRUARYDay;
+                    return day <= IS_LEAP_YEAR_FEBRUARY_DAY;
                 } else {
-                    return day <= notLeapYearFEBRUARYDay;
+                    return day <= NOT_LEAP_YEAR_FEBRUARY_DAY;
                 }
             default:
                 return false;
@@ -313,7 +313,7 @@ public class Date implements Comparable<Date> {
             return false;
         }
 
-        // Cast the object to a ruclinicscheduler.Date instance
+        // Cast the object to a Date instance
         Date other = (Date) object;
 
         // Compare year, month, and day
