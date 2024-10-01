@@ -12,9 +12,12 @@
 import java.util.Calendar;
 
 public class Date implements Comparable<Date> {
-    private int year;
-    private int month;
-    private int day;
+
+    // constants to represent the start of each time metric
+    private static final int START_OF_DAY_HOUR = 0;
+    private static final int START_OF_DAY_MINUTE = 0;
+    private static final int START_OF_DAY_SECOND = 0;
+    private static final int START_OF_DAY_MILLISECOND = 0;
 
     // constants for leap year calculations
     public static final int QUADRENNIAL = 4;
@@ -47,16 +50,16 @@ public class Date implements Comparable<Date> {
     public static final int zeroBaseShift = 1;
     public static final int addSixMonths = 6;
 
-    // constants to represent the start of each time metric
-    private static final int START_OF_DAY_HOUR = 0;
-    private static final int START_OF_DAY_MINUTE = 0;
-    private static final int START_OF_DAY_SECOND = 0;
-    private static final int START_OF_DAY_MILLISECOND = 0;
-
     // day constants to represent the max day in February (leap and non-leap)
     public static final int
             isLeapYearFEBRUARYDay = 29,
             notLeapYearFEBRUARYDay = 28;
+
+    // instance variables
+    private int year;
+    private int month;
+    private int day;
+
 
     /**
      * This is the constructor method for creating dates
@@ -68,6 +71,53 @@ public class Date implements Comparable<Date> {
         this.month = Integer.parseInt(parts[0]);
         this.day = Integer.parseInt(parts[1]);
         this.year = Integer.parseInt(parts[2]);
+    }
+
+    /**
+     * This method checks if a year is a leap year
+     * @return TRUE if it is a leap year, FALSE if it is a non-leap year
+     */
+    private boolean isLeapYear() {
+        if (year % QUADRENNIAL == 0) {
+            if (year % CENTENNIAL == 0) {
+                return year % QUATERCENTENNIAL == 0;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * This method validates the maximum day value for a specified month
+     * @return TRUE if the max day is valid to a proper month, FALSE if not
+     */
+    private boolean checkMonthDays() {
+        //month and day range validation
+        switch (month) {
+            case JANUARY:
+            case MARCH:
+            case MAY:
+            case JULY:
+            case AUGUST:
+            case OCTOBER:
+            case DECEMBER:
+                return day <= 31;
+            case APRIL:
+            case JUNE:
+            case SEPTEMBER:
+            case NOVEMBER:
+                return day <= 30;
+            case FEBRUARY:
+                if (isLeapYear()) {
+                    return day <= isLeapYearFEBRUARYDay;
+                } else {
+                    return day <= notLeapYearFEBRUARYDay;
+                }
+            default:
+                return false;
+
+        }
     }
 
     /**
@@ -195,7 +245,6 @@ public class Date implements Comparable<Date> {
         return thisDate.after(sixMonthsLater);
     }
 
-
     /**
      * This method acts as a getter method for the month of the date
      * @return the month of the date object
@@ -274,52 +323,6 @@ public class Date implements Comparable<Date> {
                 && this.day == other.day;
     }
 
-    /**
-     * This method checks if a year is a leap year
-     * @return TRUE if it is a leap year, FALSE if it is a non-leap year
-     */
-    private boolean isLeapYear() {
-        if (year % QUADRENNIAL == 0) {
-            if (year % CENTENNIAL == 0) {
-                return year % QUATERCENTENNIAL == 0;
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * This method validates the maximum day value for a specified month
-     * @return TRUE if the max day is valid to a proper month, FALSE if not
-     */
-    private boolean checkMonthDays() {
-        //month and day range validation
-        switch (month) {
-            case JANUARY:
-            case MARCH:
-            case MAY:
-            case JULY:
-            case AUGUST:
-            case OCTOBER:
-            case DECEMBER:
-                return day <= 31;
-            case APRIL:
-            case JUNE:
-            case SEPTEMBER:
-            case NOVEMBER:
-                return day <= 30;
-            case FEBRUARY:
-                if (isLeapYear()) {
-                    return day <= isLeapYearFEBRUARYDay;
-                } else {
-                    return day <= notLeapYearFEBRUARYDay;
-                }
-            default:
-                return false;
-
-        }
-    }
 
     /**
      * This main method acts as the testbed main() for this class

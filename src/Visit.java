@@ -1,4 +1,5 @@
 /**
+ *
  * @author Yuet
  */
 // Linked list for the visits
