@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 /**
  * This is the Scheduler class, the user's way of controlling appointments.
  * Handles user commands, with read, write, and update.
@@ -11,15 +12,19 @@ import java.util.Scanner;
  * @author Varun Doreswamy, Yuet Yue
  */
 public class Scheduler {
-    // Constants
+
+    // constants
     private static final int NOT_FOUND = -1;
     private static final int EMPTY = 0;
     private static final int STARTING_LIST_SIZE = 4;
     private static final int SOURCE = 0;
 
+    // Private Variables
     private List clinic = new List(STARTING_LIST_SIZE);
-    private boolean exited = false;
     private MedicalRecord records = new MedicalRecord();
+
+    // State Management
+    private boolean exited = false;
 
     // Used to handle each command line
     String command;

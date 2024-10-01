@@ -7,6 +7,7 @@ public enum Specialty {
     PEDIATRICIAN(300),
     ALLERGIST( 350);
 
+    // instance variable
     private final int charge;
 
     /**

@@ -1,9 +1,9 @@
+
 /**
  * This is the Visit class which tracks a patient's visits
  * The individual patient's visits are stored within a linked list
  * @author Yuet Yue
  */
-
 public class Visit {
 
     // instance variables

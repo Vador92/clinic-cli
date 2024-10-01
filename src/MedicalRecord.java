@@ -11,6 +11,7 @@ public class MedicalRecord {
     final static int PRINT_SHIFT = 1;
     final static int START_VALUE = 1;
 
+    // instance variables
     private Patient[] patients;
     private int size;
 
@@ -20,6 +21,47 @@ public class MedicalRecord {
     public MedicalRecord() {
         this.patients = new Patient[START_VALUE];
         this.size = EMPTY;
+    }
+
+    /**
+     * Sets the next appointment for a Patient, if the patient exists.
+     * @param medicalRecord Uses the medical record to set next appointment.
+     * @param index Is the index used for adding to that patient.
+     * @param newAppointment Is the next appointment for that patient.
+     */
+    private void nextAppointment(MedicalRecord medicalRecord,
+                                 int index,
+                                 Appointment newAppointment){
+        Patient exisingPatient = medicalRecord.getRecord(index);
+        exisingPatient.addAppointment(newAppointment);
+        exisingPatient.getCharge();
+    }
+
+    /**
+     * This method grows the appointment list, saving space by only adding 1.
+     */
+    private void grow(){
+        Patient[] expandedPatient = new Patient[patients.length + INCREMENT];
+        // copy contents from original array to new array
+        for (int i = SOURCE; i < patients.length; i++) {
+            expandedPatient[i] = patients[i];
+        }
+        // set appointments to extended array
+        patients = expandedPatient;
+    }
+
+    /**
+     * This method finds an existing patient and returns index, if found.
+     * @param newPatient Is the patient we are trying to find.
+     * @return int of the index of the patient array.
+     */
+    private int findPatient(Patient newPatient){
+        for(int i = 0; i < size; i++){
+            if(patients[i].equals(newPatient)){
+                return i;
+            }
+        }
+        return NOT_FOUND;
     }
 
     /**
@@ -54,49 +96,6 @@ public class MedicalRecord {
         while (clinic.getSize() != EMPTY){
             clinic.remove(clinic.get(SOURCE));
         }
-    }
-
-
-    /**
-     * Sets the next appointment for a Patient, if the patient exists.
-     * @param medicalRecord Uses the medical record to set next appointment.
-     * @param index Is the index used for adding to that patient.
-     * @param newAppointment Is the next appointment for that patient.
-     */
-    private void nextAppointment(MedicalRecord medicalRecord,
-                                 int index,
-                                 Appointment newAppointment){
-        Patient exisingPatient = medicalRecord.getRecord(index);
-        exisingPatient.addAppointment(newAppointment);
-        exisingPatient.getCharge();
-    }
-
-    /**
-     * This method grows the appointment list, saving space by only adding 1.
-     */
-    private void grow(){
-        Patient[] expandedPatient = new Patient[patients.length + INCREMENT];
-        // copy contents from original array to new array
-        for (int i = SOURCE; i < patients.length; i++) {
-            expandedPatient[i] = patients[i];
-        }
-        // set appointments to extended array
-        patients = expandedPatient;
-    }
-
-
-    /**
-     * This method finds an existing patient and returns index, if found.
-     * @param newPatient Is the patient we are trying to find.
-     * @return int of the index of the patient array.
-     */
-    private int findPatient(Patient newPatient){
-        for(int i = 0; i < size; i++){
-            if(patients[i].equals(newPatient)){
-                return i;
-            }
-        }
-        return NOT_FOUND;
     }
 
     /**

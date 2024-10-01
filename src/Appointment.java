@@ -2,9 +2,11 @@ import java.util.Calendar;
 
 /**
  * This class is for creating, validating, and formatting an appointment.
- * @author Varun Doreswamy
+ * @author Varun Doreswamy, Yuet Yue
  */
 public class Appointment implements Comparable<Appointment> {
+
+    // instance variables
     private Date date;
     private Timeslot timeslot;
     private Profile patient;
@@ -17,7 +19,11 @@ public class Appointment implements Comparable<Appointment> {
      * @param patient The patient the appointment is associated with
      * @param provider The provider which is being seeked by patient.
      */
-    public Appointment(Date date, Timeslot timeslot, Profile patient, Provider provider) {
+    public Appointment(
+            Date date,
+            Timeslot timeslot,
+            Profile patient,
+            Provider provider) {
         this.date = date;
         this.timeslot = timeslot;
         this.patient = patient;
@@ -52,7 +58,6 @@ public class Appointment implements Comparable<Appointment> {
 
         return new Appointment(appointmentDate, timeslot, patient, provider);
     }
-
 
     /**
      * This method checks the validity of the appointment.

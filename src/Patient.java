@@ -1,18 +1,30 @@
-/**
- * @author Yuet
- */
-
 import java.text.DecimalFormat;
 
+/**
+ * This is the Patient class which manages the patient's information
+ * The information in question is the profile and associated visits
+ * @author Yuet Yue
+ */
 public class Patient implements Comparable<Patient>{
+
+    // instance variables
     private Profile profile;
     private Visit visits;
 
+    /**
+     * This the constructor method for creating patients
+     * @param profile used for patient full name and date of birth
+     * @param visits used for the tracking of the patient's visit history
+     */
     public Patient(Profile profile, Visit visits) {
         this.profile = profile;
         this.visits = visits;
     }
 
+    /**
+     * This method adds an appointment to the patient object
+     * @param newAppointment used for specified appointment adding
+     */
     public void addAppointment(Appointment newAppointment) {
         Visit newVisit = new Visit(newAppointment, null);
 
@@ -28,51 +40,63 @@ public class Patient implements Comparable<Patient>{
         }
     }
 
+    /**
+     * This method calculates the total charge for all visits
+     * Each visit charge is calculated based on the provider's specialty
+     * @return the total charge that the patient owes
+     */
     public int charge() {
-
-        // creates a variable that keeps track of all the charges for each
         int totalCharge = 0;
         Visit currentVisit = this.visits;
-
         while(currentVisit != null) {
-
-            // get the appointment associated with the current visit that is being referenced
             Appointment appointment = currentVisit.getAppointment();
-
             Provider provider = appointment.getProvider();
-
-            Specialty specialty = provider.getSpecialty();
-
-            // adds to the total charge to an appointment after it is completed
             totalCharge += provider.getSpecialty().getCharge();
-
-
-            // moves to the next appointment node
             currentVisit = currentVisit.getNext();
         }
-
         return totalCharge;
     }
-    // create method to return the visit charge for the patient's visit
 
+    /**
+     * This method acts as a getter method for the profile of the patient
+     * @return profile object of the patient
+     */
     public Profile getProfile() {
         return profile;
     }
 
+    /**
+     * This method acts as a getter method for charging the patient's visits
+     * @return the total charge that the patient owes
+     */
     public int getCharge() {
         return charge();
     }
 
+    /**
+     * This method acts as a getter method for the visits that a patient has
+     * @return the visits that a patient has booked
+     */
     public Visit getVisits() {
         return visits;
     }
 
+    /**
+     * This method the billing statement for a patient in proper format
+     * @return String format of the patient's billing records
+     */
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#,##0.00");
-        return profile.toString() + " [amount due: $" + df.format(getCharge()) + "]";
+        return profile.toString()
+                + " [amount due: $" + df.format(getCharge()) + "]";
     }
 
+    /**
+     * This method checks for duplicate patient objects
+     * @param object to compare another patient object for duplicate checking
+     * @return TRUE if the patient is a duplicate, FALSE if it is different
+     */
     @Override
     public boolean equals(Object object) {
         if (object == this) {
@@ -85,21 +109,13 @@ public class Patient implements Comparable<Patient>{
         return this.profile.equals(other.profile);
     }
 
-    // need to complete this
+    /**
+     * This method compares the values within patient for sorting purposes
+     * @param otherPatient used to compare with the other profile and visits
+     * @return -1, 1, or 0 if the charge is lesser, greater, or equal to
+     */
     @Override
     public int compareTo(Patient otherPatient) {
-        // For example, compare by visit charge
         return Integer.compare(this.charge(), otherPatient.charge());
     }
-
 }
-
-
-/*
- You can add necessary constants, constructors, and methods; however, you CANNOT change or add the
-instance variables, or -2 points for each violation.
- You must override the equals(), toString() and compareTo(), with the @Override tag, or -2 points for
-each violation.
- The charge() method traverses the linked list “visits” and returns the charge of the patient, -3 points if
-this method is missing.
- */

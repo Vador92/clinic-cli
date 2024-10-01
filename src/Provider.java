@@ -12,6 +12,7 @@ public enum Provider {
     RAMESH(Location.MORRISTOWN, Specialty.ALLERGIST),
     CERAVOLO(Location.EDISON, Specialty.PEDIATRICIAN);
 
+    // instance variables
     private final Location location;
     private final Specialty specialty;
 

@@ -10,6 +10,7 @@ public enum Timeslot {
     SLOT5 (15, 0),
     SLOT6 (16, 15);
 
+    // instance variables
     private final int hour;
     private final int minute;
 

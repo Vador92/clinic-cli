@@ -1,3 +1,5 @@
+import java.util.Calendar;
+
 /**
  * This is the Date class which manages all the generations of dates
  * This checks for all the edge cases provided by the project description:
@@ -8,9 +10,6 @@
  * 5. Checks if a date has a valid month, day, and year
  * @author Yuet Yue, Varun Doreswamy
  */
-
-import java.util.Calendar;
-
 public class Date implements Comparable<Date> {
 
     // constants to represent the start of each time metric
@@ -335,32 +334,40 @@ public class Date implements Comparable<Date> {
      * @param args as the input of dates used for testing edge cases
      */
     public static void main(String[] args) {
-        // Test case 1: Invalid date - Year is below 1900 (years before 1900 are not valid years)
+        // Test case 1: Invalid date - Year is below 1900
+        // (years before 1900 are not valid years)
         Date date1 = new Date("02/30/1800");
-        System.out.println("Test Case 1 - Expected: false, Actual: " + date1.isValid());
+        System.out.println("Test Case 1 - Expected: false, Actual: "
+                + date1.isValid());
 
         // Test case 2: Invalid date - April 31 (April only has 30 days)
         Date date2 = new Date("04/31/2023");
-        System.out.println("Test Case 2 - Expected: false, Actual: " + date2.isValid());
+        System.out.println("Test Case 2 - Expected: false, Actual: "
+                + date2.isValid());
 
         // Test case 3: Invalid date - Month is 13 (no month beyond 12)
         Date date3 = new Date("13/15/2023");
-        System.out.println("Test Case 3 - Expected: false, Actual: " + date3.isValid());
+        System.out.println("Test Case 3 - Expected: false, Actual: "
+                + date3.isValid());
 
         // Test case 4: Invalid date - Day is 0 (no month has a day 0)
         Date date4 = new Date("12/00/2023");
-        System.out.println("Test Case 4 - Expected: false, Actual: " + date4.isValid());
+        System.out.println("Test Case 4 - Expected: false, Actual: "
+                + date4.isValid());
 
         // Test case 5: Invalid date - February 29 on a non-leap year
         Date date8 = new Date("02/29/2023"); // 2023 is not a leap year
-        System.out.println("Test Case 5 - Expected: false, Actual: " + date8.isValid());
+        System.out.println("Test Case 5 - Expected: false, Actual: "
+                + date8.isValid());
 
         // Test case 6: Valid date - February 29 on a leap year
         Date date5 = new Date("02/29/2024"); // Leap year
-        System.out.println("Test Case 6 - Expected: true, Actual: " + date5.isValid());
+        System.out.println("Test Case 6 - Expected: true, Actual: "
+                + date5.isValid());
 
         // Test case 7: Valid date - December 31 (last day of the year)
         Date date6 = new Date("12/31/2023");
-        System.out.println("Test Case 7 - Expected: true, Actual: " + date6.isValid());
+        System.out.println("Test Case 7 - Expected: true, Actual: "
+                + date6.isValid());
     }
 }
