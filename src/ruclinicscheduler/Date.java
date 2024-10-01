@@ -1,7 +1,9 @@
+package ruclinicscheduler;
+
 import java.util.Calendar;
 
 /**
- * This is the Date class which manages all the generations of dates
+ * This is the ruclinicscheduler.Date class which manages all the generations of dates
  * This checks for all the edge cases provided by the project description:
  * 1. February day range difference during a leap year
  * 2. Each month's maximum day value (different for different months)
@@ -313,7 +315,7 @@ public class Date implements Comparable<Date> {
             return false;
         }
 
-        // Cast the object to a Date instance
+        // Cast the object to a ruclinicscheduler.Date instance
         Date other = (Date) object;
 
         // Compare year, month, and day

@@ -1,5 +1,7 @@
+package ruclinicscheduler;
+
 /**
- * This is an enum class for the Speciality of Provider with the charges.
+ * This is an enum class for the Speciality of ruclinicscheduler.Provider with the charges.
  * @author Varun Doreswamy
  */
 public enum Specialty {
@@ -11,7 +13,7 @@ public enum Specialty {
     private final int charge;
 
     /**
-     * Constructor for Specialty
+     * Constructor for ruclinicscheduler.Specialty
      * @param charge used to set the charge of the provider
      */
     Specialty(int charge) {

@@ -1,3 +1,5 @@
+package ruclinicscheduler;
+
 /**
  * This is an enum class for the 6 specific locations for the clinics.
  * @author Varun Doreswamy
@@ -15,7 +17,7 @@ public enum Location {
     private final String zip;
 
     /**
-     * This is the constructor method for Location using the county and zip
+     * This is the constructor method for ruclinicscheduler.Location using the county and zip
      * @param county used for first argument of enum
      * @param zip used for second argument of enum
      */

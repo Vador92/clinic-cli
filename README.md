@@ -49,7 +49,7 @@ and time. So can multiple people have the same date and time and/or provider. al
 - use a switch statement to check the different cases
 - no array list, only scanner
 
-#### Appointment class
+#### ruclinicscheduler.Appointment class
 - comparable basically makes the class comparable to other objects of the class
 - 4 mandatory fields all private, basically 4 classes
 - Need a constructor
@@ -61,7 +61,7 @@ and time. So can multiple people have the same date and time and/or provider. al
 - in main
     - only call the schedular class
 - for the list class, when removing move from the end of the list to the first non-used index
-#### Date Class
+#### ruclinicscheduler.Date Class
 - year, month, day, isValid() function
 - must debug for every class in order to avoid bugs
 

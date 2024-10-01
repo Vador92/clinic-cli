@@ -1,3 +1,5 @@
+package ruclinicscheduler;
+
 /**
  * This class manages the Clinic appointments.
  * We can find, add, and remove appointments.
@@ -16,8 +18,8 @@ public class List {
     private int size;
 
     /**
-     * This is the constructor for the clinic List.
-     * @param size Sets the initial size of the clinic List.
+     * This is the constructor for the clinic ruclinicscheduler.List.
+     * @param size Sets the initial size of the clinic ruclinicscheduler.List.
      */
     public List(int size) {
         this.appointments = new Appointment[size];
@@ -66,12 +68,12 @@ public class List {
     }
 
     /**
-     * This sorts appointment list by Appointment.
+     * This sorts appointment list by ruclinicscheduler.Appointment.
      * Checks in order of:
      * <ol>
-     *     <li>Date</li>
-     *     <li>Timeslot</li>
-     *     <li>Provider Name</li>
+     *     <li>ruclinicscheduler.Date</li>
+     *     <li>ruclinicscheduler.Timeslot</li>
+     *     <li>ruclinicscheduler.Provider Name</li>
      * </ol>
      */
     private void bubbleSortAppointment(Appointment[] appointments) {
@@ -109,12 +111,12 @@ public class List {
     }
 
     /**
-     * This sorts appointment list by Location.
+     * This sorts appointment list by ruclinicscheduler.Location.
      * Checks in order of:
      * <ol>
      *     <li>County</li>
-     *     <li>Date</li>
-     *     <li>Timeslot</li>
+     *     <li>ruclinicscheduler.Date</li>
+     *     <li>ruclinicscheduler.Timeslot</li>
      * </ol>
      */
     private void bubbleSortLocation(Appointment[] appointments){
@@ -202,7 +204,7 @@ public class List {
 
     /**
      * This method is used to check the provider availability of provider.
-     * @param newAppointment Appointment which the provider is checked.
+     * @param newAppointment ruclinicscheduler.Appointment which the provider is checked.
      * @return int of the location in the list or -1 if NOT FOUND.
      */
     public int findProviderAvailability(Appointment newAppointment) {
@@ -223,7 +225,7 @@ public class List {
     /**
      * Getter method for specific appointment in the list.
      * @param index the index of the appointment.
-     * @return Appointment based on the index.
+     * @return ruclinicscheduler.Appointment based on the index.
      */
     public Appointment get(int index) {
         return appointments[index];
@@ -251,7 +253,7 @@ public class List {
     }
 
     /**
-     * Getter method for the appointments in the clinic List
+     * Getter method for the appointments in the clinic ruclinicscheduler.List
      * @return Array of Appointments
      */
     public Appointment[] getAppointments() {
@@ -259,7 +261,7 @@ public class List {
     }
 
     /**
-     * Prints patients sorted by Profile, date, timeslot.
+     * Prints patients sorted by ruclinicscheduler.Profile, date, timeslot.
      */
     public void printByPatient() {
         // edge case for empty list
@@ -315,9 +317,9 @@ public class List {
      * <ol>
      *     <li>Last Name</li>
      *     <li>First Name</li>
-     *     <li>Date of Birth</li>
-     *     <li>Date</li>
-     *     <li>Timeslot</li>
+     *     <li>ruclinicscheduler.Date of Birth</li>
+     *     <li>ruclinicscheduler.Date</li>
+     *     <li>ruclinicscheduler.Timeslot</li>
      * </ol>
      */
     public void bubbleSortPatient(Appointment[] appointments) {

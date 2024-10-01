@@ -1,7 +1,9 @@
+package ruclinicscheduler;
+
 /**
- * This is the Profile class which manages all the profiles for each patient
+ * This is the ruclinicscheduler.Profile class which manages all the profiles for each patient
  * The profiles of each patient contain a first name, last name, and dob
- * This also checks for additional edge cases building off the Date class
+ * This also checks for additional edge cases building off the ruclinicscheduler.Date class
  * @author Yuet Yue, Varun Doreswamy
  */
 public class Profile implements Comparable<Profile> {
@@ -149,10 +151,10 @@ public class Profile implements Comparable<Profile> {
      * Test Edge Cases:
      * 1. Last name is different and lexicographically greater
      * 2. First name is different and lexicographically greater
-     * 3. Date of birth is different, later, and lexicographically greater
+     * 3. ruclinicscheduler.Date of birth is different, later, and lexicographically greater
      * 4. Last name is different and lexicographically lesser
      * 5. First name is different and lexicographically lesser
-     * 6. Date of birth is different, earlier, and lexicographically lesser
+     * 6. ruclinicscheduler.Date of birth is different, earlier, and lexicographically lesser
      * 7. First name, last name, and date of birth are identical
      * @param args as the input of profiles used for testing edge cases
      */
@@ -191,7 +193,7 @@ public class Profile implements Comparable<Profile> {
                         + p3.compareTo(p4)
         );
 
-        // Test case 3: Date of birth of calling object is later
+        // Test case 3: ruclinicscheduler.Date of birth of calling object is later
         // when both last and first names are the same
         Profile p5 = new Profile(
                 "John",
@@ -242,7 +244,7 @@ public class Profile implements Comparable<Profile> {
                         + p9.compareTo(p10)
         );
 
-        // Test case 6: Date of birth of calling
+        // Test case 6: ruclinicscheduler.Date of birth of calling
         // object is earlier when both last and first names are the same
         Profile p11 = new Profile(
                 "John",

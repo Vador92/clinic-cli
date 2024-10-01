@@ -1,3 +1,5 @@
+package ruclinicscheduler;
+
 /**
  * This class is to hold the unique patients with total charges.
  * Deletes user appointments from clinic once transferred to medical record.
@@ -24,7 +26,7 @@ public class MedicalRecord {
     }
 
     /**
-     * Sets the next appointment for a Patient, if the patient exists.
+     * Sets the next appointment for a ruclinicscheduler.Patient, if the patient exists.
      * @param medicalRecord Uses the medical record to set next appointment.
      * @param index Is the index used for adding to that patient.
      * @param newAppointment Is the next appointment for that patient.
@@ -109,7 +111,7 @@ public class MedicalRecord {
     /**
      * This gets the patient at a certain index.
      * @param index is the index used for finding the patient.
-     * @return Patient object at that index.
+     * @return ruclinicscheduler.Patient object at that index.
      */
     public Patient getRecord(int index){
         return patients[index];

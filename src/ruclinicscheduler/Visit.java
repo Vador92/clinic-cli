@@ -1,6 +1,7 @@
+package ruclinicscheduler;
 
 /**
- * This is the Visit class which tracks a patient's visits
+ * This is the ruclinicscheduler.Visit class which tracks a patient's visits
  * The individual patient's visits are stored within a linked list
  * @author Yuet Yue
  */

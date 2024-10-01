@@ -1,7 +1,9 @@
+package ruclinicscheduler;
+
 import java.text.DecimalFormat;
 
 /**
- * This is the Patient class which manages the patient's information
+ * This is the ruclinicscheduler.Patient class which manages the patient's information
  * The information in question is the profile and associated visits
  * @author Yuet Yue
  */

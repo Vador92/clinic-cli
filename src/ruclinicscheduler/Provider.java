@@ -1,3 +1,5 @@
+package ruclinicscheduler;
+
 /**
  * This is an enum class for the 8 providers, with location and specialty.
  * @author Varun Doreswamy
@@ -29,7 +31,7 @@ public enum Provider {
     /**
      * This method is used to set a provider based on the string input.
      * @param provider is used to check which provider it is - case ignorance
-     * @return Provider depending on match with the set ones, or null
+     * @return ruclinicscheduler.Provider depending on match with the set ones, or null
      */
     public static Provider setProvider(String provider){
         // normalize provider
@@ -58,7 +60,7 @@ public enum Provider {
 
     /**
      * This method gets the provider's specialty
-     * @return Specialty of the provider
+     * @return ruclinicscheduler.Specialty of the provider
      */
     public Specialty getSpecialty(){
         return specialty;
@@ -66,7 +68,7 @@ public enum Provider {
 
     /**
      * Returns the location of the provider, used to compare appointments
-     * @return Location of the provider
+     * @return ruclinicscheduler.Location of the provider
      */
     public Location getLocation(){
         return location;
