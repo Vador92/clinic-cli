@@ -6,12 +6,14 @@ package ruclinicscheduler;
  * @author Varun Doreswamy
  */
 public class MedicalRecord {
-    final static int EMPTY = 0;
-    final static int SOURCE = 0;
-    final static int NOT_FOUND = -1;
-    final static int INCREMENT = 1;
-    final static int PRINT_SHIFT = 1;
-    final static int START_VALUE = 1;
+
+    // constants
+    static final int EMPTY = 0;
+    static final int SOURCE = 0;
+    static final int NOT_FOUND = -1;
+    static final int INCREMENT = 1;
+    static final int PRINT_SHIFT = 1;
+    static final int START_VALUE = 1;
 
     // instance variables
     private Patient[] patients;
@@ -58,7 +60,7 @@ public class MedicalRecord {
      * @return int of the index of the patient array.
      */
     private int findPatient(Patient newPatient){
-        for(int i = 0; i < size; i++){
+        for(int i = SOURCE; i < size; i++){
             if(patients[i].equals(newPatient)){
                 return i;
             }
