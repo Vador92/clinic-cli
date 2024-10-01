@@ -1,7 +1,7 @@
 package ruclinicscheduler;
 
 /**
- * This is the ruclinicscheduler.RunProject1 class, the driver for the terminal scheduler.
+ * This is the RunProject1 class, the driver for the terminal scheduler.
  * @version 22.0.1
  * @author Varun Doreswamy, Yuet Yue
  */

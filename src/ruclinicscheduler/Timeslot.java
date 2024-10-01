@@ -45,7 +45,7 @@ public enum Timeslot {
     /**
      * This creates a new timeslot object if a valid time.
      * @param timeslot is used to see if timeslot is valid
-     * @return ruclinicscheduler.Timeslot that corresponds to the 6 timeslots, or null
+     * @return Timeslot that corresponds to the 6 timeslots, or null
      */
     public static Timeslot setTimeslot(String timeslot){
         return switch (timeslot){

@@ -3,9 +3,9 @@ package ruclinicscheduler;
 import java.util.Scanner;
 
 /**
- * This is the ruclinicscheduler.Scheduler class, the user's way of controlling appointments.
+ * This is the Scheduler class, the user's way of controlling appointments.
  * Handles user commands, with read, write, and update.
- * Within the ruclinicscheduler.Scheduler, we are able to:
+ * Within the Scheduler, we are able to:
  * 1. Create an appointment, based on provider availability and duplicates
  * 2. Cancel an existing appointment
  * 3. Reschedule an existing appointment, if provider is available
@@ -33,7 +33,7 @@ public class Scheduler {
     String[] arguments = null;
 
     /**
-     * Creates new ruclinicscheduler.Scheduler object, to be used in ruclinicscheduler.RunProject1 driver class.
+     * Creates new Scheduler object, to be used in RunProject1 driver class.
      */
     public Scheduler() {
 
@@ -104,7 +104,7 @@ public class Scheduler {
     /**
      * This adds a new appointment to clinic, if it exists and is valid.
      * Handles error cases where an appointment cannot be booked.
-     * @param newAppointment is used to add new appointment to clinic (ruclinicscheduler.List)
+     * @param newAppointment is used to add new appointment to clinic (List)
      */
     private void handleNewAppointment(Appointment newAppointment) {
         if (newAppointment != null) {
@@ -132,7 +132,7 @@ public class Scheduler {
     }
 
     /**
-     * This method cancels an existing appointment (if valid) and in ruclinicscheduler.List
+     * This method cancels an existing appointment (if valid) and in List
      * @param cancelAppointment used to remove appointment from list
      */
     private void handleCancel(Appointment cancelAppointment) {
@@ -225,13 +225,13 @@ public class Scheduler {
         Scanner scanner = new Scanner(System.in);
 
         // Begin scheduler program
-        System.out.println("ruclinicscheduler.Scheduler is running.");
+        System.out.println("Scheduler is running.");
         while(!exited)
         {
             // Handle new line from terminal
             processCommand(scanner.nextLine());
         }
-        // Exit ruclinicscheduler.Scheduler
-        System.out.println("ruclinicscheduler.Scheduler is terminated.");
+        // Exit Scheduler
+        System.out.println("Scheduler is terminated.");
     }
 }
