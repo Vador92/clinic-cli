@@ -1,23 +1,42 @@
 /**
- * @author Yuet
+ * This is the Profile class which manages all the profiles for each patient
+ * The profiles of each patient contain a first name, last name, and dob
+ * This also checks for additional edge cases building off the Date class
+ * @author Yuet Yue, Varun Doreswamy
  */
 public class Profile implements Comparable<Profile> {
-    private String fname;
-    private String lname;
-    private Date dob;
 
+    // constants for lexicographical checking for variable differences
     private static final int LEXICO_GREATER = 1;
     private static final int LEXICO_LESSER = -1;
     private static final int LEXICO_EQUAL = 0;
     private static final int EQUAL = 0;
 
-    // constructor for Object Profile
+    // instance variables
+    private String fname;
+    private String lname;
+    private Date dob;
+
+    /**
+     * This is the constructor method for creating patient profiles
+     * The profile contains the first and last name along with dob
+     * @param fname gets read as the first name and added into the object
+     * @param lname gets read as the last name and added into the object
+     * @param dob gets read as the date of birth and added into the object
+     */
     public Profile(String fname, String lname, Date dob) {
         this.fname = fname;
         this.lname = lname;
         this.dob = dob;
     }
 
+    /**
+     * This method acts as a getter method for the profile
+     * @param fname gets read as the first name
+     * @param lname gets read as the last name
+     * @param dob gets read as the date of birth
+     * @return the new profile object containing fname, lname, and dob
+     */
     private Profile getProfile(String fname, String lname, String dob) {
         try {
             Date birthday = new Date(dob);
@@ -30,22 +49,35 @@ public class Profile implements Comparable<Profile> {
         }
     }
 
-    // getter method for First Name
+    /**
+     * This method acts as a getter for the first name in the profile
+     * @return the patient's first name
+     */
     public String getFname() {
         return fname;
     }
 
-    // getter method for Last Name
+    /**
+     * This method acts as a getter for the last name in the profile
+     * @return the patient's last name
+     */
     public String getLname() {
         return lname;
     }
 
-    // getter method for Object Date of Birth
+    /**
+     * This method acts as a getter for the date of the dob in the profile
+     * @return the date value of the patient's date of birth
+     */
     public Date getDob() {
         return dob;
     }
 
-    // checks if there are duplicate Profile Objects with the same fields, or null fields
+    /**
+     * This method checks for duplicate profile objects
+     * @param object to compare another profile object for duplicate checking
+     * @return TRUE if the profile is a duplicate, FALSE if it is different
+     */
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -67,13 +99,21 @@ public class Profile implements Comparable<Profile> {
                 && dob.equals(other.dob);
     }
 
+    /**
+     * This method returns the profile in the proper String format
+     * @return String of the first name, last name, and dob of the patient
+     */
     @Override
     public String toString() {
         return getFname() + " " + getLname() + " " + getDob();
     }
 
 
-    // need to change compareTo method
+    /**
+     * This method compares the values within profile for sorting purposes
+     * @param other the object to be compared with the fname, lname, and dob
+     * @return -1, 1, or 0 if lexicographically lesser, greater, or equal
+     */
     @Override
     public int compareTo(Profile other) {
 
@@ -105,7 +145,18 @@ public class Profile implements Comparable<Profile> {
         return EQUAL;
     }
 
-
+    /**
+     * This main method acts as te testbed main() for this class
+     * Test Edge Cases:
+     * 1. Last name is different and lexicographically greater
+     * 2. First name is different and lexicographically greater
+     * 3. Date of birth is different, later, and lexicographically greater
+     * 4. Last name is different and lexicographically lesser
+     * 5. First name is different and lexicographically lesser
+     * 6. Date of birth is different, earlier, and lexicographically lesser
+     * 7. First name, last name, and date of birth are identical
+     * @param args as the input of profiles used for testing edge cases
+     */
     public static void main(String[] args) {
         // Test case 1: Last name of calling object is lexicographically greater
         Profile p1 = new Profile("John", "Doe", new Date("01/01/2000"));

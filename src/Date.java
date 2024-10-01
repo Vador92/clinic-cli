@@ -301,7 +301,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * This method checks for duplicate date objects
-     * @param object to compare another date object to for duplicate checking
+     * @param object to compare another date object for duplicate checking
      * @return TRUE if the date is a duplicate, FALSE if it is different
      */
     @Override
