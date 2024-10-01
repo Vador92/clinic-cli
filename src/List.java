@@ -9,6 +9,7 @@ public class List {
     // constants for error handling
     private static final int NOT_FOUND = -1;
     private static final int GROW_SIZE = 4;
+    private static final int SOURCE = 0;
 
     // Instance variables
     private Appointment[] appointments;
@@ -20,7 +21,7 @@ public class List {
      */
     public List(int size) {
         this.appointments = new Appointment[size];
-        this.size = 0;
+        this.size = SOURCE;
     }
 
     /**
@@ -29,7 +30,7 @@ public class List {
      * @return integer of index in the list, or -1 if not found.
      */
     private int find(Appointment appointment) {
-        for (int i = 0; i < this.size; i++) {
+        for (int i = SOURCE; i < this.size; i++) {
             //
             if (appointments[i].equals(appointment)) {
                 return i; // index
@@ -46,7 +47,7 @@ public class List {
         Appointment[] expandedArray = new Appointment[appointments.length
                 + GROW_SIZE];
         // copy contents from original array to new array
-        for (int i = 0; i < appointments.length; i++) {
+        for (int i = SOURCE; i < appointments.length; i++) {
             expandedArray[i] = appointments[i];
         }
         // set appointments to extended array
@@ -58,10 +59,10 @@ public class List {
      * @param a the first appointment
      * @param b the second appointment.
      */
-    private void swap(int a, int b) {
-        Appointment temp = appointments[a];
-        appointments[a] = appointments[b];
-        appointments[b] = temp;
+    private void swap(int first, int second) {
+        Appointment temp = appointments[first];
+        appointments[first] = appointments[second];
+        appointments[second] = temp;
     }
 
     /**
@@ -75,8 +76,8 @@ public class List {
      */
     private void bubbleSortAppointment(Appointment[] appointments) {
         int n = size;
-        for (int i = 0; i < n-1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
+        for (int i = SOURCE; i < n-1; i++) {
+            for (int j = SOURCE; j < n - i - 1; j++) {
                 if (appointments[j].getDate()
                         .compareTo(appointments[j+1].getDate()) > 0)  {
                     swap(j, j+1);
@@ -118,8 +119,8 @@ public class List {
      */
     private void bubbleSortLocation(Appointment[] appointments){
         int n = size;
-        for (int i = 0; i < n-1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
+        for (int i = SOURCE; i < n-1; i++) {
+            for (int j = SOURCE; j < n - i - 1; j++) {
                 if (appointments[j]
                         .getProvider().getLocation()
                         .getCounty().compareTo(appointments[j+1]
@@ -189,7 +190,7 @@ public class List {
     public boolean findProviderAvailability(Date checkDate,
                                             Timeslot checkTimeslot,
                                             Provider checkProvider) {
-        for (int i = 0; i < size; i++) {
+        for (int i = SOURCE; i < size; i++) {
             if (appointments[i].getDate().equals(checkDate)
                     && appointments[i].getTimeslot().equals(checkTimeslot)
                     && appointments[i].getProvider().equals(checkProvider)) {
@@ -206,7 +207,7 @@ public class List {
      */
     public int findProviderAvailability(Appointment newAppointment) {
         // need to check if the same date, timeslot, and provided
-        for (int i = 0; i < size; i++) {
+        for (int i = SOURCE; i < size; i++) {
             if (appointments[i].getDate().equals(newAppointment.getDate())
                     && appointments[i].getTimeslot()
                     .equals(newAppointment.getTimeslot())
@@ -269,7 +270,7 @@ public class List {
         bubbleSortPatient(this.appointments);
         System.out.println("** Appointments ordered " +
                 "by patient/date/time **");
-        for (int i = 0; i < size; i++) {
+        for (int i = SOURCE; i < size; i++) {
             System.out.println(this.appointments[i].toString());
         }
         System.out.println("** end of list **");
@@ -285,7 +286,7 @@ public class List {
         }
         bubbleSortLocation(this.appointments);
         System.out.println("** Appointments ordered by county/date/time **");
-        for (int i = 0; i < size; i++){
+        for (int i = SOURCE; i < size; i++){
             System.out.println(appointments[i].toString());
         }
         System.out.println("** end of list **");
@@ -302,7 +303,7 @@ public class List {
         bubbleSortAppointment(this.appointments);
         System.out.println("** Appointments ordered " +
                 "by date/time/provider **");
-        for (int i = 0; i < size; i++) {
+        for (int i = SOURCE; i < size; i++) {
             System.out.println(this.appointments[i].toString());
         }
         System.out.println("** end of list **");
@@ -321,8 +322,8 @@ public class List {
      */
     public void bubbleSortPatient(Appointment[] appointments) {
         int n = size;
-        for (int i = 0; i < n-1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
+        for (int i = SOURCE; i < n-1; i++) {
+            for (int j = SOURCE; j < n - i - 1; j++) {
                 if (appointments[j].getPatientProfile()
                         .compareTo(appointments[j+1]
                                 .getPatientProfile()) > 0)  {
