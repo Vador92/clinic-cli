@@ -198,7 +198,8 @@ public class Scheduler {
      * The order of the patients are by last name.
      */
     private void handleBillingStatements() {
-        MedicalRecord records = new MedicalRecord().add(clinic);
+        MedicalRecord records = new MedicalRecord();
+        records.add(clinic);
         if (records.getSize() != EMPTY) {
             System.out.println("** Billing statement ordered by patient **");
             System.out.println(records.toString());
