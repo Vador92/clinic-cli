@@ -25,10 +25,8 @@ public class MedicalRecord {
     /**
      * This method adds unique clients, with charges, to the medical records.
      * @param clinic The list of all the appointments
-     * @return MedicalRecord object with all unique clients
      */
     public void add(List clinic){
-
         if (clinic.getSize() == EMPTY){
             return;
         }
@@ -36,7 +34,8 @@ public class MedicalRecord {
         clinic.bubbleSortPatient(clinic.getAppointments());
 
         for (int i = SOURCE; i < clinic.getSize(); i++) {
-            Patient newPatient = new Patient(clinic.get(i).getPatientProfile(), null);
+            Patient newPatient = new Patient(clinic.get(i)
+                    .getPatientProfile(), null);
             int patientIndex = findPatient(newPatient);
             if (patientIndex == NOT_FOUND){
                 if(this.getSize() == patients.length){
@@ -48,7 +47,8 @@ public class MedicalRecord {
                 this.size++;
             }
             else{
-                this.nextAppointment(this, patientIndex, clinic.get(i));
+                this.nextAppointment(this, patientIndex,
+                        clinic.get(i));
             }
         }
         while (clinic.getSize() != EMPTY){
@@ -57,6 +57,12 @@ public class MedicalRecord {
     }
 
 
+    /**
+     * Sets the next appointment for a Patient, if the patient exists.
+     * @param medicalRecord Uses the medical record to set next appointment.
+     * @param index Is the index used for adding to that patient.
+     * @param newAppointment Is the next appointment for that patient.
+     */
     private void nextAppointment(MedicalRecord medicalRecord,
                                  int index,
                                  Appointment newAppointment){
@@ -65,6 +71,9 @@ public class MedicalRecord {
         exisingPatient.getCharge();
     }
 
+    /**
+     * This method grows the appointment list, saving space by only adding 1.
+     */
     private void grow(){
         Patient[] expandedPatient = new Patient[patients.length + INCREMENT];
         // copy contents from original array to new array
@@ -75,6 +84,12 @@ public class MedicalRecord {
         patients = expandedPatient;
     }
 
+
+    /**
+     * This method finds an existing patient and returns index, if found.
+     * @param newPatient Is the patient we are trying to find.
+     * @return int of the index of the patient array.
+     */
     private int findPatient(Patient newPatient){
         for(int i = 0; i < size; i++){
             if(patients[i].equals(newPatient)){
@@ -84,14 +99,27 @@ public class MedicalRecord {
         return NOT_FOUND;
     }
 
+    /**
+     * Getter method for getting the size of the medicalrecord.
+     * @return int for the number of elements in the patients array.
+     */
     public int getSize(){
         return size;
     }
 
+    /**
+     * This gets the patient at a certain index.
+     * @param index is the index used for finding the patient.
+     * @return Patient object at that index.
+     */
     public Patient getRecord(int index){
         return patients[index];
     }
 
+    /**
+     * Method to return a string of the all the patients and total charges.
+     * @return String of formatted billing record.
+     */
     @Override
     public String toString() {
         int size = this.getSize();
