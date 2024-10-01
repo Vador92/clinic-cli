@@ -79,26 +79,26 @@ public class List {
         for (int i = SOURCE; i < n-1; i++) {
             for (int j = SOURCE; j < n - i - 1; j++) {
                 if (appointments[j].getDate()
-                        .compareTo(appointments[j+1].getDate()) > 0)  {
+                        .compareTo(appointments[j+1].getDate()) > SOURCE)  {
                     swap(j, j+1);
                 }
                 else if (appointments[j].getDate()
-                        .compareTo(appointments[j+1].getDate()) == 0)  {
+                        .compareTo(appointments[j+1].getDate()) == SOURCE)  {
                     if (
                             appointments[j].getTimeslot()
                                     .compareTo(appointments[j+1]
-                                            .getTimeslot()) > 0
+                                            .getTimeslot()) > SOURCE
                     ){
                         // problem with swapping
                         swap(j, j+1);
                     }
                     else if (appointments[j].getTimeslot()
                             .compareTo(appointments[j+1]
-                                    .getTimeslot()) == 0){
+                                    .getTimeslot()) == SOURCE){
                         if(
                                 appointments[j].getProvider()
                                         .name().compareTo(appointments[j+1]
-                                                .getProvider().name()) > 0
+                                                .getProvider().name()) > SOURCE
                         ){
                             swap(j, j+1);
                         }
@@ -125,28 +125,28 @@ public class List {
                         .getProvider().getLocation()
                         .getCounty().compareTo(appointments[j+1]
                                 .getProvider().getLocation()
-                                .getCounty()) > 0)  {
+                                .getCounty()) > SOURCE)  {
                     swap(j, j+1);
                 }
                 else if (appointments[j].getProvider()
                         .getLocation().getCounty()
                         .compareTo(appointments[j+1].getProvider()
-                                .getLocation().getCounty()) == 0)  {
+                                .getLocation().getCounty()) == SOURCE)  {
                     if (
                             appointments[j].getDate()
                                     .compareTo(appointments[j+1]
-                                            .getDate()) > 0
+                                            .getDate()) > SOURCE
                     ){
                         // problem with swapping
                         swap(j, j+1);
                     }
                     else if (appointments[j].getDate()
                             .compareTo(appointments[j+1]
-                                    .getDate()) == 0){
+                                    .getDate()) == SOURCE){
                         if(
                                 appointments[j].getTimeslot()
                                         .compareTo(appointments[j+1]
-                                                .getTimeslot()) > 0
+                                                .getTimeslot()) > SOURCE
                         ){
                             swap(j, j+1);
                         }
@@ -263,7 +263,7 @@ public class List {
      */
     public void printByPatient() {
         // edge case for empty list
-        if(size == 0 ){
+        if(size == SOURCE) {
             System.out.println("The schedule calendar is empty.");
             return;
         }
@@ -280,7 +280,7 @@ public class List {
      * Prints appointments in order of county, date, timeslot.
      */
     public void printByLocation(){
-        if (size == 0){
+        if (size == SOURCE){
             System.out.println("The schedule calendar is empty.");
             return;
         }
@@ -296,7 +296,7 @@ public class List {
      * Prints the appointments, sorted by date, time, and provider name.
      */
     public void printByAppointment(){
-        if(size == 0 ){
+        if(size == SOURCE){
             System.out.println("The schedule calendar is empty.");
             return;
         }
@@ -326,27 +326,27 @@ public class List {
             for (int j = SOURCE; j < n - i - 1; j++) {
                 if (appointments[j].getPatientProfile()
                         .compareTo(appointments[j+1]
-                                .getPatientProfile()) > 0)  {
+                                .getPatientProfile()) > SOURCE)  {
                     swap(j, j+1);
                 }
                 else if (appointments[j].getPatientProfile()
                         .compareTo(appointments[j+1]
-                                .getPatientProfile()) == 0)  {
+                                .getPatientProfile()) == SOURCE)  {
                     if (
                             appointments[j].getDate()
                                     .compareTo(appointments[j+1]
-                                            .getDate()) > 0
+                                            .getDate()) > SOURCE
                     ){
                         // problem with swapping
                         swap(j, j+1);
                     }
                     else if (appointments[j].getDate()
                             .compareTo(appointments[j+1]
-                                    .getDate()) == 0){
+                                    .getDate()) == SOURCE){
                         if(
                                 appointments[j].getTimeslot()
                                         .compareTo(appointments[j+1]
-                                                .getTimeslot()) > 0
+                                                .getTimeslot()) > SOURCE
                         ){
                             swap(j, j+1);
                         }
