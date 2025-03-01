@@ -1,12 +1,9 @@
 # softwaremethproject1
 scheduler software to help a clinic manage appointments.
 
-## Current Blockers
-- The system shall not schedule an appointment if a given patient has an existing appointment with the same date
-and time. So can multiple people have the same date and time and/or provider. also can you schedule two appointments same day
-- The provider is not available at the specified timeslot. (can't have duplicate on the same day)
-- The equals() method returns true if two appointments have the same date,
-  timeslot, and patient; returns false otherwise.
+## Synopsis
+This is an Command Terminal Application that is mimics the usefulness of a Clinic Manager Application. The point of this project was to introduce Object Orientated Programming from a setting that is very dependent on similar types of software. With this project, we focused on the Software Development Life Cycle and heavily tested with Java Unit tests.
+
 
 ## Requirements:
 
@@ -39,35 +36,3 @@ and time. So can multiple people have the same date and time and/or provider. al
 - StringTokenizer
 - Calendar
 - DecimalFormat class
-
-### Recitation Notes
-- Make sure appointment is comparable in order to compare different appoints using a searching algorithm
-- Medical records class
-- Clear appointments once charges are completed
-- Main function is a while
-- it keeps getting commands from user
-- use a switch statement to check the different cases
-- no array list, only scanner
-
-#### ruclinicscheduler.Appointment class
-- comparable basically makes the class comparable to other objects of the class
-- 4 mandatory fields all private, basically 4 classes
-- Need a constructor
-- must make equals, toString, compareTo with override tags (MUST DO THIS)
-- for toString there is a specific implement
-- toString must be in all classes
-- recursively call charge on appoint until next appointment is null
-- need a schedular class
-- in main
-    - only call the schedular class
-- for the list class, when removing move from the end of the list to the first non-used index
-#### ruclinicscheduler.Date Class
-- year, month, day, isValid() function
-- must debug for every class in order to avoid bugs
-
-#### enum classes
-- need classes for each enum
-
-
-#### Test cases
-- use the test case tools to check the accuracy of the program with the output
