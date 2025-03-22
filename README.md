@@ -1,4 +1,4 @@
-# softwaremethproject1
+# Clinic Manager CLI
 scheduler software to help a clinic manage appointments.
 
 ## Synopsis
